@@ -1,0 +1,15 @@
+body {
+    background-image: url('https://res.cloudinary.com/dwyxur7sy/image/upload/v1690816129/react_app_ourmenu/Background_qoegvg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.welcome-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Adjust this if needed */
+}
+  
+  
+  
