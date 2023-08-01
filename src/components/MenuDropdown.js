@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaHome } from 'react-icons/fa';
 
-const DropdownMenu = ({ menuData }) => {
+const MenuDropdown = ({ menuData }) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   return (
-    <div className="dropdown-menu">
-      {menuData.map((menuItem, index) => (
-        <div key={index}>
-          <div>{menuItem.dropdownTitle}</div>
-          <ul>
-            {menuItem.sidebarItems.map((sidebarItem, subIndex) => (
-              <li key={subIndex}>{sidebarItem}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+    <div className={`navbar-menu-dropdown${isDropdownOpen ? ' open' : ''}`}>
+      <a
+        href="#"
+        className="navbar-text nav-link fw-bold dropdown-toggle"
+        role="button"
+        onClick={toggleDropdown}
+      >
+        <FaHome className="me-1" />
+        Menu
+      </a>
+      <ul className={`menu-items${isDropdownOpen ? ' show' : ''}`}>
+        {menuData.map((menuItem, index) => (
+          <li key={index}>{menuItem.dropdownTitle}</li>
+        ))}
+      </ul>
     </div>
   );
 };
 
-export default DropdownMenu;
-
-
-
+export default MenuDropdown;

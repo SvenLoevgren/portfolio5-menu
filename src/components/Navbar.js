@@ -55,17 +55,7 @@ const Navbar = () => {
 
               {/* Menu-Home */}
               <li className="nav-item dropdown">
-              <a
-                href="#"
-                className="navbar-text nav-link fw-bold dropdown-toggle"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <FaHome className="me-1" />
-                Menu
-              </a>
-              <DropdownMenu menuData={menuData} />
+                <DropdownMenu menuData={menuData} />
               </li>
 
               {/* Login or Logout */}
