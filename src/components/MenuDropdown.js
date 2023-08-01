@@ -1,31 +1,41 @@
 import React, { useState } from 'react';
 import { FaHome } from 'react-icons/fa';
 
-const MenuDropdown = ({ menuData }) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+const DropdownMenu = ({ menuData }) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+  const handleMenuEnter = () => {
+    setIsOpen(true);
+  };
+
+  const handleMenuLeave = () => {
+    setIsOpen(false);
   };
 
   return (
-    <div className={`navbar-menu-dropdown${isDropdownOpen ? ' open' : ''}`}>
+    <div
+      className={`navbar-menu-dropdown ${isOpen ? 'open' : ''}`}
+      onMouseEnter={handleMenuEnter}
+      onMouseLeave={handleMenuLeave}
+    >
       <a
         href="#"
-        className="navbar-text nav-link fw-bold dropdown-toggle"
+        className="navbar-text nav-link fw-bold"
         role="button"
-        onClick={toggleDropdown}
+        onClick={(e) => e.preventDefault()} // Prevent the link from navigating
       >
         <FaHome className="me-1" />
         Menu
       </a>
-      <ul className={`menu-items${isDropdownOpen ? ' show' : ''}`}>
+      <div className={`menu-items ${isOpen ? 'show' : ''}`}>
         {menuData.map((menuItem, index) => (
-          <li key={index}>{menuItem.dropdownTitle}</li>
+          <div key={index}>
+            <div>{menuItem.dropdownTitle}</div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
 
-export default MenuDropdown;
+export default DropdownMenu;

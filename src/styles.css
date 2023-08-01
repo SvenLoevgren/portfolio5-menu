@@ -1,4 +1,6 @@
 /* styles.css */
+
+/* Global styles */
 body {
     background-image: url('https://res.cloudinary.com/dwyxur7sy/image/upload/v1690816129/react_app_ourmenu/Background_qoegvg.png');
     background-size: cover;
@@ -9,7 +11,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100vh; /* Adjust this if needed */
+  }
+  
+  /* Navbar styles */
+  .navbar {
+    background-color: #f8f9fa;
   }
   
   .navbar-text {
@@ -57,10 +64,11 @@ body {
   
   .menu-items li {
     padding: 5px;
-    list-style: none; /* Remove bullets */
   }
   
   .menu-items li:hover {
     background-color: #f1f1f1;
   }
+  
+  /* ... (other styles) */
   
