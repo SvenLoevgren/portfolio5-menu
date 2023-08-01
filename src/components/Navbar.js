@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { FaHome, FaUser, FaCalendar, FaShoppingCart } from 'react-icons/fa';
+import '../styles.css';
 
 const Navbar = () => {
   const [summary, setSummary] = useState(0); // Initialize the summary state with 0
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-      <div className="container-fluid" id="navbar-color">
+      <div className="container-fluid">
         {/* Logo and MoreVegans */}
         <div className="navbar-brand">
           <img
@@ -21,35 +22,65 @@ const Navbar = () => {
           </span>
         </div>
 
-        {/* Booking-site */}
-        <div className="navbar-text me-2 fw-bold">
-          <FaCalendar className="me-1" />
-          Booking-site</div>
+        {/* Navbar Toggler */}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarLinks"
+          aria-controls="navbarLinks"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon" />
+        </button>
 
-        {/* Separator */}
-        <div className="navbar-text me-2 fw-bold">|</div>
+        {/* Navbar Links */}
+        <div className="collapse navbar-collapse d-lg-flex justify-content-lg-end">        
+            <ul className="navbar-nav">
+              {/* Booking-site */}
+              <li className="nav-item">
+                <a href="#" className="navbar-text nav-link">
+                  <FaCalendar className="me-1" />
+                  Booking-site
+                </a>
+              </li>
 
+              {/* Separator */}
+              <li className="nav-item">
+                <span className="navbar-text me-2 fw-bold">|</span>
+              </li>
 
-        {/* Menu-Home */}
-        <div className="navbar-text me-2">
-          <FaHome className="me-1" />
-          Menu-Home
-        </div>
+              {/* Menu-Home */}
+              <li className="nav-item">
+                <a href="#" className="navbar-text nav-link fw-bold">
+                  <FaHome className="me-1" />
+                  Menu
+                </a>
+              </li>
 
-        {/* Login or Logout */}
-        <div className="navbar-text me-2">
-          <FaUser className="me-1" />
-          Login
-          {/*userIsLoggedIn ? 'Logout' : 'Login'*/}
-        </div>
+              {/* Login or Logout */}
+              <li className="nav-item">
+                <a href="#" className="navbar-text nav-link">
+                  <FaUser className="me-1" />
+                  Logged-in
+                  {/*userIsLoggedIn ? 'Logout' : 'Logged-in'*/}
+                </a>
+              </li>
 
-        {/* Space */}
-        <div className="navbar-text me-2">&nbsp;</div>
+              {/* Space */}
+              <li className="nav-item">
+                <span className="me-2">&nbsp;</span>
+              </li>
 
-        {/* Chart Icon and Sum */}
-        <div className="navbar-text me-2">
-          <FaShoppingCart className="me-1" />
-          <span className="fw-bold">Sum=</span> {summary}
+              {/* Chart Icon and Sum */}
+              <li className="nav-item">
+                <a href="#" className="navbar-text nav-link">
+                  <FaShoppingCart className="me-1" />
+                  <span>Sum=</span> {summary}
+                </a>
+              </li>
+            </ul>
         </div>
       </div>
     </nav>
