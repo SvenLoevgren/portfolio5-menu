@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FaHome, FaUser, FaCalendar, FaShoppingCart } from 'react-icons/fa';
 import '../styles.css';
+import DropdownMenu from './MenuDropdown';
+import menuData from './menuData'; 
 
 const Navbar = () => {
   const [summary, setSummary] = useState(0); // Initialize the summary state with 0
@@ -37,7 +39,7 @@ const Navbar = () => {
 
         {/* Navbar Links */}
         <div className="collapse navbar-collapse d-lg-flex justify-content-lg-end">        
-            <ul className="navbar-nav">
+            <ul className="ms-auto navbar-nav">
               {/* Booking-site */}
               <li className="nav-item">
                 <a href="#" className="navbar-text nav-link">
@@ -52,11 +54,18 @@ const Navbar = () => {
               </li>
 
               {/* Menu-Home */}
-              <li className="nav-item">
-                <a href="#" className="navbar-text nav-link fw-bold">
-                  <FaHome className="me-1" />
-                  Menu
-                </a>
+              <li className="nav-item dropdown">
+              <a
+                href="#"
+                className="navbar-text nav-link fw-bold dropdown-toggle"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <FaHome className="me-1" />
+                Menu
+              </a>
+              <DropdownMenu menuData={menuData} />
               </li>
 
               {/* Login or Logout */}
