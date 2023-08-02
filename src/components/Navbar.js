@@ -38,7 +38,7 @@ const Navbar = () => {
         </button>
 
         {/* Navbar Links */}
-        <div className="collapse navbar-collapse" id="navbarLinks"> {/* Add the ID "navbarLinks" here */}
+        <div className="collapse navbar-collapse" id="navbarLinks"> 
           <ul className="ms-auto navbar-nav">
             {/* Booking-site */}
             <li className="nav-item">

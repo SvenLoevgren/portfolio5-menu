@@ -1,6 +1,5 @@
-/* styles.css */
+/* ------------------------------------Global styles */
 
-/* Global styles */
 body {
   background-image: url('https://res.cloudinary.com/dwyxur7sy/image/upload/v1690816129/react_app_ourmenu/Background_qoegvg.png');
   background-size: cover;
@@ -14,7 +13,13 @@ body {
   height: 100vh; /* Adjust this if needed */
 }
 
-/* Navbar styles */
+.text-center > p {
+  font-weight: 600;
+  font-size: larger;
+}
+
+/* ------------------------------------Navbar */
+
 .navbar {
   background-color: #f8f9fa;
 }
@@ -25,20 +30,36 @@ body {
   padding: 8px 16px;
 }
 
+.navbar-text:link {
+  text-decoration: none;
+  color: black; /* Set the color you want for unvisited links */
+}
+
 .navbar-text:hover {
   text-decoration: underline;
   color: brown;
 }
 
-/* Custom dropdown styles */
+/* ------------------------------------Menu dropdown */
+
 .navbar-menu-dropdown {
   position: relative;
   display: inline-block;
 }
 
+#dropdownLinks {
+  text-decoration: none;
+  color: black; 
+  font-weight: bold;
+}
+
+#dropdownLinks:hover {
+  text-decoration: underline;
+  color: brown;
+}
 
 .menu-item:hover {
-  background-color: #f1f1f1;
+  background-color: #dcd5d5;
 }
 
 .navbar-menu-dropdown.open .menu-items {
@@ -57,43 +78,7 @@ body {
   margin-bottom: 10px;
 }
 
-
-.menu-item.active .sidebar {
-  display: block;
-}
-
-
-.menu-item.active .sidebar {
-  display: block;
-}
-
-.sidebar {
-  margin-top: 10px; 
-  top: 0;
-  right: 0;
-  z-index: 1000;
-  position: relative;
-  display: none;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 10px;
-  min-width: 200px;
-}
-
-.sidebar ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  margin-top: 10px; 
-}
-
-.sidebar li {
-  padding: 5px;
-}
-
-.sidebar li:hover {
-  background-color: #f1f1f1;
-}
+/* ------------------------------------Media Queries */
 
 @media (min-width: 992px) {
   .navbar-menu-dropdown {
@@ -103,16 +88,10 @@ body {
   .menu-items {
     position: absolute;
     top: 100%;
-    left: 0;
+    left: -100;
   }
 
-  .menu-item .sidebar {
-    position: absolute;
-    top: 0;
-    left: -100%;
-  }
-
-  .menu-item.active .sidebar {
+  .menu-item.active {
     left: 100%;
   }
 }
