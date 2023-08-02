@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaHome, FaUser, FaCalendar, FaShoppingCart } from 'react-icons/fa';
+import { FaUser, FaCalendar, FaShoppingCart } from 'react-icons/fa';
 import '../styles.css';
 import DropdownMenu from './MenuDropdown';
 import menuData from './menuData'; 
@@ -29,7 +29,7 @@ const Navbar = () => {
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarLinks"
+          data-bs-target="#navbarLinks" 
           aria-controls="navbarLinks"
           aria-expanded="false"
           aria-label="Toggle navigation"
@@ -38,48 +38,48 @@ const Navbar = () => {
         </button>
 
         {/* Navbar Links */}
-        <div className="collapse navbar-collapse d-lg-flex justify-content-lg-end">        
-            <ul className="ms-auto navbar-nav">
-              {/* Booking-site */}
-              <li className="nav-item">
-                <a href="#" className="navbar-text nav-link">
-                  <FaCalendar className="me-1" />
-                  Booking-site
-                </a>
-              </li>
+        <div className="collapse navbar-collapse" id="navbarLinks"> {/* Add the ID "navbarLinks" here */}
+          <ul className="ms-auto navbar-nav">
+            {/* Booking-site */}
+            <li className="nav-item">
+              <a href="#" className="navbar-text nav-link">
+                <FaCalendar className="me-1" />
+                Booking-site
+              </a>
+            </li>
 
-              {/* Separator */}
-              <li className="nav-item">
-                <span className="navbar-text me-2 fw-bold">|</span>
-              </li>
+            {/* Separator */}
+            <li className="nav-item">
+              <span className="navbar-text me-2 fw-bold">|</span>
+            </li>
 
-              {/* Menu-Home */}
-              <li className="nav-item dropdown">
-                <DropdownMenu menuData={menuData} />
-              </li>
+            {/* Menu-Home */}
+            <li className="nav-item dropdown">
+              <DropdownMenu menuData={menuData} />
+            </li>
 
-              {/* Login or Logout */}
-              <li className="nav-item">
-                <a href="#" className="navbar-text nav-link">
-                  <FaUser className="me-1" />
-                  Logged-in
-                  {/*userIsLoggedIn ? 'Logout' : 'Logged-in'*/}
-                </a>
-              </li>
+            {/* Login or Logout */}
+            <li className="nav-item">
+              <a href="#" className="navbar-text nav-link">
+                <FaUser className="me-1" />
+                Logged-in
+                {/*userIsLoggedIn ? 'Logout' : 'Logged-in'*/}
+              </a>
+            </li>
 
-              {/* Space */}
-              <li className="nav-item">
-                <span className="me-2">&nbsp;</span>
-              </li>
+            {/* Space */}
+            <li className="nav-item">
+              <span className="me-2">&nbsp;</span>
+            </li>
 
-              {/* Chart Icon and Sum */}
-              <li className="nav-item">
-                <a href="#" className="navbar-text nav-link">
-                  <FaShoppingCart className="me-1" />
-                  <span>Sum=</span> {summary}
-                </a>
-              </li>
-            </ul>
+            {/* Chart Icon and Sum */}
+            <li className="nav-item">
+              <a href="#" className="navbar-text nav-link">
+                <FaShoppingCart className="me-1" />
+                <span>Sum=</span> {summary}
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
