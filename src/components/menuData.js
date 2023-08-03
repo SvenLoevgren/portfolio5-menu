@@ -1,20 +1,16 @@
 
 const menuData = [
     {
-      dropdownTitle: 'No chicken',
-      sidebarItems: ['Nuggets'],
-    },
-    {
-      dropdownTitle: 'Drinks',
-      sidebarItems: ['Fanta, Coca-Cola', 'Sprite', 'Water', 'Milk (Oat)', 'Juice (Apple)', 'Juice (Orange)', 'Strawberry shake (Coco milk)', 'Chocolate shake (Coco milk)', 'Rose hip shake (Coco milk)', 'Smoothie (Blueberry)', 'smoothie (Rose hip)'],
-    },
-    {
       dropdownTitle: 'Rainbow Burgers',
       sidebarItems: ['Aurantius (Carrot)', 'Chiorus (Avocado)', 'Flavus (Paprika)', 'Purpureus (Aubergine)', 'Roseus (pickled red onion)', 'Ruber (Tomato)', 'Brunus (all ingredients)'],
     },
     {
       dropdownTitle: 'No chicken Burgers',
       sidebarItems: ['Aurantius (Carrot)', 'Chiorus (Avocado)', 'Flavus (Paprika)', 'Purpureus (Aubergine)', 'Roseus (pickled red onion)', 'Ruber (Tomato)', 'Brunus (all ingredients)'],
+    },
+    {
+      dropdownTitle: 'No chicken',
+      sidebarItems: ['Nuggets'],
     },
     {
       dropdownTitle: 'Wraps',
@@ -43,6 +39,10 @@ const menuData = [
     {
       dropdownTitle: 'Snacks',
       sidebarItems: ['Hot wings (Oumph)', 'Mozzarella sticks (Tofu)', 'Chili cheese (Tofu)'],
+    },
+    {
+      dropdownTitle: 'Drinks',
+      sidebarItems: ['Fanta, Coca-Cola', 'Sprite', 'Water', 'Milk (Oat)', 'Juice (Apple)', 'Juice (Orange)', 'Strawberry shake (Coco milk)', 'Chocolate shake (Coco milk)', 'Rose hip shake (Coco milk)', 'Smoothie (Blueberry)', 'smoothie (Rose hip)'],
     },
   ];
 

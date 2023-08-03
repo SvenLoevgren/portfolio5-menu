@@ -9,7 +9,7 @@ const Welcome = () => {
           <Col xs={12} className="text-center">
             <h1>Welcome to Our Menu!</h1>
             <p>
-              You can find all our dishes in the "<FaHome className="me-1" /> Menu" link at the top of this page. <br />
+              You can find all of our dishes in the "<FaHome className="me-1" /> Menu" link at the top of this page. <br />
               Note that if you are using a smaller device to watch our menu, then you'll need to click on the <FaBars className="me-1" /> 
               icon, located at the top of this page.<br />
               We are here to serve you, so take your time to find out about all of the 
