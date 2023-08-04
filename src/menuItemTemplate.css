@@ -1,0 +1,88 @@
+/* menuItemTemplate.css */
+
+/* Global styles */
+body {
+    background-image: url('https://res.cloudinary.com/dwyxur7sy/image/upload/v1690816129/react_app_ourmenu/Background_qoegvg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  /* Template container */
+  .menu-item-template-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  /* Logo */
+  .logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  
+  /* Close button */
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  
+  /* Menu items */
+  .menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 400px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .menu-item img {
+    max-width: 100px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  /* Price */
+  .price {
+    font-weight: bold;
+  }
+  
+  /* Details link */
+  .details-link {
+    text-decoration: none;
+    color: blue;
+  }
+  
+  /* Buttons */
+  .buttons-container {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+  }
+  
+  .cancel-button,
+  .add-to-cart-button {
+    padding: 10px;
+    width: 150px;
+    background-color: #f1f1f1;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .cancel-button {
+    background-color: #f44336;
+    color: #fff;
+  }
+  
+  .add-to-cart-button {
+    background-color: #4caf50;
+    color: #fff;
+  }
+  

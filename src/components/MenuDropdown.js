@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaHome } from 'react-icons/fa';
+import '../styles.css';
 
 const DropdownMenu = ({ menuData }) => {
   const [isOpen, setIsOpen] = useState(false);

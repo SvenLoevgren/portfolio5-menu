@@ -1,13 +1,25 @@
 import React from 'react';
-import Welcome from '../src/components/Welcome';
-import Navbar from '../src/components/Navbar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Welcome from './components/Welcome';
+import Navbar from './components/Navbar';
+
+const LayoutWithNavbar = ({ children }) => {
+  return (
+    <div>
+      <Navbar />
+      {children}
+    </div>
+  );
+};
 
 const App = () => {
   return (
-    <div className="App">
-      <Navbar />
-      <Welcome />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LayoutWithNavbar><Welcome /></LayoutWithNavbar>} />
+        {/* Add more routes as needed */}
+      </Routes>
+    </Router>
   );
 };
 
