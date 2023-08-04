@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import '../menuItemTemplate.css';
+import '../menuItemTemplate.css'; // IF I REMOVE THIS LINE THAN MY LAYOUT IS OK
 import menuData from './menuData'; // Importing the menuData file
 
 const MenuItemTemplate = () => {
@@ -15,26 +15,26 @@ const MenuItemTemplate = () => {
   }
 
   return (
-    <div className="menu-item-template-container">
+    <div className="Template-menu-item-template-container">
       {/* Logo */}
-      <div className="logo">Your 912 Logo</div>
+      <div className="Template-logo"></div>
 
       {/* Menu items */}
       {menuItem.dropdownDetails.map((item, index) => (
-        <div className="menu-item" key={index}>
+        <div className="Template-menu-item" key={index}>
           <div>{item}</div>
-          <div className="price">$2.50</div> {/* You can update the price if needed */}
+          <div className="Template-price">$2.50</div> {/* You can update the price if needed */}
           <input type="checkbox" />
-          <a className="details-link" href={`/details/${item.replace(' ', '').toLowerCase()}`}>
+          <a className="Template-details-link" href={`/details/${item.replace(' ', '').toLowerCase()}`}>
             Details
           </a>
         </div>
       ))}
 
       {/* Buttons */}
-      <div className="buttons-container">
-        <button className="cancel-button">Cancel</button>
-        <button className="add-to-cart-button">Add to Cart</button>
+      <div className="Template-buttons-container">
+        <button className="Template-cancel-button">Cancel</button>
+        <button className="Template-add-to-cart-button">Add to Cart</button>
       </div>
     </div>
   );

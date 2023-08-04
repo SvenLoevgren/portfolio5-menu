@@ -1,88 +1,87 @@
-/* menuItemTemplate.css */
+/* MenuItemTemplate.css */
 
-/* Global styles */
-body {
-    background-image: url('https://res.cloudinary.com/dwyxur7sy/image/upload/v1690816129/react_app_ourmenu/Background_qoegvg.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-  
-  /* Template container */
-  .menu-item-template-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    padding: 20px;
-  }
-  
-  /* Logo */
-  .logo {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-  }
-  
-  /* Close button */
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-  }
-  
-  /* Menu items */
-  .menu-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 400px;
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-  }
-  
-  .menu-item img {
-    max-width: 100px;
-    height: auto;
-    margin-right: 10px;
-  }
-  
-  /* Price */
-  .price {
-    font-weight: bold;
-  }
-  
-  /* Details link */
-  .details-link {
-    text-decoration: none;
-    color: blue;
-  }
-  
-  /* Buttons */
-  .buttons-container {
-    display: flex;
-    justify-content: space-between;
-    width: 400px;
-  }
-  
-  .cancel-button,
-  .add-to-cart-button {
-    padding: 10px;
-    width: 150px;
-    background-color: #f1f1f1;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .cancel-button {
-    background-color: #f44336;
-    color: #fff;
-  }
-  
-  .add-to-cart-button {
-    background-color: #4caf50;
-    color: #fff;
-  }
-  
+/* Template container */
+.Template-menu-item-template-container {
+  background-image: url('https://res.cloudinary.com/dwyxur7sy/image/upload/v1691137223/react_app_ourmenu/Dinner_z5ddnu.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+/* Logo */
+.Template-logo {
+  background-image: url('/public/logo512.png');
+  width: 77px;
+  height: 66px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+/* Close button */
+.Template-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* Menu items */
+.Template-menu-item {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  width: 66%; /* Adjust the width as needed */
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #0c0a0a;
+  flex-direction: row;
+  font-weight: bold;
+}
+
+/* Increase the space between menu items in the horizontal row */
+.Template-menu-item + .Template-menu-item {
+  margin-left: 40px; /* Adjust the margin as needed */
+}
+/* Price */
+.Template-price {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/* Details link */
+.Template-details-link {
+  text-decoration: none;
+  color: blue;
+}
+
+/* Buttons */
+.Template-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+}
+
+.Template-cancel-button,
+.Template-add-to-cart-button {
+  padding: 10px;
+  width: 150px;
+  background-color: #f1f1f1;
+  border: none;
+  cursor: pointer;
+}
+
+.Template-cancel-button {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.Template-add-to-cart-button {
+  background-color: #4caf50;
+  color: #fff;
+}
