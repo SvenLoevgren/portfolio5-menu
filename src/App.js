@@ -20,7 +20,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LayoutWithNavbar><Welcome /></LayoutWithNavbar>} />
         <Route path="/menu/:title" element={<MenuItemTemplate menuData={menuData} />} />
-        {/* Add more routes as needed */}
+        {/* Add more paths as needed */}
       </Routes>
     </Router>
   );
