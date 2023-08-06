@@ -1,6 +1,5 @@
-/* MenuItemTemplate.css */
+/*------------------------------------background and logo*/
 
-/* Template container */
 .Template-menu-item-template-container {
   background-image: url('https://res.cloudinary.com/dwyxur7sy/image/upload/v1691137223/react_app_ourmenu/Dinner_z5ddnu.png');
   background-size: cover;
@@ -13,7 +12,6 @@
   padding: 20px;
 }
 
-/* Logo */
 .Template-logo {
   background-image: url('/public/logo512.png');
   width: 77px;
@@ -23,20 +21,12 @@
   left: 10px;
 }
 
-/* Close button */
-.Template-close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-}
+/*------------------------------------Menu item content*/
 
-/* Menu items */
 .Template-menu-item {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
-  width: 66%; /* Adjust the width as needed */
   margin-bottom: 20px;
   padding: 10px;
   border: 1px solid #0c0a0a;
@@ -44,23 +34,35 @@
   font-weight: bold;
 }
 
-/* Increase the space between menu items in the horizontal row */
-.Template-menu-item + .Template-menu-item {
-  margin-left: 40px; /* Adjust the margin as needed */
-}
-/* Price */
 .Template-price {
   font-weight: bold;
   margin-right: 10px;
 }
 
-/* Details link */
 .Template-details-link {
   text-decoration: none;
   color: blue;
 }
 
-/* Buttons */
+#Template-Item-containers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.Template-item-name {
+  width: fit-content;
+}
+
+/*------------------------------------Buttons*/
+
+.Template-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
 .Template-buttons-container {
   display: flex;
   justify-content: space-between;
@@ -72,7 +74,7 @@
   padding: 10px;
   width: 150px;
   background-color: #f1f1f1;
-  border: none;
+  border-radius: 13%;
   cursor: pointer;
 }
 
@@ -85,3 +87,36 @@
   background-color: #4caf50;
   color: #fff;
 }
+
+/*------------------------------------Media Queries*/
+
+@media (min-width: 768px) {
+  .Template-menu-item {
+    width: 100vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .MenuItemTemplate-text {
+    font-size:x-small;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 340px) {
+  .Template-cancel-button,
+  .Template-add-to-cart-button {
+    width: 111px;
+  }
+  .MenuItemTemplate-heading > h1 {
+    font-size: smaller;
+    font-weight: bold;
+  }
+  .Template-logo {
+    height: 55px;
+  }
+}
+
+
+
+
