@@ -7,64 +7,117 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
+    justify-content: flex-start;
+    min-height: 100vh;
     background-color: #f7f7f7;
-}
-
-/*------------------------------------Textbox container*/
+  }
   
-.MenuItemSummary-header {
+  /*------------------------------------Header*/
+  
+  .MenuItemSummary-header {
+    margin-top: 20px;
     margin-bottom: 20px;
-}
+  }
   
-.MenuItemSummary-header h1 {
+  .MenuItemSummary-header h1 {
     color: black;
-    font-size: 4rem;
-}
+    font-size: 3rem;
+  }
+  
+  /*------------------------------------Instructions*/
 
+  .MenuItemSummary-instructions {
+    margin-bottom: 20px;
+  }
+  
+  .MenuItemSummary-instructions p {
+    color: #333;
+    font-size: 0.8rem;
+  }
+  
+  /*------------------------------------Items*/
+  
+  .MenuItemSummary-items {
+    text-align: center;
+    /* Apply styles for the container displaying menu items */
+  }
+  
   /*------------------------------------Buttons*/
-
-
-.MenuSummary-button-wrapper {
+  
+  .MenuSummary-button-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: absolute;
     bottom: 20px;
     width: 100%;
-}
+  }
   
-.MenuSummary-button {
+  .MenuSummary-button {
     padding: 10px 20px;
     font-size: 1rem;
     border-radius: 5px;
     border: none;
     cursor: pointer;
-}
-
-.MenuSummary-button:focus {
+  }
+  
+  .MenuSummary-button:focus {
     outline: none;
-}
-
-#MenuSummary-Delete {
+  }
+  
+  #MenuSummary-Delete {
     background-color: #ab4038;
     color: #fff;
     font-weight: 600;
-}
-
-#MenuSummary-Delete:hover {
+  }
+  
+  #MenuSummary-Delete:hover {
     background-color: #d64c42;
     font-weight: 700;
-}
-
-#MenuSummary-Home {
-  background-color: #2a722d;
-  color: #fff;
-  font-weight: 600;
-}
-
-#MenuSummary-Home:hover {
+  }
+  
+  #MenuSummary-Home {
+    background-color: #2a722d;
+    color: #fff;
+    font-weight: 600;
+  }
+  
+  #MenuSummary-Home:hover {
     background-color: #43a946;
     font-weight: 700;
+  }
+
+  /*------------------------------------media Queries*/
+
+@media (max-width: 950px) {
+    .MenuItemSummary-header h1 {
+        margin-top: 27%;
+    }
+}
+
+@media (max-width: 550px) {
+    .MenuItemSummary-header h1 {
+        margin-top: 0%;
+        text-align: right;
+        font-size: 1.3rem;
+    }
+    .MenuItemSummary-instructions p {
+        font-size: 0.4rem;
+        margin-top: 24%;
+    }
+    .MenuItemSummary-header hr {
+        display: none;
+    }
+}
+
+@media (max-width: 300px) {
+    .MenuItemSummary-header h1 {
+        margin-top: 0%;
+        text-align: right;
+        font-size: 0.8rem;
+    }
+    .MenuItemSummary-instructions p {
+        font-size: 0.2rem;
+    }
+
   }
