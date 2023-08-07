@@ -1,19 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const MenuItemDetails = ({ item, price }) => {
+const MenuItemDetails = ({ name, price, checked, onCheckboxChange, description, imageUrl }) => {
   return (
-    <div className="row Template-menu-item">
-      <div className="col-md-3 col-12 Template-item-name">{item}</div>
-      <div className="col-md-3 col-12 Template-price">{price}</div>
-      <div className="col-md-3 col-12">
-        <input type="checkbox" />
-        <a className="Template-details-link" href={`/details/${item.replace(' ', '').toLowerCase()}`}>
-          Details
-        </a>
+    <div className="Template-menu-item row">
+      <div className="col-md-4 col-12 Template-item-name">{name}</div>
+      <div className="Template-price">{price}</div>
+      <div className="Template-checkbox">
+        Select Item <input type="checkbox" checked={checked} onChange={onCheckboxChange} />
       </div>
-      <div className="col-md-3 col-12">
-        <button className="Template-cancel-button">Cancel</button>
-        <button className="Template-add-to-cart-button">Add to Cart</button>
+      <div className="col-md-1 col-12">
+        <div className="MenuItemDetails-link">
+          {/* Use the correct parameter name 'name' */}
+          <Link to={`/details/${encodeURIComponent(name)}`}>Details</Link>
+        </div>
       </div>
     </div>
   );

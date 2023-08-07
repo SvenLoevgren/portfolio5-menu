@@ -1,0 +1,139 @@
+.FoodItemDetails-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+}
+
+.FoodItemDetails-button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* foodItemDetails.css */
+.FoodItemDetails-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.FoodItemDetails-header {
+  margin-top: 10%;
+  position: relative;
+  color: black;
+}
+
+.FoodItemDetails-header img {
+  width: 100%;
+  height: auto;
+}
+
+.FoodItemDetails-header h2 {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:black;
+  font-size: 2rem;
+}
+
+.FoodItemDetails-description {
+  padding: 20px 0;
+}
+
+.FoodItemDetails-description p {
+  max-width: 100%;
+}
+
+.Food-close-button {
+  margin-top: 20px;
+}
+
+/* Additional styles for a better visual layout */
+.FoodItemDetails-container p {
+  margin-bottom: 10px;
+}
+
+.FoodItemDetails-container button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.FoodItemDetails-container button:hover {
+  background-color: #0056b3;
+}
+
+.FoodItemDetails-container button:focus {
+  outline: none;
+}
+
+@media (max-width: 767px) {
+  .FoodItemDetails-header h2 {
+    font-size: 1.5rem;
+  }
+}
+
+.Template-logo {
+  background-image: url('/public/logo512.png');
+  width: 77px;
+  height: 66px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+/* foodItemDetails.css */
+.FoodItemDetails-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.FoodItemDetails-header {
+  text-align: center;
+}
+
+.FoodItemDetails-header img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.FoodItemDetails-header h2 {
+  margin-top: 10px;
+}
+
+.FoodItemDetails-description {
+  margin-top: 20px;
+}
+
+.FoodItemDetails-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.Food-close-button button {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.Food-close-button button:hover {
+  background-color: #c9302c;
+}
+
+/* Add more custom styles as needed */
+

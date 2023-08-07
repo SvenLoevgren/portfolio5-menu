@@ -1,9 +1,12 @@
+// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Welcome from './components/Welcome';
 import MenuItemTemplate from './components/MenuItemTemplate';
+import MenuItemNotFound from './components/MenuItemNotFound'; 
 import Navbar from './components/Navbar';
-import menuData from './components/menuData'; // Importing the menuData file
+import menuData from './components/menuData'; 
+import FoodItemDetails from './components/FoodItemDetails';
 
 const LayoutWithNavbar = ({ children }) => {
   return (
@@ -20,7 +23,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LayoutWithNavbar><Welcome /></LayoutWithNavbar>} />
         <Route path="/menu/:title" element={<MenuItemTemplate menuData={menuData} />} />
-        {/* Add more paths as needed */}
+        <Route path="/details/:foodName" element={<FoodItemDetails />} />
+        <Route path="*" element={<MenuItemNotFound />} /> {/* This will match any other path */}
       </Routes>
     </Router>
   );
