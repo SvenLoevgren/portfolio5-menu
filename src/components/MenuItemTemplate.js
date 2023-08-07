@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; // Update import here
 import '../styles/menuItemTemplate.css';
 import menuData from './menuData';
 import MenuItemDetails from './MenuItemDetails';
@@ -7,6 +7,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import MenuItemNotFound from './MenuItemNotFound';
 
 const MenuItemTemplate = () => {
+  const navigate = useNavigate(); // Use useNavigate instead of useNavigation
   const { title } = useParams();
   const menuItem = menuData.find((item) => item.dropdownTitle === title);
 
@@ -25,11 +26,15 @@ const MenuItemTemplate = () => {
     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
   };
 
-  const handleCheckboxChange = (name) => { // Update parameter name here
+  const handleCheckboxChange = (name) => {
     setCheckedItems((prevCheckedItems) => ({
       ...prevCheckedItems,
-      [name]: !prevCheckedItems[name], // Update parameter name here
+      [name]: !prevCheckedItems[name],
     }));
+  };
+
+  const handleCancelClick = () => {
+    navigate('/'); // Use the navigate function to navigate
   };
 
   const totalItems = menuItem.dropdownDetails.length;
@@ -39,21 +44,7 @@ const MenuItemTemplate = () => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   function useMediaQuery(query) {
-    const [matches, setMatches] = useState(window.matchMedia(query).matches);
-
-    useEffect(() => {
-      const mediaQuery = window.matchMedia(query);
-      const handleChange = (event) => {
-        setMatches(event.matches);
-      };
-
-      mediaQuery.addListener(handleChange);
-      return () => {
-        mediaQuery.removeListener(handleChange);
-      };
-    }, [query]);
-
-    return matches;
+    // ...
   }
 
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -93,12 +84,12 @@ const MenuItemTemplate = () => {
           {menuItem.dropdownDetails.slice(startIndex, endIndex).map((item, index) => (
             <div key={index} className="col-md-4 col-12">
               <MenuItemDetails
-                name={item.name} // Pass the correct prop name here
+                name={item.name}
                 price={item.price}
-                checked={checkedItems[item.name]} // Pass the correct prop name here
-                onCheckboxChange={() => handleCheckboxChange(item.name)} 
-                description={item.description} // Pass description as a prop
-                imageUrl={item.imageUrl} // Pass imageUrl as a prop
+                checked={checkedItems[item.name]}
+                onCheckboxChange={() => handleCheckboxChange(item.name)}
+                description={item.description}
+                imageUrl={item.imageUrl}
               />
             </div>
           ))}
@@ -106,7 +97,9 @@ const MenuItemTemplate = () => {
       </div>
       <div className="row">
         <div className="col-12">
-          <button className="Template-cancel-button">Cancel</button>
+          <button className="Template-cancel-button" onClick={handleCancelClick}>
+            Cancel
+          </button>
           <button className="Template-add-to-cart-button">Add to Cart</button>
         </div>
       </div>
