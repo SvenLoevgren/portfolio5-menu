@@ -7,6 +7,7 @@ import MenuItemNotFound from './components/MenuItemNotFound';
 import Navbar from './components/Navbar';
 import menuData from './components/menuData'; 
 import FoodItemDetails from './components/FoodItemDetails';
+import MenuItemSummaryTemplate from './components/MenuItemSummaryTemplate'; 
 
 const LayoutWithNavbar = ({ children }) => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/" element={<LayoutWithNavbar><Welcome /></LayoutWithNavbar>} />
         <Route path="/menu/:title" element={<MenuItemTemplate menuData={menuData} />} />
         <Route path="/details/:foodName" element={<FoodItemDetails />} />
+        <Route path="/summary" element={<MenuItemSummaryTemplate />} />
         <Route path="*" element={<MenuItemNotFound />} /> {/* This will match any other path */}
       </Routes>
     </Router>
