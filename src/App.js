@@ -33,10 +33,7 @@ const App = () => {
           element={<MenuItemTemplate menuData={menuData} updateSummary={setSummary} setCartItems={setCartItems} />}
         />
         <Route path="/details/:foodName" element={<FoodItemDetails />} />
-        <Route
-          path="/summary"
-          element={<MenuItemSummaryTemplate cartItems={cartItems} />} // Pass cartItems prop here
-        />
+        <Route path="/summary" element={<MenuItemSummaryTemplate />} />
         <Route path="*" element={<MenuItemNotFound />} />
       </Routes>
     </Router>

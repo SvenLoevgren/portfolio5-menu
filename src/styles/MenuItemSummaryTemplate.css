@@ -42,60 +42,75 @@
     /* Apply styles for the container displaying menu items */
   }
   
-  /*------------------------------------Buttons*/
-  
-  .MenuSummary-button-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-  }
-  
-  .MenuSummary-button {
+/*------------------------------------Buttons*/
+
+.MenuSummary-button-wrapper {
+  display: flex;
+  justify-content:space-between;
+  align-items:center;
+  position: absolute;
+  bottom: 20px;
+  width: 100vw;
+}
+
+.MenuSummary-button {
     padding: 10px 20px;
     font-size: 1rem;
     border-radius: 5px;
     border: none;
     cursor: pointer;
-  }
+}
   
-  .MenuSummary-button:focus {
+.MenuSummary-button:focus {
     outline: none;
-  }
+}
+
+#MenuSummary-Update {
+   color:  #fff;
+   background-color: blue;
+   font-weight: 600;
+}
+
+#MenuSummary-Update:hover {
+   background-color: darkblue;
+   font-weight: 700;
+}
   
-  #MenuSummary-Delete {
+#MenuSummary-Delete {
     background-color: #ab4038;
     color: #fff;
     font-weight: 600;
-  }
+}
   
-  #MenuSummary-Delete:hover {
+#MenuSummary-Delete:hover {
     background-color: #d64c42;
     font-weight: 700;
-  }
+}
   
-  #MenuSummary-Home {
+#MenuSummary-Home {
     background-color: #2a722d;
     color: #fff;
     font-weight: 600;
-  }
-  
-  #MenuSummary-Home:hover {
+}
+
+#MenuSummary-Home:hover {
     background-color: #43a946;
     font-weight: 700;
-  }
+}
 
-  /*------------------------------------media Queries*/
+/*------------------------------------media Queries*/
 
 @media (max-width: 950px) {
     .MenuItemSummary-header h1 {
-        margin-top: 27%;
+        margin-top: 16%;
+        font-size: 2rem;
+    }
+    .MenuItemSummary-instructions p {
+        font-size: 0.6rem;
     }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 600px) {
     .MenuItemSummary-header h1 {
         margin-top: 0%;
         text-align: right;
@@ -110,7 +125,7 @@
     }
 }
 
-@media (max-width: 300px) {
+@media (max-width: 357px) {
     .MenuItemSummary-header h1 {
         margin-top: 0%;
         text-align: right;
@@ -118,6 +133,13 @@
     }
     .MenuItemSummary-instructions p {
         font-size: 0.2rem;
+        margin-top: 36%;
     }
 
+}
+
+  @media (max-width: 300px) {
+    .MenuItemSummary-header h1 {
+        font-size: 0.6rem;
   }
+}

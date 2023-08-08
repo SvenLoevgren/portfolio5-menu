@@ -3,6 +3,7 @@ import { FaUser, FaCalendar, FaShoppingCart } from 'react-icons/fa';
 import '../styles.css';
 import DropdownMenu from './MenuDropdown';
 import menuData from './menuData'; 
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [summary, setSummary] = useState(0);
@@ -38,12 +39,11 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarLinks"> 
           <ul className="ms-auto navbar-nav">
             <li className="nav-item">
-              <a href="#" className="navbar-text nav-link">
+              <Link to="https://fastfood-drf-dfd5756f86e9.herokuapp.com/" className="navbar-text nav-link">
                 <FaCalendar className="me-1" />
                 Booking-site
-              </a>
+              </Link>
             </li>
-
             <li className="nav-item">
               <span className="navbar-text me-2 fw-bold">|</span>
             </li>
@@ -64,10 +64,10 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
-              <a href="#" className="navbar-text nav-link">
+              <Link to="/summary" className="navbar-text nav-link">
                 <FaShoppingCart className="me-1" />
                 <span>Sum=</span> {summary}
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

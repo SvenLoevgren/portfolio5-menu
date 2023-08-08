@@ -1,12 +1,30 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import '../styles/MenuItemSummaryTemplate.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const MenuItemSummaryTemplate = () => {
-  console.log('Rendering MenuItemSummaryTemplate');
-  const location = useLocation();
-  const cartItems = location.state?.cartItems || []; // Access cartItems from state if available
+  const token = process.env.REACT_APP_AUTH_TOKEN;
+  const [cartItems, setCartItems] = useState([]);
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      try {
+        const response = await axios.get('/api/menu/cart', {
+          headers: {
+            Authorization: {token}, // Replace with your actual token
+          },
+        });
+        setCartItems(response.data);
+      } catch (error) {
+        console.error('Error fetching cart items:', error);
+      }
+    };
 
+    fetchCartItems();
+  }, [token]);
+  console.log('Rendering MenuItemSummaryTemplate');
+  const navigate = useNavigate();
   return (
     <div className="MenuItemSummary-container container-fluid">
       <div className="MenuItemSummary-header text-center container-fluid">
@@ -29,8 +47,8 @@ const MenuItemSummaryTemplate = () => {
           ))}
         </ul>
       </div>
-      <div className="MenuSummary-button-wrapper">
-      <button className="MenuSummary-button" id="MenuSummary-Home">
+      <div className='MenuSummary-button-wrapper'>
+        <button className="MenuSummary-button" id="MenuSummary-Home" onClick={() => navigate('/')}>
           Back To Menu
         </button>
         <button className="MenuSummary-button" id="MenuSummary-Delete">

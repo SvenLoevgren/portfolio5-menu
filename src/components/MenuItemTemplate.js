@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import '../styles/menuItemTemplate.css';
@@ -8,7 +9,27 @@ import MenuItemNotFound from './MenuItemNotFound';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
+function useMediaQuery(query) {
+  const [matches, setMatches] = useState(window.matchMedia(query).matches);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(query);
+    const handleChange = (event) => {
+      setMatches(event.matches);
+    };
+
+    mediaQuery.addListener(handleChange);
+    return () => {
+      mediaQuery.removeListener(handleChange);
+    };
+  }, [query]);
+
+  return matches;
+}
+
 const MenuItemTemplate = ({ updateSummary }) => {
+  const token = process.env.REACT_APP_AUTH_TOKEN;
+
   const navigate = useNavigate();
   const { title } = useParams();
   const menuItem = menuData.find((item) => item.dropdownTitle === title);
@@ -17,10 +38,22 @@ const MenuItemTemplate = ({ updateSummary }) => {
     return <MenuItemNotFound />;
   }
 
-  const [currentPage, setCurrentPage] = useState(1);
+  
   const [checkedItems, setCheckedItems] = useState({});
   const [cartItems, setCartItems] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
+ 
+
+
+  const totalItems = menuItem.dropdownDetails.length;
+  const totalLargeScreens = 3;
+  const totalSmallScreens = 1;
+  const itemsPerPage = useMediaQuery('(max-width: 767px)') ? totalSmallScreens : totalLargeScreens;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
 
   const handlePreviousPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
@@ -36,7 +69,6 @@ const MenuItemTemplate = ({ updateSummary }) => {
       [name]: !prevCheckedItems[name],
     }));
   };
-  
 
   const handleCancelClick = () => {
     navigate('/');
@@ -44,48 +76,34 @@ const MenuItemTemplate = ({ updateSummary }) => {
 
   const handleAddToCart = () => {
     const selectedItems = Object.keys(checkedItems).filter((itemName) => checkedItems[itemName]);
+
+    Axios.post(
+      'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/menu/cart/',
+      { items: selectedItems },
+      { headers: { Authorization: `Token ${token}` } }
+    )
+      .then((response) => {
+        console.log('Items added to cart:', response.data);
+      })
+      .catch((error) => {
+        console.error('Error adding items to cart:', error);
+      });
+
     setCartItems((prevCartItems) => [...prevCartItems, ...selectedItems]);
     setCheckedItems({});
-    setShowModal(true); // Show the modal after adding to cart
-    updateSummary(selectedItems.length); // Update summary count
+    setShowModal(true);
+    updateSummary(selectedItems.length);
   };
 
   const handleCloseModal = () => {
-    setShowModal(false); // Close the modal
+    setShowModal(false);
   };
-  
+
   const handleCartModal = () => {
     const selectedItems = Object.keys(checkedItems).filter((itemName) => checkedItems[itemName]);
-    setShowModal(false); // Close the modal
+    setShowModal(false);
     navigate('/summary', { state: { cartItems: selectedItems } });
   };
-
-  const totalItems = menuItem.dropdownDetails.length;
-  const totalLargeScreens = 3;
-  const totalSmallScreens = 1;
-  const itemsPerPage = useMediaQuery('(max-width: 767px)') ? totalSmallScreens : totalLargeScreens;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-
-  function useMediaQuery(query) {
-    const [matches, setMatches] = useState(window.matchMedia(query).matches);
-
-    useEffect(() => {
-      const mediaQuery = window.matchMedia(query);
-      const handleChange = (event) => {
-        setMatches(event.matches);
-      };
-
-      mediaQuery.addListener(handleChange);
-      return () => {
-        mediaQuery.removeListener(handleChange);
-      };
-    }, [query]);
-
-    return matches;
-  }
-
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
 
   return (
     <div className="Template-menu-item-template-container">
@@ -123,7 +141,7 @@ const MenuItemTemplate = ({ updateSummary }) => {
               <MenuItemDetails
                 name={item.name}
                 price={item.price}
-                checked={checkedItems[item.name]}
+                checked={checkedItems[item.name] || false}
                 onCheckboxChange={() => handleCheckboxChange(item.name)}
                 description={item.description}
                 imageUrl={item.imageUrl}
