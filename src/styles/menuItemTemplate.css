@@ -78,15 +78,28 @@
   cursor: pointer;
 }
 
-
-.Template-cancel-button {
+.Template-cancel-button,
+.Modal-Close-button {
   background-color: #f44336;
   color: #fff;
 }
 
-.Template-add-to-cart-button {
+.Template-cancel-button:hover,
+.Modal-Close-button:hover {
+  background-color: #d64c42;
+  font-weight: 700;
+}
+
+.Template-add-to-cart-button,
+.Modal-Select-button {
   background-color: #4caf50;
   color: #fff;
+}
+
+.Template-add-to-cart-button:hover,
+.Modal-Select-button:hover {
+  background-color: #43a946;
+  font-weight: 700;
 }
 
 /*------------------------------------Media Queries*/

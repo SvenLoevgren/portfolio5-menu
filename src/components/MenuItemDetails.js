@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const MenuItemDetails = ({ name, price, checked, onCheckboxChange, description, imageUrl }) => {
+const MenuItemDetails = ({ name, price, checked, onCheckboxChange, description, imageUrl, addToCart }) => {
   return (
     <div className="Template-menu-item row">
       <div className="col-md-4 col-12 Template-item-name">{name}</div>
@@ -11,9 +11,19 @@ const MenuItemDetails = ({ name, price, checked, onCheckboxChange, description, 
       </div>
       <div className="col-md-1 col-12">
         <div className="MenuItemDetails-link">
-          {/* Use the correct parameter name 'name' */}
           <Link to={`/details/${encodeURIComponent(name)}`}>Details</Link>
         </div>
+      </div>
+      <div className="col-md-1 col-12">
+        <button
+          className={`Template-item-details-button ${checked ? 'selected' : ''}`}
+          onClick={() => {
+            onCheckboxChange();
+            addToCart(checked, name); // Call the addToCart function
+          }}
+        >
+          {checked ? 'Remove' : 'Select'}
+        </button>
       </div>
     </div>
   );

@@ -1,8 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import '../styles/MenuItemSummaryTemplate.css';
 
 const MenuItemSummaryTemplate = () => {
+  console.log('Rendering MenuItemSummaryTemplate');
+  const location = useLocation();
+  const cartItems = location.state?.cartItems || []; // Access cartItems from state if available
+
   return (
     <div className="MenuItemSummary-container container-fluid">
       <div className="MenuItemSummary-header text-center container-fluid">
@@ -18,14 +22,19 @@ const MenuItemSummaryTemplate = () => {
       </div>
       <div className="MenuItemSummary-items">
         {/* Display selected items */}
-        {/* ... */}
+        <ul>
+          {console.log('cartItems:', cartItems)}
+          {cartItems.map((itemName, index) => (
+            <li key={index}>{itemName}</li>
+          ))}
+        </ul>
       </div>
       <div className="MenuSummary-button-wrapper">
+      <button className="MenuSummary-button" id="MenuSummary-Home">
+          Back To Menu
+        </button>
         <button className="MenuSummary-button" id="MenuSummary-Delete">
           Delete Items
-        </button>
-        <button className="MenuSummary-button" id="MenuSummary-Home">
-          Back To Menu
         </button>
       </div>
     </div>

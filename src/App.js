@@ -1,32 +1,43 @@
-// App.js
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Welcome from './components/Welcome';
 import MenuItemTemplate from './components/MenuItemTemplate';
-import MenuItemNotFound from './components/MenuItemNotFound'; 
+import MenuItemNotFound from './components/MenuItemNotFound';
 import Navbar from './components/Navbar';
-import menuData from './components/menuData'; 
+import menuData from './components/menuData';
 import FoodItemDetails from './components/FoodItemDetails';
-import MenuItemSummaryTemplate from './components/MenuItemSummaryTemplate'; 
+import MenuItemSummaryTemplate from './components/MenuItemSummaryTemplate';
 
-const LayoutWithNavbar = ({ children }) => {
+const LayoutWithNavbar = ({ children, summary }) => {
   return (
     <div>
-      <Navbar />
+      <Navbar summary={summary} />
       {children}
     </div>
   );
 };
 
 const App = () => {
+  const [summary, setSummary] = useState(0);
+  const [cartItems, setCartItems] = useState([]); // Initialize cartItems state here
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LayoutWithNavbar><Welcome /></LayoutWithNavbar>} />
-        <Route path="/menu/:title" element={<MenuItemTemplate menuData={menuData} />} />
+        <Route
+          path="/"
+          element={<LayoutWithNavbar summary={summary}><Welcome /></LayoutWithNavbar>}
+        />
+        <Route
+          path="/menu/:title"
+          element={<MenuItemTemplate menuData={menuData} updateSummary={setSummary} setCartItems={setCartItems} />}
+        />
         <Route path="/details/:foodName" element={<FoodItemDetails />} />
-        <Route path="/summary" element={<MenuItemSummaryTemplate />} />
-        <Route path="*" element={<MenuItemNotFound />} /> {/* This will match any other path */}
+        <Route
+          path="/summary"
+          element={<MenuItemSummaryTemplate cartItems={cartItems} />} // Pass cartItems prop here
+        />
+        <Route path="*" element={<MenuItemNotFound />} />
       </Routes>
     </Router>
   );

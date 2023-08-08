@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Update import here
+import { useParams, useNavigate } from 'react-router-dom';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import '../styles/menuItemTemplate.css';
 import menuData from './menuData';
 import MenuItemDetails from './MenuItemDetails';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import MenuItemNotFound from './MenuItemNotFound';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
-const MenuItemTemplate = () => {
-  const navigate = useNavigate(); // Use useNavigate instead of useNavigation
+const MenuItemTemplate = ({ updateSummary }) => {
+  const navigate = useNavigate();
   const { title } = useParams();
   const menuItem = menuData.find((item) => item.dropdownTitle === title);
 
@@ -17,6 +19,8 @@ const MenuItemTemplate = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [checkedItems, setCheckedItems] = useState({});
+  const [cartItems, setCartItems] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const handlePreviousPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
@@ -32,9 +36,28 @@ const MenuItemTemplate = () => {
       [name]: !prevCheckedItems[name],
     }));
   };
+  
 
   const handleCancelClick = () => {
-    navigate('/'); // Use the navigate function to navigate
+    navigate('/');
+  };
+
+  const handleAddToCart = () => {
+    const selectedItems = Object.keys(checkedItems).filter((itemName) => checkedItems[itemName]);
+    setCartItems((prevCartItems) => [...prevCartItems, ...selectedItems]);
+    setCheckedItems({});
+    setShowModal(true); // Show the modal after adding to cart
+    updateSummary(selectedItems.length); // Update summary count
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false); // Close the modal
+  };
+  
+  const handleCartModal = () => {
+    const selectedItems = Object.keys(checkedItems).filter((itemName) => checkedItems[itemName]);
+    setShowModal(false); // Close the modal
+    navigate('/summary', { state: { cartItems: selectedItems } });
   };
 
   const totalItems = menuItem.dropdownDetails.length;
@@ -44,7 +67,21 @@ const MenuItemTemplate = () => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   function useMediaQuery(query) {
-    // ...
+    const [matches, setMatches] = useState(window.matchMedia(query).matches);
+
+    useEffect(() => {
+      const mediaQuery = window.matchMedia(query);
+      const handleChange = (event) => {
+        setMatches(event.matches);
+      };
+
+      mediaQuery.addListener(handleChange);
+      return () => {
+        mediaQuery.removeListener(handleChange);
+      };
+    }, [query]);
+
+    return matches;
   }
 
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -63,7 +100,7 @@ const MenuItemTemplate = () => {
             On this page you can select your meal and add items to your Cart.<br />
             Choose your items by clicking on the "select item" checkbox.<br />
             If there are more items to select, you can find them via the next and previous buttons below.<br />
-            When you are saticfied with your choices, then press the "Add to cart" button.<br />
+            When you are satisfied with your choices, then press the "Add to cart" button.<br />
             To cancel all selections just press the "Cancel" button or close this window.
             </p>
           </div>
@@ -100,9 +137,31 @@ const MenuItemTemplate = () => {
           <button className="Template-cancel-button" onClick={handleCancelClick}>
             Cancel
           </button>
-          <button className="Template-add-to-cart-button">Add to Cart</button>
+          <button className="Template-add-to-cart-button" onClick={handleAddToCart}>
+            Add to Cart
+          </button>
         </div>
       </div>
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Cart Items</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ul>
+            {cartItems.map((itemName, index) => (
+              <li key={index}>{itemName}</li>
+            ))}
+          </ul>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal} className='Modal-Close-button'>
+            Close this Window
+          </Button>
+          <Button variant="primary" onClick={handleCartModal} className='Modal-Select-button'>
+            Add selected items
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

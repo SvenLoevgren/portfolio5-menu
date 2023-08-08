@@ -5,16 +5,15 @@ import DropdownMenu from './MenuDropdown';
 import menuData from './menuData'; 
 
 const Navbar = () => {
-  const [summary, setSummary] = useState(0); // Initialize the summary state with 0
+  const [summary, setSummary] = useState(0);
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
       <div className="container-fluid">
-        {/* Logo and MoreVegans */}
         <div className="navbar-brand">
           <img
             className="navbar-brand-img"
-            src="/logo512.png" // Replace with the URL of your logo image
+            src="/logo512.png"
             alt="Site-Logo"
             width="55"
             height="44"
@@ -24,7 +23,6 @@ const Navbar = () => {
           </span>
         </div>
 
-        {/* Navbar Toggler */}
         <button
           className="navbar-toggler"
           type="button"
@@ -37,10 +35,8 @@ const Navbar = () => {
           <span className="navbar-toggler-icon" />
         </button>
 
-        {/* Navbar Links */}
         <div className="collapse navbar-collapse" id="navbarLinks"> 
           <ul className="ms-auto navbar-nav">
-            {/* Booking-site */}
             <li className="nav-item">
               <a href="#" className="navbar-text nav-link">
                 <FaCalendar className="me-1" />
@@ -48,31 +44,25 @@ const Navbar = () => {
               </a>
             </li>
 
-            {/* Separator */}
             <li className="nav-item">
               <span className="navbar-text me-2 fw-bold">|</span>
             </li>
 
-            {/* Menu-Home */}
             <li className="nav-item dropdown">
               <DropdownMenu menuData={menuData} />
             </li>
 
-            {/* Login or Logout */}
             <li className="nav-item">
               <a href="#" className="navbar-text nav-link">
                 <FaUser className="me-1" />
                 Logged-in
-                {/*userIsLoggedIn ? 'Logout' : 'Logged-in'*/}
               </a>
             </li>
 
-            {/* Space */}
             <li className="nav-item">
               <span className="me-2">&nbsp;</span>
             </li>
 
-            {/* Chart Icon and Sum */}
             <li className="nav-item">
               <a href="#" className="navbar-text nav-link">
                 <FaShoppingCart className="me-1" />
