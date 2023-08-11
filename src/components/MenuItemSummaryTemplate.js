@@ -3,16 +3,19 @@ import '../styles/MenuItemSummaryTemplate.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 const MenuItemSummaryTemplate = () => {
   const token = process.env.REACT_APP_AUTH_TOKEN;
   const [cartItems, setCartItems] = useState([]);
+  const [showModal, setShowModal] = useState(false); 
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await axios.get('/api/menu/cart', {
+        const response = await axios.get('https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/menu/cart/', {
           headers: {
-            Authorization: {token}, // Replace with your actual token
+            Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
           },
         });
         setCartItems(response.data);
@@ -22,9 +25,25 @@ const MenuItemSummaryTemplate = () => {
     };
 
     fetchCartItems();
-  }, [token]);
-  console.log('Rendering MenuItemSummaryTemplate');
+  }, []);
+
   const navigate = useNavigate();
+
+  const handleCloseAndNavigate = () => {
+    setShowModal(false);
+    // Navigate back to the menu page
+    navigate('/'); 
+  };
+
+  const handleConfirm = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  console.log('Rendering MenuItemSummaryTemplate');
   return (
     <div className="MenuItemSummary-container container-fluid">
       <div className="MenuItemSummary-header text-center container-fluid">
@@ -42,19 +61,37 @@ const MenuItemSummaryTemplate = () => {
         {/* Display selected items */}
         <ul>
           {console.log('cartItems:', cartItems)}
-          {cartItems.map((itemName, index) => (
-            <li key={index}>{itemName}</li>
-          ))}
+          {cartItems.map((item, index) => (
+           <li key={index}>
+         {item.title} - {item.name} - Price: ${item.price} - Quantity: {item.quantity}
+           </li>
+))}
         </ul>
       </div>
       <div className='MenuSummary-button-wrapper'>
-        <button className="MenuSummary-button" id="MenuSummary-Home" onClick={() => navigate('/')}>
-          Back To Menu
+        <button className="MenuSummary-button" id="MenuSummary-Home" onClick={handleConfirm}>
+          Confirm
         </button>
         <button className="MenuSummary-button" id="MenuSummary-Delete">
           Delete Items
         </button>
       </div>
+      <Modal show={showModal} onHide={handleCloseModal}>
+      <Modal.Header closeButton>
+      <Modal.Title>Confirm Action</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+         Are you sure you want to confirm this action?
+      </Modal.Body>
+      <Modal.Footer>
+      <Button variant="secondary" onClick={handleCloseModal}>
+        Close
+      </Button>
+      <Button variant="primary" onClick={handleCloseAndNavigate}>
+        Confirm
+      </Button>
+      </Modal.Footer>
+      </Modal>
     </div>
   );
 };
