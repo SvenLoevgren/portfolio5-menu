@@ -38,13 +38,32 @@
   /*------------------------------------Items*/
   
   .MenuItemSummary-items {
+    background-color: rgba(255, 255, 255, 0.666); /* Set a transparent white background */
+    padding: 10px;
+    border-radius: 11px;
+    margin: 20px 0;
     text-align: center;
-    /* Apply styles for the container displaying menu items */
+  }
+  
+  .MenuItemSummary-items ol {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .MenuItemSummary-items li {
+    list-style: none;
+    border-bottom-style: groove;
+    font-weight: 600;
+  }
+  .MenuItemSummary-total{
+    font-weight: bold;
+    font-size: 1.1rem; 
+    color: #333;
   }
   
 /*------------------------------------Buttons*/
 
-.MenuSummary-button-wrapper {
+.MenuSummary-button-wrapper-delete-confirm {
   display: flex;
   justify-content:space-between;
   align-items:center;
@@ -123,6 +142,9 @@
     .MenuItemSummary-header hr {
         display: none;
     }
+    .MenuItemSummary-items li {
+      font-size: 0.8rem;
+    }
 }
 
 @media (max-width: 357px) {
@@ -142,4 +164,8 @@
     .MenuItemSummary-header h1 {
         font-size: 0.6rem;
   }
+  .MenuItemSummary-items li {
+    font-size: 0.6rem;
+  }
 }
+
