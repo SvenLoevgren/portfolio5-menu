@@ -43,6 +43,8 @@
     border-radius: 11px;
     margin: 20px 0;
     text-align: center;
+    max-height: 166px; /* Set the maximum height you want */
+    overflow-y: scroll; /* Add vertical scroll if content overflows */
   }
   
   .MenuItemSummary-items ol {
@@ -59,6 +61,11 @@
     font-weight: bold;
     font-size: 1.1rem; 
     color: #333;
+  }
+
+  .item-title, .item-name {
+    font-weight: bolder;
+    background-color: rgb(238, 243, 114); /* highlight the items */
   }
   
 /*------------------------------------Buttons*/
@@ -168,4 +175,3 @@
     font-size: 0.6rem;
   }
 }
-

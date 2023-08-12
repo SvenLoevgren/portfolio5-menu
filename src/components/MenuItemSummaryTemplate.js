@@ -57,22 +57,13 @@ const MenuItemSummaryTemplate = () => {
         <strong>Enjoy you meal!</strong>
         </p>
       </div>
-      <div className="MenuItemSummary-items container-fluid">
+      <div className="MenuItemSummary-items container-fluid" title="Scroll down for more items">
         {/* Display selected items */}
         <ol>
           {console.log('cartItems:', cartItems)}
           {cartItems.map((item, index) => (
             <li key={index}>
-              {item.title}: {item.name}<br/>
-              {item.description}<br/>
-              Price: ${item.price} -- Quantity: {item.quantity} -- Select-item <input type="checkbox" />
-            </li>
-          ))}
-          
-          {/* Duplicate the list items with the same parameters */}
-          {cartItems.map((item, index) => (
-            <li key={index + cartItems.length}>
-              {item.title}: {item.name}<br/>
+              <span className="item-title">{item.title}:</span> <span className="item-name">{item.name}</span><br />
               {item.description}<br/>
               Price: ${item.price} -- Quantity: {item.quantity} -- Select-item <input type="checkbox" />
             </li>
