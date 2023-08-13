@@ -157,8 +157,8 @@ const MenuItemSummaryTemplate = () => {
             <Modal.Header closeButton>
                 <Modal.Title>Confirm Order</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                 Are you sure that you want to confirm your order?
+            <Modal.Body className='Confirm-Menu-Order'>
+                 Are you sure that you are saticfied with your Menu and that you want to leave this page?
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleCloseOrderModal}>
@@ -173,7 +173,7 @@ const MenuItemSummaryTemplate = () => {
             <Modal.Header closeButton>
                 <Modal.Title>Confirm Deletion</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className='Confirm-Menu-Delete'>
                 {modalMessage}
             </Modal.Body>
             <Modal.Footer>

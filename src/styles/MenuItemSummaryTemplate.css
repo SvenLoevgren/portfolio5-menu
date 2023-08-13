@@ -67,6 +67,14 @@
     font-weight: bolder;
     background-color: rgb(238, 243, 114); /* highlight the items */
   }
+/*------------------------------------Modals*/
+  .Confirm-Menu-Order, .Confirm-Menu-Delete {
+    text-align: center;
+    font-weight: 600;
+  }
+
+
+
   
 /*------------------------------------Buttons*/
 
