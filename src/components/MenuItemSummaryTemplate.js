@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
+const BASE_URL = 'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/menu/';
+
 const MenuItemSummaryTemplate = () => {
     const [cartItems, setCartItems] = useState([]);
     const [showOrderModal, setShowOrderModal] = useState(false);
@@ -16,7 +18,7 @@ const MenuItemSummaryTemplate = () => {
     useEffect(() => {
         const fetchCartItems = async () => {
             try {
-                const response = await axios.get('https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/menu/cart/', {
+                const response = await axios.get(`${BASE_URL}`, {
                     headers: {
                         Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
                     },
@@ -59,22 +61,21 @@ const MenuItemSummaryTemplate = () => {
       // Show modal for confirmation
             setShowDeleteModal(true);
             setModalMessage("Are you sure that you want to delete these items?");
-            setModalConfirmAction(deleteSelectedItems);
+            setModalConfirmAction(() => deleteSelectedItems);
         }
     };
 
     const handleCloseDeleteModal = () => {
         setShowDeleteModal(false);
     };
-    const BASE_URL = 'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/menu/cart/';
     const deleteSelectedItems = async () => {
         try {
       // Extract IDs of selected items to delete
-            const selectedItems = cartItems.filter(item => item.selected);
-            const itemIdsToDelete = selectedItems.map(item => item.id);
+      const selectedItems = cartItems.filter(item => item.selected);
+      const itemIdsToDelete = selectedItems.map(item => item.id);
   
       // Send DELETE request to delete selected items
-            await axios.delete(`${BASE_URL}/delete-items/`, {
+            await axios.delete(`${BASE_URL}item/${itemIdsToDelete}/delete/`, {
                 headers: {
                     Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
                 },
@@ -98,15 +99,12 @@ const MenuItemSummaryTemplate = () => {
     };
 
     const handleCheckboxChange = (itemId) => {
-    // Update the selected property of the corresponding item
-        const updatedCartItems = cartItems.map(item => {
-            if (item.id === itemId) {
-            return { ...item, selected: !item.selected };
-            }
-        return item;
-        });
+        const updatedCartItems = cartItems.map(item =>
+            item.id === itemId ? { ...item, selected: !item.selected } : item
+        );
         setCartItems(updatedCartItems);
     };
+    
 
     return (
     <div className="MenuItemSummary-container container-fluid">
