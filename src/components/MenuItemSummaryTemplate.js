@@ -48,7 +48,7 @@ const MenuItemSummaryTemplate = () => {
         setShowOrderModal(false);
     };
 
-    const handleDeleteItems = async () => {
+    const handleDeleteItems = () => {
         // Check if any item is selected for deletion
         const selectedItems = cartItems.filter(item => item.selected);
     
@@ -61,9 +61,10 @@ const MenuItemSummaryTemplate = () => {
             // Show modal for confirmation
             setShowDeleteModal(true);
             setModalMessage("Are you sure that you want to delete these items?");
-            setModalConfirmAction(() => deleteSelectedItems(selectedItems));
+            setModalConfirmAction(() => () => deleteSelectedItems(selectedItems));
         }
-    };   
+    };
+     
 
     const handleCloseDeleteModal = () => {
         setShowDeleteModal(false);
@@ -95,6 +96,7 @@ const MenuItemSummaryTemplate = () => {
             console.error('Error deleting items:', error);
         }
     };
+    
      
 
     const handleCheckboxChange = (itemId) => {
@@ -178,7 +180,10 @@ const MenuItemSummaryTemplate = () => {
                     Close
                 </Button>
                 {modalConfirmAction && (
-                <Button variant="danger" onClick={modalConfirmAction}>
+                <Button variant="danger" onClick={() => {
+                    modalConfirmAction();
+                    deleteSelectedItems();
+                }}>
                     Yes
                 </Button>
                 )}
