@@ -48,55 +48,54 @@ const MenuItemSummaryTemplate = () => {
         setShowOrderModal(false);
     };
 
-    const handleDeleteItems = () => {
-    // Check if any item is selected for deletion
+    const handleDeleteItems = async () => {
+        // Check if any item is selected for deletion
         const selectedItems = cartItems.filter(item => item.selected);
-  
+    
         if (selectedItems.length === 0) {
-      // Show modal for no selected items
+            // Show modal for no selected items
             setShowDeleteModal(true);
             setModalMessage("You need to select items from the list before you can use this function");
             setModalConfirmAction(null);
         } else {
-      // Show modal for confirmation
+            // Show modal for confirmation
             setShowDeleteModal(true);
             setModalMessage("Are you sure that you want to delete these items?");
-            setModalConfirmAction(() => deleteSelectedItems);
+            setModalConfirmAction(() => deleteSelectedItems(selectedItems));
         }
-    };
+    };   
 
     const handleCloseDeleteModal = () => {
         setShowDeleteModal(false);
     };
-    const deleteSelectedItems = async () => {
+ 
+    const deleteSelectedItems = async (selectedItems) => {
         try {
-      // Extract IDs of selected items to delete
-      const selectedItems = cartItems.filter(item => item.selected);
-      const itemIdsToDelete = selectedItems.map(item => item.id);
-  
-      // Send DELETE request to delete selected items
-            await axios.delete(`${BASE_URL}item/${itemIdsToDelete}/delete/`, {
+            // Delete each selected item
+            for (const item of selectedItems) {
+                await axios.delete(`${BASE_URL}item/${item.id}/delete/`, {
+                    headers: {
+                        Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
+                    },
+                });
+            }
+    
+            // Fetch updated cart items
+            const response = await axios.get(`${BASE_URL}`, {
                 headers: {
                     Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
                 },
-            data: { item_ids: itemIdsToDelete }, // Modify this to match your server's data format
             });
-  
-      // Fetch updated cart items
-        const response = await axios.get(`${BASE_URL}`, {
-            headers: {
-                Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
-            },
-        });
-        setCartItems(response.data);
-  
-      // Show success message
-        setModalMessage("Your items have been successfully deleted from your menu");
-        setModalConfirmAction(null);
+            setCartItems(response.data);
+    
+            // Show success message when all selected items are deleted
+            setModalMessage("Your items have been successfully deleted from your menu");
+            setModalConfirmAction(null);
         } catch (error) {
             console.error('Error deleting items:', error);
         }
     };
+     
 
     const handleCheckboxChange = (itemId) => {
         const updatedCartItems = cartItems.map(item =>
@@ -120,7 +119,7 @@ const MenuItemSummaryTemplate = () => {
             </p>
         </div>
         <div className="MenuItemSummary-items container-fluid" title="Scroll down for more items">
-        {/* Display selected items */}
+            {/* Display selected items */}
             <ol>
                 {cartItems.map((item, index) => (
                 <li key={index}>
