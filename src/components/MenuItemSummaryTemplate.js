@@ -18,8 +18,7 @@ const MenuItemSummaryTemplate = () => {
     const [showUpdateModal, setShowUpdateModal] = useState(false);
     const [updatedQuantities, setUpdatedQuantities] = useState({});
     const [showUpdateModalNoItems, setShowUpdateModalNoItems] = useState(false);
-
-
+    const [showUpdateSuccessModal, setShowUpdateSuccessModal] = useState(false);
 
 
     useEffect(() => {
@@ -91,7 +90,12 @@ const MenuItemSummaryTemplate = () => {
         const updatePromises = selectedItemsForUpdate.map(item =>
             axios.put(
                 `${BASE_URL}item/${item.id}/update/`,
-                { quantity: updatedQuantities[item.id] || item.quantity },
+                {
+                    title: item.title,
+                    name: item.name,
+                    price: item.price,
+                    quantity: updatedQuantities[item.id] || item.quantity,
+                },
                 {
                     headers: {
                         Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
@@ -113,11 +117,13 @@ const MenuItemSummaryTemplate = () => {
             .then(response => {
                 setCartItems(response.data);
                 setShowUpdateModal(false);
+                setShowUpdateSuccessModal(true);
             })
             .catch(error => {
                 console.error('Error updating quantities:', error);
             });
-    };  
+    };
+    
 
     const handleCloseDeleteModal = () => {
         setShowDeleteModal(false);
@@ -282,6 +288,19 @@ const MenuItemSummaryTemplate = () => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={() => setShowUpdateModalNoItems(false)}>
+                    Close
+                </Button>
+            </Modal.Footer>
+        </Modal>
+        <Modal show={showUpdateSuccessModal} onHide={() => setShowUpdateSuccessModal(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>Update Successful</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className='Confirm-Menu-Update'>
+                Your items have been successfully updated.
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={() => setShowUpdateSuccessModal(false)}>
                     Close
                 </Button>
             </Modal.Footer>
