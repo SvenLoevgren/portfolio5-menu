@@ -10,10 +10,17 @@ const BASE_URL = 'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/menu/';
 
 const MenuItemSummaryTemplate = () => {
     const [cartItems, setCartItems] = useState([]);
+    const [selectedItemsForUpdate, setSelectedItemsForUpdate] = useState([]);
     const [showOrderModal, setShowOrderModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [modalMessage, setModalMessage] = useState(""); 
     const [modalConfirmAction, setModalConfirmAction] = useState(null);
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [updatedQuantities, setUpdatedQuantities] = useState({});
+    const [showUpdateModalNoItems, setShowUpdateModalNoItems] = useState(false);
+
+
+
 
     useEffect(() => {
         const fetchCartItems = async () => {
@@ -30,7 +37,7 @@ const MenuItemSummaryTemplate = () => {
     };
 
     fetchCartItems();
-  }, []);
+    }, []);
 
     const navigate = useNavigate();
 
@@ -38,7 +45,7 @@ const MenuItemSummaryTemplate = () => {
         setShowOrderModal(false);
     // Navigate back to the menu page
         navigate('/');
-  };
+    };
 
     const handleConfirm = () => {
         setShowOrderModal(true);
@@ -64,10 +71,61 @@ const MenuItemSummaryTemplate = () => {
             setModalConfirmAction(() => () => deleteSelectedItems(selectedItems));
         }
     };
-     
+
+    const handleUpdateItems = () => {
+        if (selectedItemsForUpdate.length === 0) {
+            setShowUpdateModalNoItems(true); 
+            setModalMessage("You need to select items from the list before you can make your updates");
+            setModalConfirmAction(null);
+            setSelectedItemsForUpdate([]);
+        } else {
+            setShowUpdateModal(true);
+        }
+    };
+    
+    const handleQuantityChange = (itemId, value) => {
+        setUpdatedQuantities(prevQuantities => ({ ...prevQuantities, [itemId]: value }));
+    };
+    
+    const updateSelectedItems = () => {
+        const updatePromises = selectedItemsForUpdate.map(item =>
+            axios.put(
+                `${BASE_URL}item/${item.id}/update/`,
+                { quantity: updatedQuantities[item.id] || item.quantity },
+                {
+                    headers: {
+                        Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
+                        'Content-Type': 'application/json',
+                    },
+                }
+            )
+        );
+    
+        Promise.all(updatePromises)
+            .then(() => {
+                // Fetch updated cart items
+                return axios.get(`${BASE_URL}`, {
+                    headers: {
+                        Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
+                    },
+                });
+            })
+            .then(response => {
+                setCartItems(response.data);
+                setShowUpdateModal(false);
+            })
+            .catch(error => {
+                console.error('Error updating quantities:', error);
+            });
+    };  
 
     const handleCloseDeleteModal = () => {
         setShowDeleteModal(false);
+    };
+
+    const handleCloseUpdateModal = () => {
+        setShowUpdateModal(false);
+        setUpdatedQuantities({});
     };
  
     const deleteSelectedItems = async (selectedItems) => {
@@ -95,15 +153,16 @@ const MenuItemSummaryTemplate = () => {
         } catch (error) {
             console.error('Error deleting items:', error);
         }
-    };
-    
+    }; 
      
-
     const handleCheckboxChange = (itemId) => {
         const updatedCartItems = cartItems.map(item =>
             item.id === itemId ? { ...item, selected: !item.selected } : item
         );
         setCartItems(updatedCartItems);
+
+        const selectedItems = updatedCartItems.filter(item => item.selected);
+        setSelectedItemsForUpdate(selectedItems);
     };
     
 
@@ -140,7 +199,7 @@ const MenuItemSummaryTemplate = () => {
             <div className="MenuItemSummary-total">
                 Total:
             </div>
-            <button className="MenuSummary-button" id="MenuSummary-Update">
+            <button className="MenuSummary-button" id="MenuSummary-Update" onClick={handleUpdateItems}>
                 Update
             </button>
         </div>
@@ -187,6 +246,44 @@ const MenuItemSummaryTemplate = () => {
                     Yes
                 </Button>
                 )}
+            </Modal.Footer>
+        </Modal>
+        <Modal show={showUpdateModal} onHide={handleCloseUpdateModal}>
+            <Modal.Header closeButton>
+                <Modal.Title>Update Quantities</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className='Update-Quantities'>
+                {selectedItemsForUpdate.map((item, index) => (
+                    <div key={index}>
+                        <span className="item-title">{item.title}:</span> <span className="item-name">{item.name}</span><br />
+                        Quantity: <input
+                            type="number"
+                            value={updatedQuantities[item.id] || item.quantity}
+                            onChange={(e) => handleQuantityChange(item.id, e.target.value)}
+                        />
+                    </div>
+                ))}
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={handleCloseUpdateModal}>
+                    Close
+                </Button>
+                <Button variant="primary" onClick={updateSelectedItems}>
+                    Save
+                </Button>
+            </Modal.Footer>
+        </Modal>
+        <Modal show={showUpdateModalNoItems} onHide={() => setShowUpdateModalNoItems(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>Update Items</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className='Confirm-Menu-Update'>
+                You need to select items from the list before you can make your updates.
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={() => setShowUpdateModalNoItems(false)}>
+                    Close
+                </Button>
             </Modal.Footer>
         </Modal>
     </div>
