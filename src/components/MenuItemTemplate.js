@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import '../styles/menuItemTemplate.css';
 import menuData from './menuData';
 import MenuItemDetails from './MenuItemDetails';
@@ -12,7 +11,9 @@ import Button from 'react-bootstrap/Button';
 const BASE_URL = 'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/menu/';
 
 const MenuItemTemplate = ({ updateSummary }) => {
-
+  const [checkedItems, setCheckedItems] = useState({});
+  const [cartItems, setCartItems] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const { title } = useParams();
   const menuItem = menuData.find((item) => item.dropdownTitle === title);
@@ -20,10 +21,6 @@ const MenuItemTemplate = ({ updateSummary }) => {
   if (!menuItem) {
     return <MenuItemNotFound />;
   }
-
-  const [checkedItems, setCheckedItems] = useState({});
-  const [cartItems, setCartItems] = useState([]);
-  const [showModal, setShowModal] = useState(false);
 
   const handleCheckboxChange = (name) => {
     setCheckedItems((prevCheckedItems) => ({
