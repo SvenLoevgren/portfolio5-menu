@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import menuData from './components/menuData';
 import FoodItemDetails from './components/FoodItemDetails';
 import MenuItemSummaryTemplate from './components/MenuItemSummaryTemplate';
+import MenuItemTemplateApiEndpoint from './components/MenuItemTemplateApiEndpoint';
 
 const LayoutWithNavbar = ({ children, summary }) => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
         />
         <Route path="/details/:foodName" element={<FoodItemDetails />} />
         <Route path="/summary" element={<MenuItemSummaryTemplate />} />
+        <Route path="/endpoint" element={<MenuItemTemplateApiEndpoint cartItems={cartItems} />} />
         <Route path="*" element={<MenuItemNotFound />} />
       </Routes>
     </Router>
