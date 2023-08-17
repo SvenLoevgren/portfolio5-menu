@@ -32,11 +32,16 @@
   border: 1px solid #0c0a0a;
   flex-direction: row;
   font-weight: bold;
+  padding-left: 6%;
 }
 
 .Template-price {
   font-weight: bold;
   margin-right: 10px;
+}
+
+.Template-checkbox {
+  cursor: pointer;
 }
 
 .Template-details-link {
@@ -46,12 +51,17 @@
 
 #Template-Item-containers {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Prevent items from wrapping to new lines */
+  overflow-y: auto; /* Enable horizontal scroll */
   justify-content: center;
 }
 
 .Template-item-name {
   width: fit-content;
+}
+
+.MenuItemTemplate-text{
+  cursor: default;
 }
 
 /*------------------------------------Buttons*/
@@ -76,6 +86,14 @@
   background-color: #f1f1f1;
   border-radius: 13%;
   cursor: pointer;
+}
+
+.Template-scroll-buttons,
+.Template-scroll-buttons:hover {
+  color: #f1f1f1;
+  background-color: rgb(82, 158, 230);
+  pointer-events: none;
+  cursor: default;
 }
 
 .Template-cancel-button,
@@ -109,12 +127,18 @@
     width: 100vw;
   }
 }
-
 @media (max-width: 600px) {
   .MenuItemTemplate-text {
     font-size:x-small;
     font-weight: bold;
   }
+}
+
+@media (max-width: 400px) {
+  .MenuItemTemplate-heading > h1 {
+    font-size: medium;
+    font-weight: bold;
+  }  
 }
 
 @media (max-width: 340px) {
@@ -124,11 +148,16 @@
   }
   .MenuItemTemplate-heading > h1 {
     font-size: smaller;
-    font-weight: bold;
   }
   .Template-logo {
     height: 55px;
   }
+}
+
+@media (max-width: 300px) {
+  .MenuItemTemplate-heading > h1 {
+    font-size: x-small;
+  }  
 }
 
 

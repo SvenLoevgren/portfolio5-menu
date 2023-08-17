@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
@@ -9,26 +9,9 @@ import MenuItemNotFound from './MenuItemNotFound';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-function useMediaQuery(query) {
-  const [matches, setMatches] = useState(window.matchMedia(query).matches);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(query);
-    const handleChange = (event) => {
-      setMatches(event.matches);
-    };
-
-    mediaQuery.addListener(handleChange);
-    return () => {
-      mediaQuery.removeListener(handleChange);
-    };
-  }, [query]);
-
-  return matches;
-}
+const BASE_URL = 'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/menu/';
 
 const MenuItemTemplate = ({ updateSummary }) => {
-  const token = process.env.REACT_APP_AUTH_TOKEN;
 
   const navigate = useNavigate();
   const { title } = useParams();
@@ -38,30 +21,9 @@ const MenuItemTemplate = ({ updateSummary }) => {
     return <MenuItemNotFound />;
   }
 
-  
   const [checkedItems, setCheckedItems] = useState({});
   const [cartItems, setCartItems] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
- 
-
-
-  const totalItems = menuItem.dropdownDetails.length;
-  const totalLargeScreens = 3;
-  const totalSmallScreens = 1;
-  const itemsPerPage = useMediaQuery('(max-width: 767px)') ? totalSmallScreens : totalLargeScreens;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
-
-  const handlePreviousPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-  };
-
-  const handleNextPage = () => {
-    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
-  };
 
   const handleCheckboxChange = (name) => {
     setCheckedItems((prevCheckedItems) => ({
@@ -78,9 +40,11 @@ const MenuItemTemplate = ({ updateSummary }) => {
     const selectedItems = Object.keys(checkedItems).filter((itemName) => checkedItems[itemName]);
 
     Axios.post(
-      'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/menu/cart/',
+      `${BASE_URL}items/create/`,
       { items: selectedItems },
-      { headers: { Authorization: `Token ${token}` } }
+      { headers: { Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`},
+       'Content-Type': 'application/json',
+     }
     )
       .then((response) => {
         console.log('Items added to cart:', response.data);
@@ -116,27 +80,18 @@ const MenuItemTemplate = ({ updateSummary }) => {
           <div className="col-12 text-center MenuItemTemplate-text">
             <p>Welcome!<br />
             On this page you can select your meal and add items to your Cart.<br />
-            Choose your items by clicking on the "select item" checkbox.<br />
-            If there are more items to select, you can find them via the next and previous buttons below.<br />
-            When you are satisfied with your choices, then press the "Add to cart" button.<br />
+            Choose your items by clicking on the <strong>"select item"</strong> checkbox.<br />
+            You can find all items by Scrolling in the list <strong>below</strong><br />
+            When you are satisfied with your choices, then press the<br />
+            <strong>"Add to cart"</strong> button.<br />
             To cancel all selections just press the "Cancel" button or close this window.
             </p>
           </div>
         </div>
       </div>
-      <div className="row">
-        <div className="col-12">
-          <button className="btn btn-primary mr-2" onClick={handlePreviousPage} disabled={currentPage === 1}>
-            <FaChevronLeft /> Previous
-          </button>
-          <button className="btn btn-primary" onClick={handleNextPage} disabled={currentPage === totalPages}>
-            Next Item <FaChevronRight />
-          </button>
-        </div>
-      </div>
-      <div className="container-fluid" id='Template-Item-containers'>
+      <div className="container-fluid" id='Template-Item-containers' title="Scroll for more items">
         <div className="row">
-          {menuItem.dropdownDetails.slice(startIndex, endIndex).map((item, index) => (
+          {menuItem.dropdownDetails.map((item, index) => (
             <div key={index} className="col-md-4 col-12">
               <MenuItemDetails
                 name={item.name}
