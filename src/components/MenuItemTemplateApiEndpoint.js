@@ -5,24 +5,25 @@ import { Modal, Button } from 'react-bootstrap';
 const BASE_URL = 'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/menu/';
 
 const MenuItemTemplateApiEndpoint = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [postSuccess, setPostSuccess] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
+  const [showConfirmModal, setShowConfirmModal] = useState(false); // Change showModal to showConfirmModal
+  const [showSuccessModal, setShowSuccessModal] = useState(false); 
+  const [menuItems, setMenuItems] = useState([]);
 
   useEffect(() => {
-    fetchCartItems();
+    fetchMenuItems();
   }, []);
 
-  const fetchCartItems = async () => {
+
+  const fetchMenuItems = async () => {  // Change from fetchCartItems to fetchMenuItems
     try {
       const response = await axios.get(`${BASE_URL}`, {
         headers: {
           Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
         },
       });
-      setCartItems(response.data);
+      setMenuItems(response.data);  // Change from setCartItems to setMenuItems
     } catch (error) {
-      console.error('Error fetching cart items:', error);
+      console.error('Error fetching menu items:', error);
     }
   };
 
@@ -36,7 +37,7 @@ const MenuItemTemplateApiEndpoint = () => {
       console.log('GET response:', response.data);
 
       const dataWithoutKeys = response.data.map(item => {
-        const { pk, ...rest } = item;
+        const { pk, created_at, updated_at, user_id, ...rest } = item;
         return rest;
       });
 
@@ -52,24 +53,29 @@ const MenuItemTemplateApiEndpoint = () => {
       );
       console.log('POST response:', postResponse.data);
 
-      setPostSuccess(true);
+      setShowSuccessModal(true);;
     } catch (error) {
       console.error('Error:', error);
-      setPostSuccess(false);
+      console.log('POST error response:', error.response.data);
     }
   };
 
   const handlePostClick = () => {
-    setShowModal(true);
+    setShowConfirmModal(true);
   };
 
   const handleConfirm = () => {
-    setShowModal(false);
+    setShowConfirmModal(false);
     fetchData();
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
+  const handleCloseConfirmModal = () => {
+    setShowConfirmModal(false);
+  };
+
+  const handleCloseSuccessModal = () => {
+    setShowSuccessModal(false); // Close the success modal
+    window.location.reload();
   };
 
   return (
@@ -82,7 +88,7 @@ const MenuItemTemplateApiEndpoint = () => {
       </div>
       <div>
         <ol>
-          {cartItems.map((item, index) => (
+         {menuItems.map((item, index) => (
             <li key={index}>
               <span className="item-title">{item.title}:</span> <span className="item-name">{item.name}</span><br />
               {item.description}<br/>
@@ -96,8 +102,8 @@ const MenuItemTemplateApiEndpoint = () => {
           POST
         </button>
       </div>
-      {showModal && (
-        <Modal show={showModal} onHide={handleCloseModal}>
+      {showConfirmModal && (
+        <Modal show={showConfirmModal} onHide={handleCloseConfirmModal}>
           <Modal.Header closeButton>
             <Modal.Title>Confirm Post</Modal.Title>
           </Modal.Header>
@@ -105,7 +111,7 @@ const MenuItemTemplateApiEndpoint = () => {
             Are you sure you want to create a menu of the selected items?
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseModal}>
+            <Button variant="secondary" onClick={handleCloseSuccessModal}>
               No
             </Button>
             <Button variant="primary" onClick={handleConfirm}>
@@ -114,14 +120,14 @@ const MenuItemTemplateApiEndpoint = () => {
           </Modal.Footer>
         </Modal>
       )}
-      {postSuccess && (
-        <Modal show={postSuccess} onHide={handleCloseModal}>
+      {showSuccessModal && (
+        <Modal show={showSuccessModal} onHide={handleCloseConfirmModal}>
           <Modal.Header closeButton>
             <Modal.Title>Success</Modal.Title>
           </Modal.Header>
           <Modal.Body>Your items have been added.</Modal.Body>
           <Modal.Footer>
-            <Button variant="primary" onClick={handleCloseModal}>
+            <Button variant="primary" onClick={handleCloseSuccessModal}>
               Close
             </Button>
           </Modal.Footer>
