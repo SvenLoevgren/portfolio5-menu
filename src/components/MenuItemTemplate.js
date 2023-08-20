@@ -14,6 +14,8 @@ const MenuItemTemplate = ({ updateSummary }) => {
   const [checkedItems, setCheckedItems] = useState({});
   const [cartItems, setCartItems] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [modalType, setModalType] = useState('none'); // Tracks the active modal
+
   const navigate = useNavigate();
   const { title } = useParams();
   const menuItem = menuData.find((item) => item.dropdownTitle === title);
@@ -34,41 +36,62 @@ const MenuItemTemplate = ({ updateSummary }) => {
   };
 
   const handleAddToCart = () => {
-    const selectedItems = Object.keys(checkedItems).filter((itemName) => checkedItems[itemName]);
+    const selectedItems = Object.keys(checkedItems).filter(
+      (itemName) => checkedItems[itemName]
+    );
 
-    Axios.post(
-      `${BASE_URL}items/create/`,
-      { items: selectedItems },
-      { headers: { Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`},
-       'Content-Type': 'application/json',
-     }
-    )
-      .then((response) => {
-        console.log('Items added to cart:', response.data);
-      })
-      .catch((error) => {
-        console.error('Error adding items to cart:', error);
-      });
+    if (selectedItems.length === 0) {
+      setModalType('noSelectedItems');
+      setShowModal(true);
+    } else {
+      setModalType('selectedItems'); // Set the modal type to show selected items
+      setShowModal(true);
+    }
+  };
+  
+  const handleAddItemsToCart = () => {
+    const selectedItems = Object.keys(checkedItems).filter((item) => checkedItems[item]);
 
-    setCartItems((prevCartItems) => [...prevCartItems, ...selectedItems]);
+    if (selectedItems.length === 0) {
+      setModalType('noSelectedItems');
+    } else {
+      Axios.post(
+        `${BASE_URL}items/create/`,
+        { items: selectedItems },
+        {
+          headers: {
+            Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+        .then((response) => {
+          setModalType('success');
+          setCartItems((prevCartItems) => [...prevCartItems, ...selectedItems]);
+          updateSummary(selectedItems.length);
+        })
+        .catch((error) => {
+          setModalType('error');
+        });
+    }
+
     setCheckedItems({});
-    setShowModal(true);
-    updateSummary(selectedItems.length);
+    setShowModal(false);
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
+    setModalType('none');
   };
 
   const handleCartModal = () => {
-    const selectedItems = Object.keys(checkedItems).filter((itemName) => checkedItems[itemName]);
     setShowModal(false);
-    navigate('/summary', { state: { cartItems: selectedItems } });
+    navigate('/summary', { state: { cartItems } });
   };
 
   return (
     <div className="Template-menu-item-template-container">
-      <div className="Template-logo"></div>
+<div className="Template-logo"></div>
       <div className="row">
         <div className="col-12 text-center MenuItemTemplate-heading">
           <h1>{menuItem.dropdownTitle} <hr /></h1>
@@ -114,22 +137,49 @@ const MenuItemTemplate = ({ updateSummary }) => {
       </div>
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Cart Items</Modal.Title>
+          <Modal.Title>
+            {modalType === 'success'
+              ? 'Success'
+              : modalType === 'error'
+              ? 'Error'
+              : modalType === 'noSelectedItems'
+              ? 'No Selected Items'
+              : 'Cart Items'}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ul>
-            {cartItems.map((itemName, index) => (
-              <li key={index}>{itemName}</li>
-            ))}
-          </ul>
+          {modalType === 'success' ? (
+            <p>Your menu items have successfully been added to your cart.</p>
+          ) : modalType === 'error' ? (
+            <p>Something went wrong! Please contact support at +46-123456789 for assistance.</p>
+          ) : modalType === 'noSelectedItems' ? (
+            <p>You need to select items from the list before you can use this function.</p>
+          ) : modalType === 'selectedItems' ? (
+            <div>
+              {Object.keys(checkedItems).map((itemName, index) => (
+                <div key={index}>
+                  <p>{itemName}</p>
+                </div>
+              ))}
+            </div>
+          ) : null}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal} className='Modal-Close-button'>
-            Close this Window
-          </Button>
-          <Button variant="primary" onClick={handleCartModal} className='Modal-Select-button'>
-            Add selected items
-          </Button>
+          {modalType === 'selectedItems' && (
+            <div>
+              <Button variant="secondary" onClick={handleCloseModal}>
+                Cancel
+              </Button>
+              <Button variant="primary" onClick={handleAddItemsToCart}>
+                Add Items to Cart
+              </Button>
+            </div>
+          )}
+            {(modalType === 'error' || modalType === 'noSelectedItems' || modalType === 'success') && (
+            <Button variant="primary" onClick={modalType === 'success' ? handleCartModal : handleCloseModal}>
+              OK
+            </Button>
+          )}
         </Modal.Footer>
       </Modal>
     </div>
