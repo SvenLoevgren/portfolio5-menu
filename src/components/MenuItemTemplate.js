@@ -11,6 +11,7 @@ import Button from 'react-bootstrap/Button';
 const BASE_URL = 'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/menu/';
 
 const MenuItemTemplate = ({ updateSummary }) => {
+  const [quantityInputs, setQuantityInputs] = useState({});
   const [checkedItems, setCheckedItems] = useState({});
   const [cartItems, setCartItems] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -29,7 +30,15 @@ const MenuItemTemplate = ({ updateSummary }) => {
       ...prevCheckedItems,
       [name]: !prevCheckedItems[name],
     }));
+  
+    if (!checkedItems[name]) {
+      setQuantityInputs((prevQuantityInputs) => ({
+        ...prevQuantityInputs,
+        [name]: 1,
+      }));
+    }
   };
+  
 
   const handleCancelClick = () => {
     navigate('/');
@@ -51,13 +60,19 @@ const MenuItemTemplate = ({ updateSummary }) => {
   
   const handleAddItemsToCart = () => {
     const selectedItems = Object.keys(checkedItems).filter((item) => checkedItems[item]);
-
+    const selectedQuantities = Object.keys(quantityInputs).reduce((acc, itemName) => {
+      if (checkedItems[itemName]) {
+        acc[itemName] = quantityInputs[itemName];
+      }
+      return acc;
+    }, {});
+  
     if (selectedItems.length === 0) {
       setModalType('noSelectedItems');
     } else {
       Axios.post(
         `${BASE_URL}items/create/`,
-        { items: selectedItems },
+        { items: selectedItems, quantities: selectedQuantities },
         {
           headers: {
             Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
@@ -74,10 +89,12 @@ const MenuItemTemplate = ({ updateSummary }) => {
           setModalType('error');
         });
     }
-
+  
     setCheckedItems({});
+    setQuantityInputs({});
     setShowModal(false);
   };
+  
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -159,10 +176,28 @@ const MenuItemTemplate = ({ updateSummary }) => {
               {Object.keys(checkedItems).map((itemName, index) => (
                 <div key={index}>
                   <p>{itemName}</p>
+                  <label>Quantity:</label>
+                  <input
+                    type="number"
+                    value={quantityInputs[itemName] || ''}
+                    onChange={(e) => {
+                      const newValue = parseInt(e.target.value);
+                      if (newValue >= 1) { // Ensure the value is not negative or zero
+                        setQuantityInputs((prevQuantityInputs) => ({
+                          ...prevQuantityInputs,
+                          [itemName]: newValue,
+                        }));
+                      }
+                    }}
+                    min="1" // Set the minimum value to 1
+                    max="500"
+                  />
+
                 </div>
               ))}
             </div>
           ) : null}
+          
         </Modal.Body>
         <Modal.Footer>
           {modalType === 'selectedItems' && (

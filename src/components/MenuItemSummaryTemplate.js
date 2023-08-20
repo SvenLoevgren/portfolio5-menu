@@ -266,6 +266,8 @@ const MenuItemSummaryTemplate = () => {
                             type="number"
                             value={updatedQuantities[item.id] || item.quantity}
                             onChange={(e) => handleQuantityChange(item.id, e.target.value)}
+                            min="1"
+                            max="500"
                         />
                     </div>
                 ))}
