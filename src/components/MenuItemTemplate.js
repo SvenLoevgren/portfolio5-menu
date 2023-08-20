@@ -164,7 +164,7 @@ const MenuItemTemplate = ({ updateSummary }) => {
               : 'Cart Items'}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className='text-center item-modals' >
           {modalType === 'success' ? (
             <p>Your menu items have successfully been added to your cart.</p>
           ) : modalType === 'error' ? (
@@ -174,7 +174,7 @@ const MenuItemTemplate = ({ updateSummary }) => {
           ) : modalType === 'selectedItems' ? (
             <div>
               {Object.keys(checkedItems).map((itemName, index) => (
-                <div key={index}>
+                <div key={index} className='Selected-Items-modal-item-row'>
                   <p>{itemName}</p>
                   <label>Quantity:</label>
                   <input
@@ -196,10 +196,9 @@ const MenuItemTemplate = ({ updateSummary }) => {
                 </div>
               ))}
             </div>
-          ) : null}
-          
+          ) : null}          
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className='d-flex justify-content-center'>
           {modalType === 'selectedItems' && (
             <div>
               <Button variant="secondary" onClick={handleCloseModal}>

@@ -120,6 +120,17 @@
   font-weight: 700;
 }
 
+/*------------------------------------Modals*/
+
+.Selected-Items-modal-item-row {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.item-modals {
+  font-weight: 600;
+}
+
 /*------------------------------------Media Queries*/
 
 @media (min-width: 768px) {
