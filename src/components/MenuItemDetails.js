@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/menuItemTemplate.css';
 
-const MenuItemDetails = ({ name, price, checked, onCheckboxChange, description, imageUrl, addToCart }) => {
+const MenuItemDetails = ({ name, price, checked, onCheckboxChange, description, addToCart }) => {
   return (
     <div className="Template-menu-item row">
       <div className="col-md-4 col-12 Template-item-name">{name}</div>
@@ -15,6 +15,7 @@ const MenuItemDetails = ({ name, price, checked, onCheckboxChange, description, 
           <Link to={`/details/${encodeURIComponent(name)}`}>Details</Link>
         </div>
       </div>
+      <div className='MenuItemDetails-description'>{description}</div>
     </div>
   );
 };

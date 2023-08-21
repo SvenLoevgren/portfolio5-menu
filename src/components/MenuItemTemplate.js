@@ -136,7 +136,6 @@ const MenuItemTemplate = ({ updateSummary }) => {
                 checked={checkedItems[item.name] || false}
                 onCheckboxChange={() => handleCheckboxChange(item.name)}
                 description={item.description}
-                imageUrl={item.imageUrl}
               />
             </div>
           ))}

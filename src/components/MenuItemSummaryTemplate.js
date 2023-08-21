@@ -193,6 +193,7 @@ const MenuItemSummaryTemplate = () => {
                     <span className="item-title">{item.title}:</span> <span className="item-name">{item.name}</span><br />
                     {item.description}<br/>
                     Price: ${item.price} -- Quantity: {item.quantity} -- Select-item <input
+                    className='check-box'
                     type="checkbox"
                     checked={item.selected || false}  // Ensure selected property exists and default to false
                     onChange={() => handleCheckboxChange(item.id)} 

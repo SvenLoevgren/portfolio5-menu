@@ -22,12 +22,14 @@
   .MenuItemSummary-header h1 {
     color: black;
     font-size: 3rem;
+    cursor: default;
   }
   
   /*------------------------------------Instructions*/
 
   .MenuItemSummary-instructions {
     margin-bottom: 20px;
+    cursor: default;
   }
   
   .MenuItemSummary-instructions p {
@@ -67,6 +69,11 @@
     font-weight: bolder;
     background-color: rgb(238, 243, 114); /* highlight the items */
   }
+
+  .check-box {
+    cursor: pointer;
+  }
+
 /*------------------------------------Modals*/
   .Confirm-Menu-Order, .Confirm-Menu-Delete, .Confirm-Menu-Update {
     text-align: center;

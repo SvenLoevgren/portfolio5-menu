@@ -23,6 +23,10 @@
 
 /*------------------------------------Menu item content*/
 
+.MenuItemTemplate-heading > h1 {
+  cursor: default;
+}
+
 .Template-menu-item {
   display: flex;
   align-items: flex-start;
@@ -64,6 +68,10 @@
   cursor: default;
 }
 
+.MenuItemDetails-description{
+  display: none;
+}
+
 /*------------------------------------Buttons*/
 
 .Template-close-button {
@@ -86,14 +94,6 @@
   background-color: #f1f1f1;
   border-radius: 13%;
   cursor: pointer;
-}
-
-.Template-scroll-buttons,
-.Template-scroll-buttons:hover {
-  color: #f1f1f1;
-  background-color: rgb(82, 158, 230);
-  pointer-events: none;
-  cursor: default;
 }
 
 .Template-cancel-button,
