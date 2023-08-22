@@ -248,7 +248,6 @@ const MenuItemSummaryTemplate = () => {
                 {modalConfirmAction && (
                 <Button variant="danger" onClick={() => {
                     modalConfirmAction();
-                    deleteSelectedItems();
                 }}>
                     Yes
                 </Button>
