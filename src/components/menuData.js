@@ -151,28 +151,28 @@ const menuData = [
   {
     dropdownDetails: [
       {
-        title: 'Wraps Dressings',
+        title: 'Wraps_Dressings',
         name:   'Coriander',
         description: 'Basic Ingredients= Only plants with vegetable oil, no E-topiccs or gluten... All our dip sauces have OatMilk, chickpea spade and tofu as a base - Fresh coriander leaves to enhance flavor',
         price: '1.11',
         imageUrl: 'https://res.cloudinary.com/dwyxur7sy/image/upload/v1690734931/react_app_ourmenu/Wrap_sauses_rsfshf.jpg',
       }, 
       {
-        title: 'Wraps Dressings',
+        title: 'Wraps_Dressings',
         name:   'Tomato',
         description: 'Basic Ingredients= Only plants with vegetable oil, no E-topiccs or gluten... All our dip sauces have OatMilk, chickpea spade and tofu as a base - Fresh tomato slices to enhance flavor',
         price: '1.11',
         imageUrl: 'https://res.cloudinary.com/dwyxur7sy/image/upload/v1690734931/react_app_ourmenu/Wrap_sauses_rsfshf.jpg',
       }, 
       {
-        title: 'Wraps Dressings',
+        title: 'Wraps_Dressings',
         name:   'Onion',
         description: 'Basic Ingredients= Only plants with vegetable oil, no E-topiccs or gluten... All our dip sauces have OatMilk, chickpea spade and tofu as a base - Fresh onion slices to enhance flavor',
         price: '1.11',
         imageUrl: 'https://res.cloudinary.com/dwyxur7sy/image/upload/v1690734931/react_app_ourmenu/Wrap_sauses_rsfshf.jpg',
       },
       {
-        title: 'Wraps Dressings',
+        title: 'Wraps_Dressings',
         name:   'Ginger',
         description: 'Basic Ingredients= Only plants with vegetable oil, no E-topiccs or gluten... All our dip sauces have OatMilk, chickpea spade and tofu as a base - Fresh ginger slices to enhance flavor',
         price: '1.11',
@@ -328,28 +328,28 @@ const menuData = [
   {
     dropdownDetails: [
       {
-        title: 'Add-ons',
+        title: 'Add_ons',
         name:   'Pickles',
         description: 'Fresch Sliced - Salted Pickles from the plants of Sweden',
         price: '1.11',
         imageUrl: 'https://res.cloudinary.com/dwyxur7sy/image/upload/v1690734928/react_app_ourmenu/Pickles_ayfpd3.jpg',
       },
       {
-        title: 'Add-ons',
+        title: 'Add_ons',
         name:   'Tomatos',
         description: 'Fresch Sliced - Tomatos from the plants of Sweden',
         price: '1.11',
         imageUrl: 'https://res.cloudinary.com/dwyxur7sy/image/upload/v1690734931/react_app_ourmenu/Tomatos_bh0ken.jpg',
       },
       {
-        title: 'Add-ons',
+        title: 'Add_ons',
         name:   'Bacon (Rice paper)',
         description: 'Basic Ingredients= Only plants with vegetable oil, no E-topiccs or gluten... Based on Rice Paper',
         price: '1.11',
         imageUrl: 'https://res.cloudinary.com/dwyxur7sy/image/upload/v1691278317/react_app_ourmenu/Bacon_azhfp6.jpg',
       },
       {
-        title: 'Add-ons',
+        title: 'Add_ons',
         name:   'Cheese (Tofu)',
         description: 'Basic Ingredients= Only plants with vegetable oil, no E-topiccs or gluten... Based on Tofu',
         price: '1.11',
