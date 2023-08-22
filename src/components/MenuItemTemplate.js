@@ -19,8 +19,8 @@ const MenuItemTemplate = ({ updateSummary }) => {
 
   const navigate = useNavigate();
   const { title } = useParams();
-  const menuItem = menuData.find((item) => item.dropdownTitle === title);
-
+  const menuItem = menuData.find((item) => item.dropdownDetails.find((detail) => detail.title === title));
+  
   if (!menuItem) {
     return <MenuItemNotFound />;
   }
@@ -60,19 +60,35 @@ const MenuItemTemplate = ({ updateSummary }) => {
   
   const handleAddItemsToCart = () => {
     const selectedItems = Object.keys(checkedItems).filter((item) => checkedItems[item]);
-    const selectedQuantities = Object.keys(quantityInputs).reduce((acc, itemName) => {
-      if (checkedItems[itemName]) {
-        acc[itemName] = quantityInputs[itemName];
-      }
-      return acc;
-    }, {});
+    const postData = selectedItems.map((itemName) => {
+      let foundItem = null;
+      menuData.forEach((menuCategory) => {
+        const menuItem = menuCategory.dropdownDetails.find((detail) => detail.name === itemName);
+        if (menuItem) {
+          foundItem = menuItem;
+        }
+      });
   
-    if (selectedItems.length === 0) {
+      if (foundItem) {
+        return {
+          title: foundItem.title, // Use dropdown title or name, depending on your structure
+          name: foundItem.name,
+          description: foundItem.description,
+          price: foundItem.price,
+          quantity: quantityInputs[itemName] || 1,
+        };
+      }
+      
+      return null;
+    }).filter(item => item !== null);
+  
+    if (postData.length === 0) {
       setModalType('noSelectedItems');
+      setShowModal(true);
     } else {
       Axios.post(
         `${BASE_URL}items/create/`,
-        { items: selectedItems, quantities: selectedQuantities },
+        postData,
         {
           headers: {
             Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
@@ -81,19 +97,22 @@ const MenuItemTemplate = ({ updateSummary }) => {
         }
       )
         .then((response) => {
+          console.log("POST request successful:", response);
           setModalType('success');
           setCartItems((prevCartItems) => [...prevCartItems, ...selectedItems]);
           updateSummary(selectedItems.length);
         })
         .catch((error) => {
+          console.error("Error during POST request:", error);
           setModalType('error');
         });
     }
   
     setCheckedItems({});
     setQuantityInputs({});
-    setShowModal(false);
+    setShowModal(true);
   };
+  
   
 
   const handleCloseModal = () => {
@@ -111,7 +130,7 @@ const MenuItemTemplate = ({ updateSummary }) => {
 <div className="Template-logo"></div>
       <div className="row">
         <div className="col-12 text-center MenuItemTemplate-heading">
-          <h1>{menuItem.dropdownTitle} <hr /></h1>
+          <h1>{menuItem.title} <hr /></h1>
         </div>
         <div className="row">
           <div className="col-12 text-center MenuItemTemplate-text">
