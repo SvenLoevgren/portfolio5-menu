@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FaUser, FaCalendar, FaShoppingCart } from 'react-icons/fa';
 import '../styles.css';
 import DropdownMenu from './MenuDropdown';
@@ -6,7 +6,7 @@ import menuData from './menuData';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-  const [summary, setSummary] = useState(0);
+
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
@@ -66,7 +66,7 @@ const Navbar = () => {
             <li className="nav-item">
               <Link to="/summary" className="navbar-text nav-link">
                 <FaShoppingCart className="me-1" />
-                <span>Sum=</span> {summary}
+                <span>Cart</span>
               </Link>
             </li>
           </ul>

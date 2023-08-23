@@ -7,19 +7,18 @@ import Navbar from './components/Navbar';
 import menuData from './components/menuData';
 import FoodItemDetails from './components/FoodItemDetails';
 import MenuItemSummaryTemplate from './components/MenuItemSummaryTemplate';
-import MenuItemTemplateApiEndpoint from './components/MenuItemTemplateApiEndpoint';
 
-const LayoutWithNavbar = ({ children, summary }) => {
+const LayoutWithNavbar = ({ children }) => {
   return (
     <div>
-      <Navbar summary={summary} />
+      <Navbar />
       {children}
     </div>
   );
 };
 
+
 const App = () => {
-  const [summary, setSummary] = useState(0);
   const [cartItems, setCartItems] = useState([]); // Initialize cartItems state here
 
   return (
@@ -27,15 +26,14 @@ const App = () => {
       <Routes>
         <Route
           path="/"
-          element={<LayoutWithNavbar summary={summary}><Welcome /></LayoutWithNavbar>}
+          element={<LayoutWithNavbar> <Welcome /></LayoutWithNavbar>}
         />
         <Route
           path="/menu/:title"
-          element={<MenuItemTemplate menuData={menuData} updateSummary={setSummary} setCartItems={setCartItems} />}
+          element={<MenuItemTemplate menuData={menuData} setCartItems={setCartItems} />}
         />
         <Route path="/details/:foodName" element={<FoodItemDetails />} />
-        <Route path="/summary" element={<MenuItemSummaryTemplate />} />
-        <Route path="/endpoint" element={<MenuItemTemplateApiEndpoint cartItems={cartItems} />} />
+        <Route path="/summary" element={<MenuItemSummaryTemplate/>} />
         <Route path="*" element={<MenuItemNotFound />} />
       </Routes>
     </Router>

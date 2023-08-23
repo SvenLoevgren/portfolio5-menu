@@ -19,7 +19,7 @@ const MenuItemSummaryTemplate = () => {
     const [updatedQuantities, setUpdatedQuantities] = useState({});
     const [showUpdateModalNoItems, setShowUpdateModalNoItems] = useState(false);
     const [showUpdateSuccessModal, setShowUpdateSuccessModal] = useState(false);
-
+    const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
         const fetchCartItems = async () => {
@@ -37,6 +37,20 @@ const MenuItemSummaryTemplate = () => {
 
     fetchCartItems();
     }, []);
+
+    useEffect(() => {
+        const calculateTotalPrice = () => {
+          let total = 0;
+          for (const item of cartItems) {
+            total += item.price * item.quantity;
+          }
+          return total;
+        };
+    
+        const total = calculateTotalPrice();
+        setTotalPrice(total);
+    }, [cartItems]);
+      
 
     const navigate = useNavigate();
 
@@ -204,7 +218,7 @@ const MenuItemSummaryTemplate = () => {
         </div>
         <div className="MenuSummary-button-wrapper-update">
             <div className="MenuItemSummary-total">
-                Total:
+                Sum: <span id="Total-price">${totalPrice.toFixed(2)}</span>
             </div>
             <button className="MenuSummary-button" id="MenuSummary-Update" onClick={handleUpdateItems}>
                 Update

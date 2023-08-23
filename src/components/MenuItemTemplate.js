@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button';
 
 const BASE_URL = 'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/menu/';
 
-const MenuItemTemplate = ({ updateSummary }) => {
+const MenuItemTemplate = () => {
   const [quantityInputs, setQuantityInputs] = useState({});
   const [checkedItems, setCheckedItems] = useState({});
   const [cartItems, setCartItems] = useState([]);
@@ -100,7 +100,6 @@ const MenuItemTemplate = ({ updateSummary }) => {
           console.log("POST request successful:", response);
           setModalType('success');
           setCartItems((prevCartItems) => [...prevCartItems, ...selectedItems]);
-          updateSummary(selectedItems.length);
         })
         .catch((error) => {
           console.error("Error during POST request:", error);

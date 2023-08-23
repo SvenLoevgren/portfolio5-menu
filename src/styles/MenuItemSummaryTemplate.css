@@ -60,9 +60,9 @@
     font-weight: 600;
   }
   .MenuItemSummary-total{
-    font-weight: bold;
     font-size: 1.1rem; 
-    color: #333;
+    color: black;
+    margin-bottom: 8%; 
   }
 
   .item-title, .item-name {
@@ -72,6 +72,10 @@
 
   .check-box {
     cursor: pointer;
+  }
+
+  #Total-price {
+    font-weight: 700;
   }
 
 /*------------------------------------Modals*/
