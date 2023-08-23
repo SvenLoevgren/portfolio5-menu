@@ -4,9 +4,10 @@ import '../styles.css';
 import DropdownMenu from './MenuDropdown';
 import menuData from './menuData'; 
 import { Link } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 const Navbar = () => {
-
+  const {authenticated, logout} = useAuth();
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
@@ -47,18 +48,23 @@ const Navbar = () => {
             <li className="nav-item">
               <span className="navbar-text me-2 fw-bold">|</span>
             </li>
-
             <li className="nav-item dropdown">
               <DropdownMenu menuData={menuData} />
             </li>
-
+            {authenticated ? (
             <li className="nav-item">
-              <a href="#" className="navbar-text nav-link">
+              <button className="btn btn-link nav-link" onClick={logout}>
+                Log Out
+              </button>
+            </li>
+          ) : (
+            <li className="nav-item">
+              <a href="https://fastfood-drf-dfd5756f86e9.herokuapp.com/accounts/signup/?react_app=true" className="navbar-text nav-link">
                 <FaUser className="me-1" />
-                Logged-in
+                Log In
               </a>
             </li>
-
+            )}
             <li className="nav-item">
               <span className="me-2">&nbsp;</span>
             </li>

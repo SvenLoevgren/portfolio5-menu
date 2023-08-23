@@ -19,14 +19,14 @@ const LayoutWithNavbar = ({ children }) => {
 
 
 const App = () => {
-  const [cartItems, setCartItems] = useState([]); // Initialize cartItems state here
+  const [setCartItems] = useState([]); // Initialize cartItems state here
 
   return (
     <Router>
       <Routes>
         <Route
           path="/"
-          element={<LayoutWithNavbar> <Welcome /></LayoutWithNavbar>}
+          element={<LayoutWithNavbar><Welcome /></LayoutWithNavbar>}
         />
         <Route
           path="/menu/:title"
