@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/MenuItemSummaryTemplate.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
@@ -214,7 +214,8 @@ const MenuItemSummaryTemplate = () => {
             To change the items in your Cart, just select any items from the list and then press the <strong><em>"Delete"</em></strong> OR <strong><em>"Update"</em></strong> button at the bottom of this page.<br />
             If you are saticfied with your menu, then note down your summay and had back to to the menu page by clicking on the <strong><em>"Confirm Order"</em></strong> button.<br />
             When we have added an online payment method, you will be able to "Checkout" your items and reserve your dinner in advanced together with your booking.<br />
-            <strong>Enjoy you meal!</strong>
+            <strong>Enjoy you meal!</strong><br />
+            <span id='MenuItemSummary-auth-text'>You are signed in as "username" -- <Link id='Auth-text-link'>(logOut)</Link></span>
             </p>
         </div>
         <div className="MenuItemSummary-items container-fluid" title="Scroll down for more items">

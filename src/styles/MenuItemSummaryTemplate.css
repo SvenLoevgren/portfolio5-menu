@@ -10,36 +10,50 @@
     justify-content: flex-start;
     min-height: 100vh;
     background-color: #f7f7f7;
-  }
+}
   
-  /*------------------------------------Header*/
+/*------------------------------------Header*/
   
-  .MenuItemSummary-header {
+.MenuItemSummary-header {
     margin-top: 20px;
     margin-bottom: 20px;
-  }
+}
   
-  .MenuItemSummary-header h1 {
+.MenuItemSummary-header h1 {
     color: black;
     font-size: 3rem;
     cursor: default;
-  }
+}
   
-  /*------------------------------------Instructions*/
+/*------------------------------------Instructions*/
 
-  .MenuItemSummary-instructions {
+.MenuItemSummary-instructions {
     margin-bottom: 20px;
     cursor: default;
-  }
+}
   
-  .MenuItemSummary-instructions p {
+.MenuItemSummary-instructions p {
     color: #333;
     font-size: 0.8rem;
-  }
+}
+
+#MenuItemSummary-auth-text {
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-top-style: groove;
+}
+ 
+#Auth-text-link {
+    font-style: italic;
+}
+
+#Auth-text-link:hover {
+    color: brown;
+}
+
+/*------------------------------------Items*/
   
-  /*------------------------------------Items*/
-  
-  .MenuItemSummary-items {
+.MenuItemSummary-items {
     background-color: rgba(255, 255, 255, 0.666); /* Set a transparent white background */
     padding: 10px;
     border-radius: 11px;
@@ -47,55 +61,58 @@
     text-align: center;
     max-height: 166px; /* Set the maximum height you want */
     overflow-y: scroll; /* Add vertical scroll if content overflows */
-  }
+}
   
-  .MenuItemSummary-items ol {
+.MenuItemSummary-items ol {
     padding: 0;
     margin: 0;
-  }
+}
   
-  .MenuItemSummary-items li {
+.MenuItemSummary-items li {
     list-style: none;
     border-bottom-style: groove;
     font-weight: 600;
-  }
-  .MenuItemSummary-total{
+}
+
+.MenuItemSummary-total{
     font-size: 1.1rem; 
     color: black;
     margin-bottom: 8%; 
-  }
+}
 
-  .item-title, .item-name {
+.item-title, .item-name {
     font-weight: bolder;
     background-color: rgb(238, 243, 114); /* highlight the items */
-  }
+}
 
-  .check-box {
+.check-box {
     cursor: pointer;
-  }
+}
 
-  #Total-price {
+#Total-price {
     font-weight: 700;
-  }
+}
 
 /*------------------------------------Modals*/
-  .Confirm-Menu-Order, .Confirm-Menu-Delete, .Confirm-Menu-Update {
+
+.Confirm-Menu-Order, .Confirm-Menu-Delete, .Confirm-Menu-Update {
     text-align: center;
     font-weight: 600;
-  }
-
-
-
+}
   
 /*------------------------------------Buttons*/
 
 .MenuSummary-button-wrapper-delete-confirm {
-  display: flex;
-  justify-content:space-between;
-  align-items:center;
-  position: absolute;
-  bottom: 20px;
-  width: 100vw;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    position: absolute;
+    bottom: 20px;
+    width: 100vw;
+}
+
+.MenuSummary-button-wrapper-delete-confirm {
+    width: 100vw;
 }
 
 .MenuSummary-button {
@@ -111,14 +128,14 @@
 }
 
 #MenuSummary-Update {
-   color:  #fff;
-   background-color: blue;
-   font-weight: 600;
+    color:  #fff;
+    background-color: blue;
+    font-weight: 600;
 }
 
 #MenuSummary-Update:hover {
-   background-color: darkblue;
-   font-weight: 700;
+    background-color: darkblue;
+    font-weight: 700;
 }
   
 #MenuSummary-Delete {
@@ -143,7 +160,7 @@
     font-weight: 700;
 }
 
-/*------------------------------------media Queries*/
+/*------------------------------------media Queries 950 */
 
 @media (max-width: 950px) {
     .MenuItemSummary-header h1 {
@@ -154,6 +171,8 @@
         font-size: 0.6rem;
     }
 }
+
+/*------------------------------------media Queries 600 */
 
 @media (max-width: 600px) {
     .MenuItemSummary-header h1 {
@@ -169,9 +188,14 @@
         display: none;
     }
     .MenuItemSummary-items li {
-      font-size: 0.8rem;
+        font-size: 0.8rem;
+    }
+    #MenuItemSummary-auth-text {
+        font-size: 0.6rem;
     }
 }
+
+/*------------------------------------media Queries 357 */
 
 @media (max-width: 357px) {
     .MenuItemSummary-header h1 {
@@ -186,11 +210,17 @@
 
 }
 
-  @media (max-width: 300px) {
+/*------------------------------------media Queries 300 */
+
+@media (max-width: 300px) {
     .MenuItemSummary-header h1 {
         font-size: 0.6rem;
-  }
-  .MenuItemSummary-items li {
-    font-size: 0.6rem;
-  }
+    }
+    .MenuItemSummary-items li {
+        font-size: 0.6rem;
+    }
+    #MenuItemSummary-auth-text {
+        font-size: 0.4rem;
+        border-top-style: none;
+    }
 }
