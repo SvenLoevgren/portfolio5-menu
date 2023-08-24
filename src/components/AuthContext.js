@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuth = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}api/token/verify/`, {
+      await axios.get(`${BASE_URL}api/token/verify/`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('access_token')}`, // Use the access token stored in local storage
         },

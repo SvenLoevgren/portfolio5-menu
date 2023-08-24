@@ -3,6 +3,7 @@ import '../styles/MenuItemSummaryTemplate.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
@@ -10,6 +11,11 @@ const BASE_URL = 'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/menu/';
 
 const MenuItemSummaryTemplate = () => {
     const [cartItems, setCartItems] = useState([]);
+    const { authenticated, login } = useAuth();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [showSignInModal, setShowSignInModal] = useState(false);
+    const [showRegisterModal, setShowRegisterModal] = useState(false);
     const [selectedItemsForUpdate, setSelectedItemsForUpdate] = useState([]);
     const [showOrderModal, setShowOrderModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -23,20 +29,32 @@ const MenuItemSummaryTemplate = () => {
 
     useEffect(() => {
         const fetchCartItems = async () => {
-            try {
-                const response = await axios.get(`${BASE_URL}`, {
-                    headers: {
-                        Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
-                    },
-        });
-            setCartItems(response.data);
-            } catch (error) {
-                console.error('Error fetching cart items:', error);
+          try {
+            if (!authenticated) {
+              // Show sign-in modal if not authenticated
+              setShowSignInModal(true);
+              return;
             }
-    };
+    
+            const response = await axios.get(`${BASE_URL}`, {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+              },
+            });
+            setCartItems(response.data);
+          } catch (error) {
+            // Handle error
+          }
+        };
+    
+        fetchCartItems();
+    }, [authenticated]);
+      // ... (rest of the component)
 
-    fetchCartItems();
-    }, []);
+    const handleSignIn = () => {
+        login(username, password);
+        setShowSignInModal(false);
+    };
 
     useEffect(() => {
         const calculateTotalPrice = () => {
@@ -112,7 +130,7 @@ const MenuItemSummaryTemplate = () => {
                 },
                 {
                     headers: {
-                        Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                         'Content-Type': 'application/json',
                     },
                 }
@@ -124,7 +142,7 @@ const MenuItemSummaryTemplate = () => {
                 // Fetch updated cart items
                 return axios.get(`${BASE_URL}`, {
                     headers: {
-                        Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                     },
                 });
             })
@@ -154,7 +172,7 @@ const MenuItemSummaryTemplate = () => {
             for (const item of selectedItems) {
                 await axios.delete(`${BASE_URL}item/${item.id}/delete/`, {
                     headers: {
-                        Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                     },
                 });
             }
@@ -162,7 +180,7 @@ const MenuItemSummaryTemplate = () => {
             // Fetch updated cart items
             const response = await axios.get(`${BASE_URL}`, {
                 headers: {
-                    Authorization: `${process.env.REACT_APP_AUTH_TOKEN}`,
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 },
             });
             setCartItems(response.data);
@@ -321,8 +339,45 @@ const MenuItemSummaryTemplate = () => {
                 </Button>
             </Modal.Footer>
         </Modal>
+        <Modal show={showSignInModal} onHide={() => setShowSignInModal(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>Please Sign In</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <p>You need to be logged in to see your Menu.</p>
+                <input
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <Button variant="primary" onClick={handleSignIn}>
+                    OK
+                </Button>
+            </Modal.Body>
+        </Modal>
+        <Modal show={showRegisterModal} onHide={() => setShowRegisterModal(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>Please Register</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <p>
+                    You need to have an account to see your Menu. Press the link below to
+                    register a new account.
+                </p>
+                <a href="https://your-django-app.com/accounts/signup/">Register a new account</a>
+                <Button variant="primary" onClick={() => window.location.reload()}>
+                    Close
+                </Button>
+            </Modal.Body>
+        </Modal>
     </div>
   );
 };
-
 export default MenuItemSummaryTemplate;

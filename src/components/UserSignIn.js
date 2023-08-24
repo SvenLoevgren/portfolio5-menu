@@ -22,6 +22,8 @@ const SignInComponent = () => {
 
       // Call the login function to set authenticated state and store tokens
       login(accessToken, refreshToken);
+      setShowSignInModal(false);
+      window.location.reload();
     } catch (error) {
       console.error('Error signing in:', error);
     }
