@@ -7,14 +7,15 @@ import { useAuth } from './AuthContext';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-const BASE_URL = 'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/menu/';
+const BASE_URL = 'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/';
 
 const MenuItemSummaryTemplate = () => {
     const [cartItems, setCartItems] = useState([]);
-    const { authenticated, login } = useAuth();
+    const {authenticated, login, logout} = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showSignInModal, setShowSignInModal] = useState(false);
+    const [showLogOutModal, setShowLogOutModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
     const [selectedItemsForUpdate, setSelectedItemsForUpdate] = useState([]);
     const [showOrderModal, setShowOrderModal] = useState(false);
@@ -36,7 +37,7 @@ const MenuItemSummaryTemplate = () => {
               return;
             }
     
-            const response = await axios.get(`${BASE_URL}`, {
+            const response = await axios.get(`${BASE_URL}menu/`, {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`,
               },
@@ -56,6 +57,8 @@ const MenuItemSummaryTemplate = () => {
         setShowSignInModal(false);
     };
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const calculateTotalPrice = () => {
           let total = 0;
@@ -70,11 +73,8 @@ const MenuItemSummaryTemplate = () => {
     }, [cartItems]);
       
 
-    const navigate = useNavigate();
-
     const handleCloseAndNavigate = () => {
         setShowOrderModal(false);
-    // Navigate back to the menu page
         navigate('/');
     };
 
@@ -121,7 +121,7 @@ const MenuItemSummaryTemplate = () => {
     const updateSelectedItems = () => {
         const updatePromises = selectedItemsForUpdate.map(item =>
             axios.put(
-                `${BASE_URL}item/${item.id}/update/`,
+                `${BASE_URL}menu/item/${item.id}/update/`,
                 {
                     title: item.title,
                     name: item.name,
@@ -140,7 +140,7 @@ const MenuItemSummaryTemplate = () => {
         Promise.all(updatePromises)
             .then(() => {
                 // Fetch updated cart items
-                return axios.get(`${BASE_URL}`, {
+                return axios.get(`${BASE_URL}menu/`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                     },
@@ -170,7 +170,7 @@ const MenuItemSummaryTemplate = () => {
         try {
             // Delete each selected item
             for (const item of selectedItems) {
-                await axios.delete(`${BASE_URL}item/${item.id}/delete/`, {
+                await axios.delete(`${BASE_URL}menu/item/${item.id}/delete/`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                     },
@@ -178,7 +178,7 @@ const MenuItemSummaryTemplate = () => {
             }
     
             // Fetch updated cart items
-            const response = await axios.get(`${BASE_URL}`, {
+            const response = await axios.get(`${BASE_URL}menu/`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 },
@@ -211,7 +211,7 @@ const MenuItemSummaryTemplate = () => {
         </div>
         <div className="MenuItemSummary-instructions text-center container-fluid">
             <p>
-            <span id='MenuItemSummary-auth-text'>You are signed in as "username" -- <Link id='Auth-text-link'>(logOut)</Link></span><br />
+            <span id='MenuItemSummary-auth-text'>You are signed in as "{username}" -- <Link id='Auth-text-link' onClick={logout}>(logOut)</Link></span><br />
             Welcome to the menu summary, where you can view your items and delete unwanted items from the menu!<br />
             To change the items in your Cart, just select any items from the list and then press the <strong><em>"Delete"</em></strong> OR <strong><em>"Update"</em></strong> button at the bottom of this page.<br />
             If you are saticfied with your menu, then note down your summay and had back to to the menu page by clicking on the <strong><em>"Confirm Order"</em></strong> button.<br />
@@ -241,12 +241,12 @@ const MenuItemSummaryTemplate = () => {
                 Sum: <span id="Total-price">${totalPrice.toFixed(2)}</span>
             </div>
             <button className="MenuSummary-button" id="MenuSummary-Update" onClick={handleUpdateItems}>
-                Update
+                Update Items
             </button>
         </div>
         <div className='MenuSummary-button-wrapper-delete-confirm'>
             <button className="MenuSummary-button" id="MenuSummary-Home" onClick={handleConfirm}>
-                Confirm Order
+                Accept Items
             </button>
             <button className="MenuSummary-button" id="MenuSummary-Delete" onClick={handleDeleteItems}>
                 Delete Items
@@ -254,7 +254,7 @@ const MenuItemSummaryTemplate = () => {
         </div>
         <Modal show={showOrderModal} onHide={handleCloseOrderModal}>
             <Modal.Header closeButton>
-                <Modal.Title>Confirm Order</Modal.Title>
+                <Modal.Title>Accept Items</Modal.Title>
             </Modal.Header>
             <Modal.Body className='Confirm-Menu-Order'>
                  Are you sure that you are saticfied with your Menu and that you want to leave this page?

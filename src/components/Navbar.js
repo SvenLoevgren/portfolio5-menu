@@ -51,20 +51,12 @@ const Navbar = () => {
             <li className="nav-item dropdown">
               <DropdownMenu menuData={menuData} />
             </li>
-            {authenticated ? (
             <li className="nav-item">
-              <button className="btn btn-link nav-link" onClick={logout}>
-                Log Out
-              </button>
-            </li>
-          ) : (
-            <li className="nav-item">
-              <a href="https://fastfood-drf-dfd5756f86e9.herokuapp.com/accounts/signup/?react_app=true" className="navbar-text nav-link">
+              <a href="https://fastfood-drf-dfd5756f86e9.herokuapp.com/accounts/signup" className="navbar-text nav-link">
                 <FaUser className="me-1" />
                 Log In
               </a>
             </li>
-            )}
             <li className="nav-item">
               <span className="me-2">&nbsp;</span>
             </li>
