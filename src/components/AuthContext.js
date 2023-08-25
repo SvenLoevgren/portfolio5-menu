@@ -6,6 +6,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
+  const [username, setUsername] = useState('');
 
   // Check if the user is authenticated on component mount
   useEffect(() => {
@@ -20,8 +21,13 @@ export const AuthProvider = ({ children }) => {
         },
       });
       setAuthenticated(true);
+      const storedUsername = localStorage.getItem('username');
+      if (storedUsername) {
+        setUsername(storedUsername);
+      }
     } catch (error) {
       setAuthenticated(false);
+      setUsername('');
     }
   };
 
@@ -35,8 +41,10 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('access_token', response.data.access); // Store the access token
       localStorage.setItem('refresh_token', response.data.refresh); // Store the refresh token
       setAuthenticated(true);
+      setUsername(username); // Set the username
     } catch (error) {
       setAuthenticated(false);
+      setUsername('');
     }
   };
 
@@ -44,10 +52,11 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('access_token'); // Clear the access token
     localStorage.removeItem('refresh_token'); // Clear the refresh token
     setAuthenticated(false);
+    setUsername(''); // Clear the username
   };
 
   return (
-    <AuthContext.Provider value={{ authenticated, login, logout }}>
+    <AuthContext.Provider value={{ authenticated, username, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

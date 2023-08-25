@@ -55,7 +55,6 @@ const MenuItemSummaryTemplate = () => {
     const handleSignIn = () => {
         login(username, password);
         setShowSignInModal(false);
-        setUsername(username);
     };
 
     const navigate = useNavigate();
@@ -66,7 +65,6 @@ const MenuItemSummaryTemplate = () => {
     
     const handleLogoutConfirmNavigation = () => {
         logout();
-        setUsername('');
         navigate('/');
     };
     
@@ -226,7 +224,7 @@ const MenuItemSummaryTemplate = () => {
         </div>
         <div className="MenuItemSummary-instructions text-center container-fluid">
             <p>
-            <span id='MenuItemSummary-auth-text'>You are signed in as "{username}" -- <Link id='Auth-text-link' to="#" onClick={handleLogoutAndNavigate}>(logOut)</Link></span><br />
+            <span id='MenuItemSummary-auth-text'>You are signed in -- <Link id='Auth-text-link' to="#" onClick={handleLogoutAndNavigate}>(logOut)</Link></span><br />
             Welcome to the menu summary, where you can view your items and delete unwanted items from the menu!<br />
             To change the items in your Cart, just select any items from the list and then press the <strong><em>"Delete"</em></strong> OR <strong><em>"Update"</em></strong> button at the bottom of this page.<br />
             If you are saticfied with your menu, then note down your summay and had back to to the menu page by clicking on the <strong><em>"Confirm Order"</em></strong> button.<br />
