@@ -207,15 +207,16 @@ const MenuItemSummaryTemplate = () => {
     return (
     <div className="MenuItemSummary-container container-fluid">
         <div className="MenuItemSummary-header text-center container-fluid">
-            <h1>Menu Summary!</h1><hr />
+            <h1>Menu Summary!</h1>
         </div>
         <div className="MenuItemSummary-instructions text-center container-fluid">
-            <p>Welcome to the menu summary, where you can view your items and delete unwanted items from the menu!<br />
+            <p>
+            <span id='MenuItemSummary-auth-text'>You are signed in as "username" -- <Link id='Auth-text-link'>(logOut)</Link></span><br />
+            Welcome to the menu summary, where you can view your items and delete unwanted items from the menu!<br />
             To change the items in your Cart, just select any items from the list and then press the <strong><em>"Delete"</em></strong> OR <strong><em>"Update"</em></strong> button at the bottom of this page.<br />
             If you are saticfied with your menu, then note down your summay and had back to to the menu page by clicking on the <strong><em>"Confirm Order"</em></strong> button.<br />
             When we have added an online payment method, you will be able to "Checkout" your items and reserve your dinner in advanced together with your booking.<br />
             <strong>Enjoy you meal!</strong><br />
-            <span id='MenuItemSummary-auth-text'>You are signed in as "username" -- <Link id='Auth-text-link'>(logOut)</Link></span>
             </p>
         </div>
         <div className="MenuItemSummary-items container-fluid" title="Scroll down for more items">

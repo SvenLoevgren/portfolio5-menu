@@ -41,6 +41,7 @@
     font-weight: 600;
     font-size: 1.1rem;
     border-top-style: groove;
+    border-bottom-style: groove;
 }
  
 #Auth-text-link {
@@ -222,5 +223,6 @@
     #MenuItemSummary-auth-text {
         font-size: 0.4rem;
         border-top-style: none;
+        border-bottom-style: none;
     }
 }
