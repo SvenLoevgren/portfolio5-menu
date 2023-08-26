@@ -149,6 +149,17 @@
     background-color: #d64c42;
     font-weight: 700;
 }
+
+#MenuSummary-register {
+    background-color: #ab4038;
+    color: #fff;
+    font-weight: 600;
+}
+  
+#MenuSummary-register:hover {
+    background-color: #d64c42;
+    font-weight: 700;
+}
   
 #MenuSummary-Home {
     background-color: #2a722d;

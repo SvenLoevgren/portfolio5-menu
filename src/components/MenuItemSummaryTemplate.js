@@ -16,7 +16,6 @@ const MenuItemSummaryTemplate = () => {
     const [password, setPassword] = useState('');
     const [showSignInModal, setShowSignInModal] = useState(false);
     const [showLogoutConfirmModal, setShowLogoutConfirmModal] = useState(false);
-    const [showRegisterModal, setShowRegisterModal] = useState(false);
     const [selectedItemsForUpdate, setSelectedItemsForUpdate] = useState([]);
     const [showOrderModal, setShowOrderModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -27,9 +26,8 @@ const MenuItemSummaryTemplate = () => {
     const [showUpdateModalNoItems, setShowUpdateModalNoItems] = useState(false);
     const [showUpdateSuccessModal, setShowUpdateSuccessModal] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
-    const [showSignInValidationModal, setShowSignInValidationModal] = useState(false);
     const [showServerErrorModal, setShowServerErrorModal] = useState(false);
-    const [signInAttempts, setSignInAttempts] = useState(0);
+
 
     useEffect(() => {
         const fetchCartItems = async () => {
@@ -61,14 +59,6 @@ const MenuItemSummaryTemplate = () => {
     const handleSignIn = () => {
         login(username, password);
         setShowSignInModal(false);
-        setSignInAttempts(prevAttempts => prevAttempts + 1);
-
-        if (signInAttempts >= 3) {
-            setShowSignInModal(false);
-            setShowRegisterModal(true);
-        } else if (!authenticated) {
-            setShowSignInValidationModal(true);
-        }
     };
 
     const navigate = useNavigate();
@@ -280,10 +270,10 @@ const MenuItemSummaryTemplate = () => {
             </button>
         </div>
         <Modal show={showOrderModal} onHide={handleCloseOrderModal}>
-            <Modal.Header closeButton>
+            <Modal.Header className='d-flex justify-content-center'>
                 <Modal.Title>Accept Items</Modal.Title>
             </Modal.Header>
-            <Modal.Body className='Confirm-Menu-Order'>
+            <Modal.Body className='Confirm-Menu-Order text-center'>
                  Are you sure that you are saticfied with your Menu and that you want to leave this page?
             </Modal.Body>
             <Modal.Footer>
@@ -296,10 +286,10 @@ const MenuItemSummaryTemplate = () => {
             </Modal.Footer>
         </Modal>
         <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
-            <Modal.Header closeButton>
+            <Modal.Header className='d-flex justify-content-center'>
                 <Modal.Title>Confirm Deletion</Modal.Title>
             </Modal.Header>
-            <Modal.Body className='Confirm-Menu-Delete'>
+            <Modal.Body className='Confirm-Menu-Delete text-center'>
                 {modalMessage}
             </Modal.Body>
             <Modal.Footer>
@@ -316,7 +306,7 @@ const MenuItemSummaryTemplate = () => {
             </Modal.Footer>
         </Modal>
         <Modal show={showUpdateModal} onHide={handleCloseUpdateModal}>
-            <Modal.Header closeButton>
+            <Modal.Header className='d-flex justify-content-center'>
                 <Modal.Title>Update Quantities</Modal.Title>
             </Modal.Header>
             <Modal.Body className='Update-Quantities'>
@@ -343,36 +333,36 @@ const MenuItemSummaryTemplate = () => {
             </Modal.Footer>
         </Modal>
         <Modal show={showUpdateModalNoItems} onHide={() => setShowUpdateModalNoItems(false)}>
-            <Modal.Header closeButton>
+            <Modal.Header className='d-flex justify-content-center'>
                 <Modal.Title>Update Items</Modal.Title>
             </Modal.Header>
-            <Modal.Body className='Confirm-Menu-Update'>
+            <Modal.Body className='Confirm-Menu-Update text-center'>
                 You need to select items from the list before you can make your updates.
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer className='d-flex justify-content-center'>
                 <Button variant="secondary" onClick={() => setShowUpdateModalNoItems(false)}>
                     Close
                 </Button>
             </Modal.Footer>
         </Modal>
         <Modal show={showUpdateSuccessModal} onHide={() => setShowUpdateSuccessModal(false)}>
-            <Modal.Header closeButton>
+            <Modal.Header closeButton className='d-flex justify-content-center'>
                 <Modal.Title>Update Successful</Modal.Title>
             </Modal.Header>
-            <Modal.Body className='Confirm-Menu-Update'>
+            <Modal.Body className='Confirm-Menu-Update text-center'>
                 Your items have been successfully updated.
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer className='d-flex justify-content-center'>
                 <Button variant="primary" onClick={() => setShowUpdateSuccessModal(false)}>
                     Close
                 </Button>
             </Modal.Footer>
         </Modal>
         <Modal show={showSignInModal} onHide={() => setShowSignInModal(false)}>
-            <Modal.Header closeButton>
+            <Modal.Header className='d-flex justify-content-center'>
                 <Modal.Title>Please Sign In</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className='text-center'>
                 <p>You need to be logged in to see your Menu.</p>
                 <input
                     type="text"
@@ -386,61 +376,37 @@ const MenuItemSummaryTemplate = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <Button variant="primary" onClick={handleSignIn}>
-                    OK
-                </Button>
-            </Modal.Body>
-        </Modal>
-        <Modal show={showRegisterModal} onHide={() => setShowRegisterModal(false)}>
-            <Modal.Header closeButton>
-                <Modal.Title>Please Register</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <p>
-                    You need to have an account to see your Menu. Press the link below to
-                    register a new account.
-                </p>
-                <a href="https://your-django-app.com/accounts/signup/">Register a new account</a>
-                <Button variant="primary" onClick={() => window.location.reload()}>
-                    Close
-                </Button>
-            </Modal.Body>
-        </Modal>
-        <Modal show={showLogoutConfirmModal} onHide={handleLogoutCloseModal}>
-            <Modal.Header closeButton>
-                <Modal.Title>Confirm Logout</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                 Are you sure that you want to log out and leave this page?
             </Modal.Body>
             <Modal.Footer>
+                <Button variant="primary" onClick={handleSignIn}>
+                    Sign In
+                </Button>
+                <Button id="MenuSummary-register" variant="primary" href="https://fastfood-drf-dfd5756f86e9.herokuapp.com/accounts/signup">
+                    Create New Account
+                </Button>
+            </Modal.Footer>
+        </Modal>
+        <Modal show={showLogoutConfirmModal} onHide={handleLogoutCloseModal}>
+            <Modal.Header closeButton className='d-flex justify-content-center'>
+                <Modal.Title>Confirm Logout</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className='text-center'>
+                 Are you sure that you want to log out and leave this page?
+            </Modal.Body>
+            <Modal.Footer className='d-flex justify-content-center'>
                 <Button variant="primary" onClick={handleLogoutConfirmNavigation}>
                     OK
                 </Button>
             </Modal.Footer>
         </Modal>
-        <Modal show={showSignInValidationModal} onHide={() => setShowSignInValidationModal(false)}>
-            <Modal.Header closeButton>
-                <Modal.Title>Invalid Credentials</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                Your credentials were not valid, please try again.
-                {(signInAttempts < 3) && <p>Attempts remaining: {3 - signInAttempts}</p>}
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={() => setShowSignInValidationModal(false)}>
-                    OK
-                </Button>
-            </Modal.Footer>
-        </Modal>
         <Modal show={showServerErrorModal} onHide={() => setShowServerErrorModal(false)}>
-            <Modal.Header closeButton>
-                <Modal.Title>Server Error</Modal.Title>
+            <Modal.Header closeButton className='d-flex justify-content-center'>
+                <Modal.Title>Error</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                An error occurred on the server. Please try again later.
+            <Modal.Body className='text-center'>
+                Ops! something went wrong! Please try again or contact support at +46-123456789 for assistance.
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer className='d-flex justify-content-center'>
                 <Button variant="primary" onClick={() => setShowServerErrorModal(false)}>
                     OK
                 </Button>
