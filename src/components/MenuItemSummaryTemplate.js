@@ -27,27 +27,33 @@ const MenuItemSummaryTemplate = () => {
     const [showUpdateModalNoItems, setShowUpdateModalNoItems] = useState(false);
     const [showUpdateSuccessModal, setShowUpdateSuccessModal] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [showSignInValidationModal, setShowSignInValidationModal] = useState(false);
+    const [showServerErrorModal, setShowServerErrorModal] = useState(false);
+    const [signInAttempts, setSignInAttempts] = useState(0);
 
     useEffect(() => {
         const fetchCartItems = async () => {
-          try {
-            if (!authenticated) {
-              // Show sign-in modal if not authenticated
-              setShowSignInModal(true);
-              return;
+            try {
+                if (!authenticated) {
+                    setShowSignInModal(true); // Show sign-in modal if not authenticated
+                    return;
+                }
+
+                const response = await axios.get(`${BASE_URL}menu/`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                    },
+                });
+                setCartItems(response.data);
+            } catch (error) {
+                // Handle error
+                if (error.response && error.response.status === 500) {
+                    // Show server error modal
+                    setShowServerErrorModal(true);
+                }
             }
-    
-            const response = await axios.get(`${BASE_URL}menu/`, {
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-              },
-            });
-            setCartItems(response.data);
-          } catch (error) {
-            // Handle error
-          }
         };
-    
+
         fetchCartItems();
     }, [authenticated]);
       // ... (rest of the component)
@@ -55,6 +61,14 @@ const MenuItemSummaryTemplate = () => {
     const handleSignIn = () => {
         login(username, password);
         setShowSignInModal(false);
+        setSignInAttempts(prevAttempts => prevAttempts + 1);
+
+        if (signInAttempts >= 3) {
+            setShowSignInModal(false);
+            setShowRegisterModal(true);
+        } else if (!authenticated) {
+            setShowSignInValidationModal(true);
+        }
     };
 
     const navigate = useNavigate();
@@ -404,7 +418,34 @@ const MenuItemSummaryTemplate = () => {
                     OK
                 </Button>
             </Modal.Footer>
-      </Modal>
+        </Modal>
+        <Modal show={showSignInValidationModal} onHide={() => setShowSignInValidationModal(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>Invalid Credentials</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                Your credentials were not valid, please try again.
+                {(signInAttempts < 3) && <p>Attempts remaining: {3 - signInAttempts}</p>}
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={() => setShowSignInValidationModal(false)}>
+                    OK
+                </Button>
+            </Modal.Footer>
+        </Modal>
+        <Modal show={showServerErrorModal} onHide={() => setShowServerErrorModal(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>Server Error</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                An error occurred on the server. Please try again later.
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="primary" onClick={() => setShowServerErrorModal(false)}>
+                    OK
+                </Button>
+            </Modal.Footer>
+        </Modal>
     </div>
   );
 };
