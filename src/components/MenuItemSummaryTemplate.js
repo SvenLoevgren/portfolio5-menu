@@ -11,7 +11,7 @@ const BASE_URL = 'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/';
 
 const MenuItemSummaryTemplate = () => {
     const [cartItems, setCartItems] = useState([]);
-    const {authenticated, login, logout} = useAuth();
+    const {isAuthenticated, authenticated, login, logout} = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showSignInModal, setShowSignInModal] = useState(false);
@@ -32,11 +32,13 @@ const MenuItemSummaryTemplate = () => {
     useEffect(() => {
         const fetchCartItems = async () => {
             try {
-                if (!authenticated) {
+                console.log('fetchCartItems - loadAuthenticated()');
+                
+                if (!isAuthenticated()) {
+                    console.log('fetchCartItems - not authenticated');
                     setShowSignInModal(true); // Show sign-in modal if not authenticated
                     return;
                 }
-
                 const response = await axios.get(`${BASE_URL}menu/`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
@@ -44,22 +46,33 @@ const MenuItemSummaryTemplate = () => {
                 });
                 setCartItems(response.data);
             } catch (error) {
-                // Handle error
-                if (error.response && error.response.status === 500) {
-                    // Show server error modal
-                    setShowServerErrorModal(true);
-                }
+                setShowServerErrorModal(true);
             }
+
         };
 
         fetchCartItems();
-    }, [authenticated]);
+    }, [isAuthenticated, authenticated]);
       // ... (rest of the component)
 
-    const handleSignIn = () => {
-        login(username, password);
-        setShowSignInModal(false);
+      const handleSignIn = async () => {
+        try {
+            console.log('handleSignIn - login()');
+            await login(username, password);
+
+            if(isAuthenticated()) {
+                console.log('handleSignIn - authenticated - hide sign in form');
+                setShowSignInModal(false);
+            } else {
+                console.log('handleSignIn - not authenticated - show server error');
+                setShowServerErrorModal(true);    
+            }           
+        } catch (error) {
+            console.log('handleSignIn - error');
+            setShowServerErrorModal(true);
+        }
     };
+    
 
     const navigate = useNavigate();
 
@@ -309,7 +322,7 @@ const MenuItemSummaryTemplate = () => {
             <Modal.Header className='d-flex justify-content-center'>
                 <Modal.Title>Update Quantities</Modal.Title>
             </Modal.Header>
-            <Modal.Body className='Update-Quantities'>
+            <Modal.Body>
                 {selectedItemsForUpdate.map((item, index) => (
                     <div key={index}>
                         <span className="item-title">{item.title}:</span> <span className="item-name">{item.name}</span><br />
