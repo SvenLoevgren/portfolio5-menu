@@ -55,7 +55,7 @@ const MenuItemSummaryTemplate = () => {
     }, [isAuthenticated, authenticated]);
       // ... (rest of the component)
 
-      const handleSignIn = async () => {
+    const handleSignIn = async () => {
         try {
             console.log('handleSignIn - login()');
             await login(username, password);
@@ -426,6 +426,6 @@ const MenuItemSummaryTemplate = () => {
             </Modal.Footer>
         </Modal>
     </div>
-  );
+    );
 };
 export default MenuItemSummaryTemplate;
