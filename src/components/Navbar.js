@@ -17,6 +17,7 @@ const Navbar = () => {
     const [showMenuModal, setShowMenuModal] = useState(false);
     const [showLoggedInModal, setShowLoggedInModal] = useState(false);
     const [showServerErrorModal, setShowServerErrorModal] = useState(false);
+    const [signInAttempts, setSignInAttempts] = useState(0);
 
     const handleSignInClick = () => {
         setShowSignInModal(true);
@@ -26,19 +27,41 @@ const Navbar = () => {
         try {
             await login(username, password);
 
-            if(isAuthenticated()) {
-            setShowSignInModal(false);
-            setShowMenuModal(false);
-            setShowLoggedInModal(true);
+            if (isAuthenticated()) {
+                setShowSignInModal(false);
+                setShowMenuModal(false);
+                setShowLoggedInModal(true);
+            } else {
+                setSignInAttempts(signInAttempts + 1);
+
+                if (signInAttempts < 3) {
+                    setShowServerErrorModal(true);
+                } else {
+                    setShowSignInModal(false);
+                    setShowMenuModal(false);
+                    setShowServerErrorModal(true);
+                }
+            }
+        } catch (error) {
+            setSignInAttempts(signInAttempts + 1);
+
+            if (signInAttempts < 3) {
+                setShowServerErrorModal(true);
             } else {
                 setShowSignInModal(false);
                 setShowMenuModal(false);
-                setShowServerErrorModal(true);    
-            }           
-        } catch (error) {
-            setShowSignInModal(false);
-            setShowMenuModal(false);
-            setShowServerErrorModal(true);
+                setShowServerErrorModal(true);
+            }
+        }
+    };
+
+    const renderErrorModalContent = () => {
+        if (signInAttempts < 3) {
+            return "Your credentials were wrong. Please try again.";
+        } else if (signInAttempts === 3) {
+            return "Please click on the 'register new account' button where you can reset your password or create a new account.";
+        } else {
+            return "Ops! something went wrong! Please try again or contact support at +46-123456789 for assistance.";
         }
     };
 
@@ -235,7 +258,7 @@ const Navbar = () => {
                 <Modal.Title>Error</Modal.Title>
             </Modal.Header>
             <Modal.Body className='text-center'>
-                Ops! something went wrong! Please try again or contact support at +46-123456789 for assistance.
+                {renderErrorModalContent()}
             </Modal.Body>
             <Modal.Footer className='d-flex justify-content-center'>
                 <Button variant="primary" onClick={handleErrorModal}>

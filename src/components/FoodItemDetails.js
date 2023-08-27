@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../styles/foodItemDetails.css';
 import menuData from './menuData';
@@ -7,14 +7,15 @@ import { useAuth } from './AuthContext';
 import Button from 'react-bootstrap/Button';
 
 const FoodItemDetails = () => {
+    const [imageLoaded, setImageLoaded] = useState(false);
     const navigate = useNavigate();
     const { foodName } = useParams();
-    const {isAuthenticated, logout } = useAuth();
+    const { isAuthenticated, logout } = useAuth();
     const menuItem = menuData.find((menu) => menu.dropdownDetails.some((item) => item.name === foodName));
 
-        if (!menuItem) {
-            return <MenuItemNotFound />;
-        }
+    if (!menuItem) {
+        return <MenuItemNotFound />;
+    }
 
     const item = menuItem.dropdownDetails.find((item) => item.name === foodName);
 
@@ -24,7 +25,7 @@ const FoodItemDetails = () => {
 
     const handleNotAthenticated = () => {
         logout();
-        navigate('/')
+        navigate('/');
     };
 
     if (!isAuthenticated()) {
@@ -46,16 +47,21 @@ const FoodItemDetails = () => {
     }
 
     return (
-        <div className="FoodItemDetails-container">        
+        <div className="FoodItemDetails-container">
             <div className="FoodItemDetails-header">
-                <img src={item.imageUrl} alt={item.name} />
-                <h2>{item.name}</h2>
+                <img
+                    src={item.imageUrl}
+                    alt={item.name}
+                    onLoad={() => setImageLoaded(true)}
+                    onError={() => setImageLoaded(false)}
+                />
+                {!imageLoaded && <p>{item.name}</p>}
             </div>
             <div className="FoodItemDetails-description">
                 <p>{item.description}</p>
                 <p>Price: ${item.price}</p>
             </div>
-          {/* Wrapper div for centering */}
+            {/* Wrapper div for centering */}
             <div className="FoodItemDetails-button-wrapper">
                 <div className="Food-close-button">
                     <button onClick={handleClose}>Close Window</button>
