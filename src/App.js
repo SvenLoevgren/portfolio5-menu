@@ -9,35 +9,35 @@ import FoodItemDetails from './components/FoodItemDetails';
 import MenuItemSummaryTemplate from './components/MenuItemSummaryTemplate';
 
 const LayoutWithNavbar = ({ children }) => {
-  return (
-    <div>
-      <Navbar />
-      {children}
-    </div>
-  );
+    return (
+        <div>
+            <Navbar />
+            {children}
+        </div>
+    );
 };
 
 
 const App = () => {
-  const [setCartItems] = useState([]); // Initialize cartItems state here
+    const [setCartItems] = useState([]); // Initialize cartItems state here
 
-  return (
-    <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={<LayoutWithNavbar><Welcome /></LayoutWithNavbar>}
-        />
-        <Route
-          path="/menu/:title"
-          element={<MenuItemTemplate menuData={menuData} setCartItems={setCartItems} />}
-        />
-        <Route path="/details/:foodName" element={<FoodItemDetails />} />
-        <Route path="/summary" element={<MenuItemSummaryTemplate/>} />
-        <Route path="*" element={<MenuItemNotFound />} />
-      </Routes>
-    </Router>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route
+                    path="/"
+                    element={<LayoutWithNavbar><Welcome /></LayoutWithNavbar>}
+                />
+                <Route
+                    path="/menu/:title"
+                    element={<MenuItemTemplate menuData={menuData} setCartItems={setCartItems} />}
+                />
+                <Route path="/details/:foodName" element={<FoodItemDetails />} />
+                <Route path="/summary" element={<MenuItemSummaryTemplate/>} />
+                <Route path="*" element={<MenuItemNotFound />} />
+            </Routes>
+        </Router>
+    );
 };
 
 export default App;

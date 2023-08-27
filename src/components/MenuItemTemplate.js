@@ -144,7 +144,7 @@ const MenuItemTemplate = () => {
                 <div className='text-center'>
                     <h1>Warning!<hr /></h1>
                     <p>You need to be signed in, to view this page!<br />
-                    Click on the button below to navigated back to our home page,<br />
+                    Click on the button below to get navigated back to our home page,<br />
                     <strong>Where you can sign in again!</strong></p>
                 </div>
                 <div className='text-center'>
