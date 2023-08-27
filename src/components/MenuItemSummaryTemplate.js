@@ -31,11 +31,8 @@ const MenuItemSummaryTemplate = () => {
 
     useEffect(() => {
         const fetchCartItems = async () => {
-            try {
-                console.log('fetchCartItems - loadAuthenticated()');
-                
-                if (!isAuthenticated()) {
-                    console.log('fetchCartItems - not authenticated');
+            try {                
+                if (!isAuthenticated()) {                    
                     setShowSignInModal(true); // Show sign-in modal if not authenticated
                     return;
                 }
@@ -56,19 +53,15 @@ const MenuItemSummaryTemplate = () => {
       // ... (rest of the component)
 
     const handleSignIn = async () => {
-        try {
-            console.log('handleSignIn - login()');
+        try {            
             await login(username, password);
-
             if(isAuthenticated()) {
-                console.log('handleSignIn - authenticated - hide sign in form');
+                
                 setShowSignInModal(false);
-            } else {
-                console.log('handleSignIn - not authenticated - show server error');
+            } else {                
                 setShowServerErrorModal(true);    
             }           
-        } catch (error) {
-            console.log('handleSignIn - error');
+        } catch (error) {            
             setShowServerErrorModal(true);
         }
     };
@@ -91,11 +84,11 @@ const MenuItemSummaryTemplate = () => {
 
     useEffect(() => {
         const calculateTotalPrice = () => {
-          let total = 0;
-          for (const item of cartItems) {
-            total += item.price * item.quantity;
-          }
-          return total;
+            let total = 0;
+            for (const item of cartItems) {
+                total += item.price * item.quantity;
+            }
+            return total;
         };
     
         const total = calculateTotalPrice();
@@ -182,8 +175,8 @@ const MenuItemSummaryTemplate = () => {
                 setShowUpdateSuccessModal(true);
             })
             .catch(error => {
-                console.error('Error updating quantities:', error);
-            });
+                setShowServerErrorModal(true);
+        });
     };
     
 
@@ -219,7 +212,7 @@ const MenuItemSummaryTemplate = () => {
             setModalMessage("Your items have been successfully deleted from your menu");
             setModalConfirmAction(null);
         } catch (error) {
-            console.error('Error deleting items:', error);
+            setShowServerErrorModal(true);
         }
     }; 
      
@@ -256,7 +249,8 @@ const MenuItemSummaryTemplate = () => {
                 <li key={index}>
                     <span className="item-title">{item.title}:</span> <span className="item-name">{item.name}</span><br />
                     {item.description}<br/>
-                    Price: ${item.price} -- Quantity: {item.quantity} -- Select-item <input
+                    Price: ${item.price} -- Quantity: {item.quantity} -- Select-item 
+                    <input
                     className='check-box'
                     type="checkbox"
                     checked={item.selected || false}  // Ensure selected property exists and default to false
@@ -327,11 +321,11 @@ const MenuItemSummaryTemplate = () => {
                     <div key={index}>
                         <span className="item-title">{item.title}:</span> <span className="item-name">{item.name}</span><br />
                         Quantity: <input
-                            type="number"
-                            value={updatedQuantities[item.id] || item.quantity}
-                            onChange={(e) => handleQuantityChange(item.id, e.target.value)}
-                            min="1"
-                            max="500"
+                        type="number"
+                        value={updatedQuantities[item.id] || item.quantity}
+                        onChange={(e) => handleQuantityChange(item.id, e.target.value)}
+                        min="1"
+                        max="500"
                         />
                     </div>
                 ))}
@@ -378,16 +372,16 @@ const MenuItemSummaryTemplate = () => {
             <Modal.Body className='text-center'>
                 <p>You need to be logged in to see your Menu.</p>
                 <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 />
                 <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 />
             </Modal.Body>
             <Modal.Footer>
