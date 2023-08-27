@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaUser, FaCalendar, FaShoppingCart } from 'react-icons/fa';
+import { FaUser, FaCalendar, FaShoppingCart, FaHome } from 'react-icons/fa';
 import '../styles.css';
 import DropdownMenu from './MenuDropdown';
 import menuData from './menuData'; 
@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { FaHome } from 'react-icons/fa';
 
 const Navbar = () => {
     const {authenticated, login, logout, isAuthenticated } = useAuth();
@@ -183,6 +182,9 @@ const Navbar = () => {
             <Modal.Footer className='d-flex justify-content-center'>
                 <Button variant="primary" onClick={handleLogoutConfirm}>
                     OK
+                </Button>
+                <Button className='Template-Modal-Cancel-button' variant="primary" onClick={() => setShowLogoutModal(false)}>
+                    Cancel
                 </Button>
             </Modal.Footer>
         </Modal>

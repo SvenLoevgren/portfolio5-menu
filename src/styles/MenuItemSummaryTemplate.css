@@ -103,6 +103,16 @@
   
 /*------------------------------------Buttons*/
 
+.Template-Modal-Cancel-button {
+    background-color: #f44336;
+    color: #fff;
+  }
+  
+.Template-Modal-Cancel-button:hover {
+    background-color: #d64c42;
+    font-weight: 700;
+  }
+
 .MenuSummary-button-wrapper-delete-confirm {
     display: flex;
     justify-content:space-between;

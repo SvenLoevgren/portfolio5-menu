@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import '../styles/menuItemTemplate.css';
 import menuData from './menuData';
 import MenuItemDetails from './MenuItemDetails';
 import MenuItemNotFound from './MenuItemNotFound';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { useAuth } from './AuthContext';
 
 const BASE_URL = 'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/';
 
 const MenuItemTemplate = () => {
     const [quantityInputs, setQuantityInputs] = useState({});
     const [checkedItems, setCheckedItems] = useState({});
+    const {isAuthenticated, logout } = useAuth();
     const [cartItems, setCartItems] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [modalType, setModalType] = useState('none'); // Tracks the active modal
+    const [showLogoutConfirmationModal, setShowLogoutConfirmationModal] = useState(false);
 
     const navigate = useNavigate();
     const { title } = useParams();
@@ -37,8 +40,7 @@ const MenuItemTemplate = () => {
                 [name]: 1,
         }));
         }
-    };
-  
+    };  
 
     const handleCancelClick = () => {
         navigate('/');
@@ -122,16 +124,50 @@ const MenuItemTemplate = () => {
         navigate('/summary', { state: { cartItems } });
     };
 
+    const handleLogoutClick = () => {
+
+        setShowLogoutConfirmationModal(true)
+    }
+
+    const handleLogoutConfirmationClick = () => {
+        logout();
+        navigate('/');
+    }
+
+    const handleNotAthenticated = () => {
+        navigate('/')
+    }
+
+    if (!isAuthenticated()) {
+        return (
+            <div  className='text-row container-fluid'>
+                <div className='text-center'>
+                    <h1>Warning!<hr /></h1>
+                    <p>You need to be signed in, to view this page!<br />
+                    Click on the button below to navigated back to our home page,<br />
+                    <strong>Where you can sign in again!</strong></p>
+                </div>
+                <div className='text-center'>
+                    <Button variant="primary" onClick={handleNotAthenticated}>
+                        OK
+                    </Button>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="Template-menu-item-template-container">
             <div className="Template-logo"></div>
             <div className="row">
                 <div className="col-12 text-center MenuItemTemplate-heading">
-                    <h1>{menuItem.title} <hr /></h1>
+                    <h1>{title}</h1>
                 </div>
                 <div className="row">
                     <div className="col-12 text-center MenuItemTemplate-text">
-                        <p>Welcome!<br />
+                        <p>
+                        <span id='MenuItemSummary-auth-text'>You are signed in -- <Link id='Auth-text-link' to="#" onClick={handleLogoutClick}>(logOut)</Link></span><br />
+                        Welcome!<br />
                         On this page you can select your meal and add items to your Cart.<br />
                         Choose your items by clicking on the <strong>"select item"</strong> checkbox.<br />
                         You can find all items by Scrolling in the list <strong>below</strong><br />
@@ -216,11 +252,11 @@ const MenuItemTemplate = () => {
                 <Modal.Footer className='d-flex justify-content-center'>
                     {modalType === 'selectedItems' && (
                         <div>
-                            <Button variant="secondary" onClick={handleCloseModal}>
-                                Cancel
-                            </Button>
                             <Button variant="primary" onClick={handleAddItemsToCart}>
                                 Add Items to Cart
+                            </Button>
+                            <Button variant="secondary" className='Template-Modal-Cancel-button' onClick={handleCloseModal}>
+                                Cancel
                             </Button>
                         </div>
                     )}
@@ -229,6 +265,22 @@ const MenuItemTemplate = () => {
                             OK
                         </Button>
                     )}
+                </Modal.Footer>
+            </Modal>
+            <Modal show={showLogoutConfirmationModal} onHide={() => setShowLogoutConfirmationModal(false)}>
+                <Modal.Header closeButton className='d-flex justify-content-center'>
+                    <Modal.Title>Confirm Logout</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className='text-center'>
+                    Are you sure that you want to log out and leave this page?
+                </Modal.Body>
+                <Modal.Footer className='d-flex justify-content-center'>
+                    <Button variant="primary" onClick={handleLogoutConfirmationClick}>
+                        OK
+                    </Button>
+                    <Button className='Template-Modal-Cancel-button' variant="primary" onClick={() => setShowLogoutConfirmationModal(false)}>
+                        Cancel
+                    </Button>
                 </Modal.Footer>
             </Modal>
         </div>

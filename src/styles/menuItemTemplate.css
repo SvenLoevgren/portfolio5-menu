@@ -108,6 +108,16 @@
   font-weight: 700;
 }
 
+.Template-Modal-Cancel-button {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.Template-Modal-Cancel-button:hover {
+  background-color: #d64c42;
+  font-weight: 700;
+}
+
 .Template-add-to-cart-button,
 .Modal-Select-button {
   background-color: #4caf50;
@@ -159,6 +169,7 @@
   }
   .MenuItemTemplate-heading > h1 {
     font-size: smaller;
+    margin-bottom: 11%;
   }
   .Template-logo {
     height: 55px;

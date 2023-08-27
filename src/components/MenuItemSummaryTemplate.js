@@ -64,8 +64,7 @@ const MenuItemSummaryTemplate = () => {
         } catch (error) {            
             setShowServerErrorModal(true);
         }
-    };
-    
+    };    
 
     const navigate = useNavigate();
 
@@ -93,8 +92,7 @@ const MenuItemSummaryTemplate = () => {
     
         const total = calculateTotalPrice();
         setTotalPrice(total);
-    }, [cartItems]);
-      
+    }, [cartItems]);      
 
     const handleCloseAndNavigate = () => {
         setShowOrderModal(false);
@@ -177,8 +175,7 @@ const MenuItemSummaryTemplate = () => {
             .catch(error => {
                 setShowServerErrorModal(true);
         });
-    };
-    
+    };    
 
     const handleCloseDeleteModal = () => {
         setShowDeleteModal(false);
@@ -224,8 +221,7 @@ const MenuItemSummaryTemplate = () => {
 
         const selectedItems = updatedCartItems.filter(item => item.selected);
         setSelectedItemsForUpdate(selectedItems);
-    };
-    
+    };    
 
     return (
     <div className="MenuItemSummary-container container-fluid">
@@ -403,6 +399,9 @@ const MenuItemSummaryTemplate = () => {
             <Modal.Footer className='d-flex justify-content-center'>
                 <Button variant="primary" onClick={handleLogoutConfirmNavigation}>
                     OK
+                </Button>
+                <Button className='Template-Modal-Cancel-button' variant="primary" onClick={() => setShowLogoutConfirmModal(false)}>
+                    Cancel
                 </Button>
             </Modal.Footer>
         </Modal>
