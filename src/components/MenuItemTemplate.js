@@ -99,12 +99,10 @@ const MenuItemTemplate = () => {
             }
             )
             .then((response) => {
-                console.log("POST request successful:", response);
                 setModalType('success');
                 setCartItems((prevCartItems) => [...prevCartItems, ...selectedItems]);
             })
             .catch((error) => {
-                console.error("Error during POST request:", error);
                 setModalType('error');
           });
           }
