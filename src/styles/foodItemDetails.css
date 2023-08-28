@@ -1,117 +1,125 @@
-/* foodItemDetails.css */
+/* ------------------------------------Global Styles */
 .FoodItemDetails-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 100vh;
-  background-color: #e4dede;
-  width: 100vw;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin: 0 auto;
-  text-align: center;
-  overflow: hidden; /* Hide any overflowing content */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    background-color: #e4dede;
+    width: 100vw;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 0 auto;
+    text-align: center;
+    overflow: hidden; /* Hide any overflowing content */
 }
 
-.FoodItemDetails-button-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 20px;
-}
+/* ------------------------------------Content */
 
 .FoodItemDetails-header {
-  position: relative;
-  color: black;
-  text-align: center;
+    position: relative;
+    color: black;
+    text-align: center;
 }
 
 .FoodItemDetails-header img {
-  width: 100vw;
-  height: 50vh; /* Set the height to 40% of the viewport height */
-  object-fit: cover; /* Ensure the image covers the container */
+    width: 100vw;
+    height: 50vh; /* Set the height to 40% of the viewport height */
+    object-fit: cover; /* Ensure the image covers the container */
 }
 
 .FoodItemDetails-header h2 {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: black;
-  font-size: 2rem;
-  margin-top: 2%;
-  font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-size: 2rem;
+    margin-top: 2%;
+    font-weight: bold;
 }
 
 .FoodItemDetails-description {
-  padding: 10px 0;
+    padding: 10px 0;
 }
 
 .FoodItemDetails-description p {
-  max-width: 100%;
-  text-align: center;
-  font-size: large;
-  font-weight: 700;
-  margin-top: 1%;
+    max-width: 100%;
+    text-align: center;
+    font-size: large;
+    font-weight: 700;
+    margin-top: 1%;
+}
+
+/* ------------------------------------Buttons */
+
+.FoodItemDetails-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .Food-close-button {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .FoodItemDetails-container button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }
 
 .Food-close-button button:hover {
-  background-color: #c9302c;
+    background-color: #c9302c;
 }
 
 .FoodItemDetails-container button:focus {
-  outline: none;
+    outline: none;
 }
+
+/* ------------------------------------Media queries width 950 */
 
 @media (max-width: 950px) {
-  .FoodItemDetails-header img {
-    height: 44vh; 
-  }
+    .FoodItemDetails-header img {
+        height: 44vh; 
+    }
 
-  .FoodItemDetails-container button {
-    padding: 0%;
-    margin-top: 0%;
-  }
-  .FoodItemDetails-description p {
-    margin-top: 0%; 
-  }
+    .FoodItemDetails-container button {
+        padding: 0%;
+        margin-top: 0%;
+    }
+    .FoodItemDetails-description p {
+        margin-top: 0%; 
+    }
 
 }
 
-@media (max-width: 767px) {
-  .FoodItemDetails-header h2 {
-    font-size: 1.5rem;
-    margin-top: 6%; 
-    width: 100%;
-  }
-    
-  .FoodItemDetails-description p {
-    margin-top: 0.5%; /* Adjust the margin as needed */
-    margin-bottom: 0.5%; 
-  }
-    
-  .FoodItemDetails-container button {
-    margin-top: 1%;  
-  }
+/* ------------------------------------Media queries width 767 */
 
-  .FoodItemDetails-header img {
-    height: 40vh; 
-  }
+@media (max-width: 767px) {
+    .FoodItemDetails-header h2 {
+        font-size: 1.5rem;
+        margin-top: 6%; 
+        width: 100%;
+    }
+    
+    .FoodItemDetails-description p {
+        margin-top: 0.5%; /* Adjust the margin as needed */
+        margin-bottom: 0.5%; 
+    }
+    
+    .FoodItemDetails-container button {
+        margin-top: 1%;  
+    }
+
+    .FoodItemDetails-header img {
+        height: 40vh; 
+    }
 }
 

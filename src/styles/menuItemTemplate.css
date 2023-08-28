@@ -1,185 +1,194 @@
 /*------------------------------------background and logo*/
 
 .Template-menu-item-template-container {
-  background-image: url('https://res.cloudinary.com/dwyxur7sy/image/upload/v1691137223/react_app_ourmenu/Dinner_z5ddnu.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  padding: 20px;
+    background-image: url('https://res.cloudinary.com/dwyxur7sy/image/upload/v1691137223/react_app_ourmenu/Dinner_z5ddnu.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
 }
 
 .Template-logo {
-  background-image: url('/public/logo512.png');
-  width: 77px;
-  height: 66px;
-  position: absolute;
-  top: 10px;
-  left: 10px;
+    background-image: url('/public/logo512.png');
+    width: 77px;
+    height: 66px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 
 /*------------------------------------Menu item content*/
 
 .MenuItemTemplate-heading > h1 {
-  cursor: default;
+   cursor: default;
 }
 
 .Template-menu-item {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #0c0a0a;
-  flex-direction: row;
-  font-weight: bold;
-  padding-left: 6%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #0c0a0a;
+    flex-direction: row;
+    font-weight: bold;
+    padding-left: 6%;
 }
 
 .Template-price {
-  font-weight: bold;
-  margin-right: 10px;
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 .Template-checkbox {
-  cursor: pointer;
+   cursor: pointer;
 }
 
 .Template-details-link {
-  text-decoration: none;
-  color: blue;
+    text-decoration: none;
+    color: blue;
 }
 
 #Template-Item-containers {
-  display: flex;
-  flex-wrap: nowrap; /* Prevent items from wrapping to new lines */
-  overflow-y: auto; /* Enable horizontal scroll */
-  justify-content: center;
+    display: flex;
+    flex-wrap: nowrap; /* Prevent items from wrapping to new lines */
+    overflow-y: auto; /* Enable horizontal scroll */
+    justify-content: center;
 }
 
 .Template-item-name {
-  width: fit-content;
+    width: fit-content;
 }
 
 .MenuItemTemplate-text{
-  cursor: default;
+    cursor: default;
 }
 
 .MenuItemDetails-description{
-  display: none;
+    display: none;
 }
 
 /*------------------------------------Buttons*/
 
 .Template-close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
 }
 
 .Template-buttons-container {
-  display: flex;
-  justify-content: space-between;
-  width: 400px;
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
 }
 
 .Template-cancel-button,
 .Template-add-to-cart-button {
-  padding: 10px;
-  width: 150px;
-  background-color: #f1f1f1;
-  border-radius: 13%;
-  cursor: pointer;
+    padding: 10px;
+    width: 150px;
+    background-color: #f1f1f1;
+    border-radius: 13%;
+    cursor: pointer;
 }
 
 .Template-cancel-button,
 .Modal-Close-button {
-  background-color: #f44336;
-  color: #fff;
+    background-color: #f44336;
+    color: #fff;
 }
 
 .Template-cancel-button:hover,
 .Modal-Close-button:hover {
-  background-color: #d64c42;
-  font-weight: 700;
+    background-color: #d64c42;
+    font-weight: 700;
 }
 
 .Template-Modal-Cancel-button {
-  background-color: #f44336;
-  color: #fff;
+    background-color: #f44336;
+    color: #fff;
 }
 
 .Template-Modal-Cancel-button:hover {
-  background-color: #d64c42;
-  font-weight: 700;
+    background-color: #d64c42;
+    font-weight: 700;
 }
 
 .Template-add-to-cart-button,
 .Modal-Select-button {
-  background-color: #4caf50;
-  color: #fff;
+    background-color: #4caf50;
+    color: #fff;
 }
 
 .Template-add-to-cart-button:hover,
 .Modal-Select-button:hover {
-  background-color: #43a946;
-  font-weight: 700;
+    background-color: #43a946;
+    font-weight: 700;
 }
 
 /*------------------------------------Modals*/
 
 .Selected-Items-modal-item-row {
-  border-bottom: 1px solid #ccc;
-  padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
 }
 
 .item-modals {
-  font-weight: 600;
+    font-weight: 600;
 }
 
-/*------------------------------------Media Queries*/
+/* ------------------------------------Media queries width 768 */
 
 @media (min-width: 768px) {
-  .Template-menu-item {
-    width: 100vw;
-  }
+    .Template-menu-item {
+        width: 100vw;
+    }
 }
+
+/* ------------------------------------Media queries width 600 */
+
 @media (max-width: 600px) {
-  .MenuItemTemplate-text {
-    font-size:x-small;
-    font-weight: bold;
-  }
+    .MenuItemTemplate-text {
+        font-size:x-small;
+        font-weight: bold;
+    }
 }
+
+/* ------------------------------------Media queries width 400 */
 
 @media (max-width: 400px) {
-  .MenuItemTemplate-heading > h1 {
-    font-size: medium;
-    font-weight: bold;
-  }  
+    .MenuItemTemplate-heading > h1 {
+        font-size: medium;
+        font-weight: bold;
+    }  
 }
+
+/* ------------------------------------Media queries width 340 */
 
 @media (max-width: 340px) {
-  .Template-cancel-button,
-  .Template-add-to-cart-button {
-    width: 111px;
-  }
-  .MenuItemTemplate-heading > h1 {
-    font-size: smaller;
-    margin-bottom: 11%;
-  }
-  .Template-logo {
-    height: 55px;
-  }
+    .Template-cancel-button,
+    .Template-add-to-cart-button {
+        width: 111px;
+    }
+    .MenuItemTemplate-heading > h1 {
+        font-size: smaller;
+        margin-bottom: 11%;
+    }
+    .Template-logo {
+        height: 55px;
+    }
 }
 
+/* ------------------------------------Media queries width 300 */
+
 @media (max-width: 300px) {
-  .MenuItemTemplate-heading > h1 {
-    font-size: x-small;
-  }  
+    .MenuItemTemplate-heading > h1 {
+        font-size: x-small;
+    }  
 }
 
 

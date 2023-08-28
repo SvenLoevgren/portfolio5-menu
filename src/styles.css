@@ -1,99 +1,99 @@
 /* ------------------------------------Global styles */
 
 body {
-  background-image: url('https://res.cloudinary.com/dwyxur7sy/image/upload/v1690816129/react_app_ourmenu/Background_qoegvg.png');
-  background-size: cover;
-  background-repeat: no-repeat;
+    background-image: url('https://res.cloudinary.com/dwyxur7sy/image/upload/v1690816129/react_app_ourmenu/Background_qoegvg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .welcome-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh; /* Adjust this if needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Adjust this if needed */
 }
 
 .text-center > p {
-  font-weight: 600;
-  font-size: larger;
+    font-weight: 600;
+    font-size: larger;
 }
 
 /* ------------------------------------Navbar */
 
 .navbar {
-  background-color: #f8f9fa;
+    background-color: #f8f9fa;
 }
 
 .navbar-text {
-  text-decoration: none;
-  display: inline-block;
-  padding: 8px 16px;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
 }
 
 .navbar-text:link {
-  text-decoration: none;
-  color: black; /* Set the color you want for unvisited links */
+    text-decoration: none;
+    color: black; /* Set the color you want for unvisited links */
 }
 
 .navbar-text:hover {
-  text-decoration: underline;
-  color: brown;
+    text-decoration: underline;
+    color: brown;
 }
 
 /* ------------------------------------Menu dropdown */
 
 .navbar-menu-dropdown {
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 #dropdownLinks {
-  text-decoration: none;
-  color: black; 
-  font-weight: bold;
+    text-decoration: none;
+    color: black; 
+    font-weight: bold;
 }
 
 #dropdownLinks:hover {
-  text-decoration: underline;
-  color: brown;
+    text-decoration: underline;
+    color: brown;
 }
 
 .menu-item:hover {
-  background-color: #dcd5d5;
+    background-color: #dcd5d5;
 }
 
 .navbar-menu-dropdown.open .menu-items {
-  display: block;
+    display: block;
 }
 
 .menu-items {
-  position: relative;
-  top: 100%;
-  left: 0;
-  display: none;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 10px;
-  min-width: 200px;
-  margin-bottom: 10px;
+    position: relative;
+    top: 100%;
+    left: 0;
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-width: 200px;
+    margin-bottom: 10px;
 }
 
 /* ------------------------------------Media Queries */
 
 @media (min-width: 992px) {
-  .navbar-menu-dropdown {
-    display: inline-block;
-  }
+    .navbar-menu-dropdown {
+        display: inline-block;
+    }
 
-  .menu-items {
-    position: absolute;
-    top: 100%;
-    left: -100;
-  }
+    .menu-items {
+        position: absolute;
+        top: 100%;
+      left: -100;
+    }
 
-  .menu-item.active {
-    left: 100%;
-  }
+    .menu-item.active {
+        left: 100%;
+    }
 }
 
 
