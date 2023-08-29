@@ -17,7 +17,7 @@ const MenuItemTemplate = () => {
     const {isAuthenticated, logout } = useAuth();
     const [cartItems, setCartItems] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [modalType, setModalType] = useState('none'); // Tracks the active modal
+    const [modalType, setModalType] = useState('none'); 
     const [showLogoutConfirmationModal, setShowLogoutConfirmationModal] = useState(false);
 
     const navigate = useNavigate();

@@ -1,3 +1,4 @@
+// Data to be mapped with back-end drf models
 const menuData = [
     {
         dropdownDetails: [

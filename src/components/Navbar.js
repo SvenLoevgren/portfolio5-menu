@@ -94,187 +94,187 @@ const Navbar = () => {
     };
 
     return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-        <div className="container-fluid">
-            <div className="navbar-brand">
-                <img
-                className="navbar-brand-img"
-                src="/logo512.png"
-                alt="Site-Logo"
-                width="55"
-                height="44"
-                />
-                <span className="logo-text ms-2 fw-bold" style={{ fontSize: '1.2rem' }}>
-                    <em>MoreVegans</em>
-                </span>
-            </div>
-            <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarLinks" 
-            aria-controls="navbarLinks"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-            >
-            <span className="navbar-toggler-icon" />
-            </button>
-            <div className="collapse navbar-collapse" id="navbarLinks"> 
-                <ul className="ms-auto navbar-nav">
-                    {/* Link to drf booking site */}
-                    <li className="nav-item">
-                        <Link to="https://fastfood-drf-dfd5756f86e9.herokuapp.com/" className="navbar-text nav-link">
-                            <FaCalendar className="me-1" />
-                            Booking-site
-                        </Link>
-                    </li>
-                    {/* Empty link for navbar layout styling */}
-                    <li className="nav-item">
-                        <span className="navbar-text me-2 fw-bold">|</span>
-                    </li>
-                    {/* Menu link authentication */}
-                    {authenticated ? (
-                    <li className="nav-item dropdown">
-                        <DropdownMenu menuData={menuData} />
-                    </li>
-                        ) : (
-                    <Link to="#" className="navbar-text nav-link fw-bold" onClick={handleMenuClick}>
-                        <FaHome className="me-1" />
-                        Menu
-                    </Link>
-                    )}
-                    {/* User SignIN/Out authentication */}
-                    <li className="nav-item">
+        <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+            <div className="container-fluid">
+                <div className="navbar-brand">
+                    <img
+                    className="navbar-brand-img"
+                    src="/logo512.png"
+                    alt="Site-Logo"
+                    width="55"
+                    height="44"
+                    />
+                    <span className="logo-text ms-2 fw-bold" style={{ fontSize: '1.2rem' }}>
+                        <em>MoreVegans</em>
+                    </span>
+                </div>
+                <button
+                className="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarLinks" 
+                aria-controls="navbarLinks"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                >
+                <span className="navbar-toggler-icon" />
+                </button>
+                <div className="collapse navbar-collapse" id="navbarLinks"> 
+                    <ul className="ms-auto navbar-nav">
+                        {/* Link to drf booking site */}
+                        <li className="nav-item">
+                            <Link to="https://fastfood-drf-dfd5756f86e9.herokuapp.com/" className="navbar-text nav-link">
+                                <FaCalendar className="me-1" />
+                                Booking-site
+                            </Link>
+                        </li>
+                        {/* Empty link for navbar layout styling */}
+                        <li className="nav-item">
+                            <span className="navbar-text me-2 fw-bold">|</span>
+                        </li>
+                        {/* Menu link authentication */}
                         {authenticated ? (
-                        <Link to="#" className="navbar-text nav-link" onClick={handleLogoutClick}>
-                            <FaUser className="me-1" />
-                            Log Out
-                        </Link>
-                        ) : (
-                        <Link to="#" className="navbar-text nav-link" onClick={handleSignInClick}>
-                            <FaUser className="me-1" />
-                            Sign In
+                        <li className="nav-item dropdown">
+                            <DropdownMenu menuData={menuData} />
+                        </li>
+                            ) : (
+                        <Link to="#" className="navbar-text nav-link fw-bold" onClick={handleMenuClick}>
+                            <FaHome className="me-1" />
+                            Menu
                         </Link>
                         )}
-                    </li>
-                    {/* Empty link for navbar layout styling */}
-                    <li className="nav-item">
-                        <span className="me-2">&nbsp;</span>
-                    </li>
-                    {/* Link To cRUD */}
-                    <li className="nav-item">
-                      <Link to="/summary" className="navbar-text nav-link">
-                          <FaShoppingCart className="me-1" />
-                          <span>Cart</span>
-                      </Link>
-                    </li>
-                </ul>
+                        {/* User SignIN/Out authentication */}
+                        <li className="nav-item">
+                            {authenticated ? (
+                            <Link to="#" className="navbar-text nav-link" onClick={handleLogoutClick}>
+                                <FaUser className="me-1" />
+                                Log Out
+                            </Link>
+                            ) : (
+                            <Link to="#" className="navbar-text nav-link" onClick={handleSignInClick}>
+                                <FaUser className="me-1" />
+                                Sign In
+                            </Link>
+                            )}
+                        </li>
+                        {/* Empty link for navbar layout styling */}
+                        <li className="nav-item">
+                            <span className="me-2">&nbsp;</span>
+                        </li>
+                        {/* Link To cRUD */}
+                        <li className="nav-item">
+                        <Link to="/summary" className="navbar-text nav-link">
+                            <FaShoppingCart className="me-1" />
+                            <span>Cart</span>
+                        </Link>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        {/* Sign In Modal */}
-        <Modal show={showSignInModal} onHide={() => setShowSignInModal(false)}>
-            <Modal.Header closeButton>
-                <Modal.Title>Sign In</Modal.Title>
-            </Modal.Header>
-            <Modal.Body className='text-center'>
-                <p>Enter your credentials below to sign in.</p>
-                <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                />
-                <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                />
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={handleSignIn}>
-                    Sign In
-                </Button>
-                <Button id="MenuSummary-register" variant="primary" href="https://fastfood-drf-dfd5756f86e9.herokuapp.com/accounts/signup/">
-                    Create New Account
-                </Button>
-            </Modal.Footer>
-        </Modal>
-        {/* Log Out Modal */}
-        <Modal show={showLogoutModal} onHide={handleLogoutCloseModal}>
-            <Modal.Header closeButton>
-                <Modal.Title>Confirm Logout</Modal.Title>
-            </Modal.Header>
-            <Modal.Body className='text-center'>
-                Are you sure that you want to log out?
-            </Modal.Body>
-            <Modal.Footer className='d-flex justify-content-center'>
-                <Button variant="primary" onClick={handleLogoutConfirm}>
-                    OK
-                </Button>
-                <Button className='Template-Modal-Cancel-button' variant="primary" onClick={() => setShowLogoutModal(false)}>
-                    Cancel
-                </Button>
-            </Modal.Footer>
-        </Modal>
-        {/* Menu Modal */}
-        <Modal show={showMenuModal} onHide={() => setShowMenuModal(false)}>
-            <Modal.Header closeButton>
-                <Modal.Title>Please Sign In</Modal.Title>
-            </Modal.Header>
-            <Modal.Body className='text-center'>
-                <p>You need to be logged in to see your Menu.</p>
-                <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                />
-                <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                />
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="primary" onClick={handleSignIn}>
-                    Sign In
-                </Button>
-                <Button id="MenuSummary-register" variant="primary" href="https://fastfood-drf-dfd5756f86e9.herokuapp.com/accounts/signup/">
-                    Create New Account
-                </Button>
-            </Modal.Footer>
-        </Modal>
-        {/* Logged in Success Modal */}
-        <Modal show={showLoggedInModal} onHide={() => setShowLoggedInModal(false)}>
-            <Modal.Header closeButton>
-                <Modal.Title>Logged in Success</Modal.Title>
-            </Modal.Header>
-            <Modal.Body className='text-center'>
-                Logged in as {username}
-            </Modal.Body>
-            <Modal.Footer className='d-flex justify-content-center'>
-                <Button variant="primary" onClick={handleLoggedInConfirm}>
-                    OK
-                </Button>
-            </Modal.Footer>
-        </Modal>
-        {/* Handles errors Modal */}
-        <Modal show={showServerErrorModal} onHide={() => setShowServerErrorModal(false)}>
-            <Modal.Header className='d-flex justify-content-center'>
-                <Modal.Title>Error</Modal.Title>
-            </Modal.Header>
-            <Modal.Body className='text-center'>
-                {renderErrorModalContent()}
-            </Modal.Body>
-            <Modal.Footer className='d-flex justify-content-center'>
-                <Button variant="primary" onClick={handleErrorModal}>
-                    OK
-                </Button>
-            </Modal.Footer>
-        </Modal>
-    </nav>
+            {/* Sign In Modal */}
+            <Modal show={showSignInModal} onHide={() => setShowSignInModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Sign In</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className='text-center'>
+                    <p>Enter your credentials below to sign in.</p>
+                    <input
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={handleSignIn}>
+                        Sign In
+                    </Button>
+                    <Button id="MenuSummary-register" variant="primary" href="https://fastfood-drf-dfd5756f86e9.herokuapp.com/accounts/signup/">
+                        Create New Account
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            {/* Log Out Modal */}
+            <Modal show={showLogoutModal} onHide={handleLogoutCloseModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirm Logout</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className='text-center'>
+                    Are you sure that you want to log out?
+                </Modal.Body>
+                <Modal.Footer className='d-flex justify-content-center'>
+                    <Button variant="primary" onClick={handleLogoutConfirm}>
+                        OK
+                    </Button>
+                    <Button className='Template-Modal-Cancel-button' variant="primary" onClick={() => setShowLogoutModal(false)}>
+                        Cancel
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            {/* Menu Modal */}
+            <Modal show={showMenuModal} onHide={() => setShowMenuModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Please Sign In</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className='text-center'>
+                    <p>You need to be logged in to see your Menu.</p>
+                    <input
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={handleSignIn}>
+                        Sign In
+                    </Button>
+                    <Button id="MenuSummary-register" variant="primary" href="https://fastfood-drf-dfd5756f86e9.herokuapp.com/accounts/signup/">
+                        Create New Account
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            {/* Logged in Success Modal */}
+            <Modal show={showLoggedInModal} onHide={() => setShowLoggedInModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Logged in Success</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className='text-center'>
+                    Logged in as {username}
+                </Modal.Body>
+                <Modal.Footer className='d-flex justify-content-center'>
+                    <Button variant="primary" onClick={handleLoggedInConfirm}>
+                        OK
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            {/* Handles errors Modal */}
+            <Modal show={showServerErrorModal} onHide={() => setShowServerErrorModal(false)}>
+                <Modal.Header className='d-flex justify-content-center'>
+                    <Modal.Title>Error</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className='text-center'>
+                    {renderErrorModalContent()}
+                </Modal.Body>
+                <Modal.Footer className='d-flex justify-content-center'>
+                    <Button variant="primary" onClick={handleErrorModal}>
+                        OK
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </nav>
     );
 };
 

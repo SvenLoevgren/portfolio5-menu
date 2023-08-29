@@ -27,7 +27,7 @@ const FoodItemDetails = () => {
         logout();
         navigate('/');
     };
-
+    // New prop used for authentication in AuthContext, due to Issues with reacts 'authenticated'
     if (!isAuthenticated()) {
         return (
             <div  className='text-row container-fluid'>
@@ -61,7 +61,7 @@ const FoodItemDetails = () => {
                 <p>{item.description}</p>
                 <p>Price: ${item.price}</p>
             </div>
-            {/* Wrapper div for centering */}
+            {/* Wrapper div for centering the button */}
             <div className="FoodItemDetails-button-wrapper">
                 <div className="Food-close-button">
                     <button onClick={handleClose}>Close Window</button>

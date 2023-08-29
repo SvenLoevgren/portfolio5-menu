@@ -14,7 +14,7 @@ const DropdownMenu = ({ menuData }) => {
         setIsOpen(false);
     };
 
-  // Create a map to group items by title
+    // Create a map to group items by title
     const groupedItems = menuData.reduce((acc, group) => {
         group.dropdownDetails.forEach((item) => {
             if (!acc[item.title]) {
@@ -36,10 +36,12 @@ const DropdownMenu = ({ menuData }) => {
               Menu
             </Link>
             <div className={`menu-items ${isOpen ? 'show' : ''}`}>
+                        {/*Keep the 'item' prop though it is used in the background mapping */}
                 {Object.entries(groupedItems).map(([title, items]) => (
                     <div key={title}>
                         <Link
-                        to={`/menu/${encodeURIComponent(title)}`} // Use title as part of the link
+                        // Use title as part of the link
+                        to={`/menu/${encodeURIComponent(title)}`} 
                         className="menu-item"
                         id="dropdownLinks"
                         >
