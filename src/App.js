@@ -9,6 +9,8 @@ import FoodItemDetails from './components/FoodItemDetails';
 import MenuItemSummaryTemplate from './components/MenuItemSummaryTemplate';
 
 const LayoutWithNavbar = ({ children }) => {
+    // Sets Navbar if added in routes 
+
     return (
         <div>
             <Navbar />
@@ -19,7 +21,8 @@ const LayoutWithNavbar = ({ children }) => {
 
 
 const App = () => {
-    const [setCartItems] = useState([]); // Initialize cartItems state here
+    const [setCartItems] = useState([]); 
+    // Initialize cartItems state here
 
     return (
         <Router>

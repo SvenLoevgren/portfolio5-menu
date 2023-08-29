@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
-const BASE_URL = 'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/';
+// const BASE_URL = process.env.BASE_URL;
+const BASE_URL= "https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/"
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {

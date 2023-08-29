@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FaBars, FaHome } from 'react-icons/fa';
 
+
 const Welcome = () => {
     return (
         <Container className="welcome-container">

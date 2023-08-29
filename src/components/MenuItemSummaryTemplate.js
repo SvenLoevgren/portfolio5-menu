@@ -7,7 +7,7 @@ import { useAuth } from './AuthContext';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-const BASE_URL = 'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/';
+const BASE_URL= "https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/"
 
 const MenuItemSummaryTemplate = () => {
     const [cartItems, setCartItems] = useState([]);
@@ -32,8 +32,9 @@ const MenuItemSummaryTemplate = () => {
     useEffect(() => {
         const fetchCartItems = async () => {
             try {                
-                if (!isAuthenticated()) {                    
-                    setShowSignInModal(true); // Show sign-in modal if not authenticated
+                if (!isAuthenticated()) { 
+                    // Show sign-in modal if not authenticated                   
+                    setShowSignInModal(true); 
                     return;
                 }
                 const response = await axios.get(`${BASE_URL}menu/`, {
@@ -50,7 +51,6 @@ const MenuItemSummaryTemplate = () => {
 
         fetchCartItems();
     }, [isAuthenticated, authenticated]);
-      // ... (rest of the component)
 
     const handleSignIn = async () => {
         try {            
@@ -82,6 +82,7 @@ const MenuItemSummaryTemplate = () => {
     };
 
     useEffect(() => {
+        // Get the total sum of all selected items
         const calculateTotalPrice = () => {
             let total = 0;
             for (const item of cartItems) {
@@ -203,8 +204,7 @@ const MenuItemSummaryTemplate = () => {
                     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 },
             });
-            setCartItems(response.data);
-    
+            setCartItems(response.data);    
             // Show success message when all selected items are deleted
             setModalMessage("Your items have been successfully deleted from your menu");
             setModalConfirmAction(null);
@@ -264,6 +264,7 @@ const MenuItemSummaryTemplate = () => {
                 Update Items
             </button>
         </div>
+        {/*User interaction buttons for update and delete*/}
         <div className='MenuSummary-button-wrapper-delete-confirm'>
             <button className="MenuSummary-button" id="MenuSummary-Home" onClick={handleConfirm}>
                 Accept Items
@@ -272,6 +273,7 @@ const MenuItemSummaryTemplate = () => {
                 Delete Items
             </button>
         </div>
+        {/*Navigate the user back to the welcome page*/}
         <Modal show={showOrderModal} onHide={handleCloseOrderModal}>
             <Modal.Header className='d-flex justify-content-center'>
                 <Modal.Title>Accept Items</Modal.Title>
@@ -288,6 +290,7 @@ const MenuItemSummaryTemplate = () => {
                 </Button>
             </Modal.Footer>
         </Modal>
+        {/*Rest of the crud modals*/}
         <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
             <Modal.Header className='d-flex justify-content-center'>
                 <Modal.Title>Confirm Deletion</Modal.Title>
@@ -361,6 +364,7 @@ const MenuItemSummaryTemplate = () => {
                 </Button>
             </Modal.Footer>
         </Modal>
+        {/*User log in*/}
         <Modal show={showSignInModal} onHide={() => setShowSignInModal(false)}>
             <Modal.Header className='d-flex justify-content-center'>
                 <Modal.Title>Please Sign In</Modal.Title>
@@ -389,6 +393,7 @@ const MenuItemSummaryTemplate = () => {
                 </Button>
             </Modal.Footer>
         </Modal>
+        {/*User log Out*/}
         <Modal show={showLogoutConfirmModal} onHide={handleLogoutCloseModal}>
             <Modal.Header closeButton className='d-flex justify-content-center'>
                 <Modal.Title>Confirm Logout</Modal.Title>
@@ -405,6 +410,7 @@ const MenuItemSummaryTemplate = () => {
                 </Button>
             </Modal.Footer>
         </Modal>
+        {/*Error modal*/}
         <Modal show={showServerErrorModal} onHide={() => setShowServerErrorModal(false)}>
             <Modal.Header closeButton className='d-flex justify-content-center'>
                 <Modal.Title>Error</Modal.Title>

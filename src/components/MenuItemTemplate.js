@@ -9,7 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { useAuth } from './AuthContext';
 
-const BASE_URL = 'https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/';
+const BASE_URL= "https://fastfood-drf-dfd5756f86e9.herokuapp.com/api/"
 
 const MenuItemTemplate = () => {
     const [quantityInputs, setQuantityInputs] = useState({});
@@ -52,7 +52,7 @@ const MenuItemTemplate = () => {
         );
 
         if (selectedItems.length === 0) {
-            setModalType('noSelectedItems');
+            setModalType('noSelectedItems'); // Set the modal type to show NO selected items
             setShowModal(true);
         } else {
             setModalType('selectedItems'); // Set the modal type to show selected items
@@ -61,6 +61,7 @@ const MenuItemTemplate = () => {
     };
   
     const handleAddItemsToCart = () => {
+        // fetches data from menuData.js to match drf models.py data
         const selectedItems = Object.keys(checkedItems).filter((item) => checkedItems[item]);
         const postData = selectedItems.map((itemName) => {
             let foundItem = null;
@@ -73,7 +74,7 @@ const MenuItemTemplate = () => {
     
         if (foundItem) {
             return {
-                title: foundItem.title, // Use dropdown title or name, depending on your structure
+                title: foundItem.title, 
                 name: foundItem.name,
                 description: foundItem.description,
                 price: foundItem.price,
@@ -123,7 +124,6 @@ const MenuItemTemplate = () => {
     };
 
     const handleLogoutClick = () => {
-
         setShowLogoutConfirmationModal(true)
     }
 
@@ -176,6 +176,7 @@ const MenuItemTemplate = () => {
                     </div>
                 </div>
             </div>
+            {/*Shows fetched data from drf*/}
             <div className="container-fluid" id='Template-Item-containers' title="Scroll for more items">
                 <div className="row">
                     {menuItem.dropdownDetails.map((item, index) => (
@@ -191,6 +192,7 @@ const MenuItemTemplate = () => {
                     ))}
                 </div>
             </div>
+            {/*user POST interaction buttons*/}
             <div className="row">
                 <div className="col-12">
                     <button className="Template-cancel-button" onClick={handleCancelClick}>
@@ -201,6 +203,7 @@ const MenuItemTemplate = () => {
                     </button>
                 </div>
             </div>
+            {/*Modal appearens - depending on user action*/}
             <Modal show={showModal} onHide={handleCloseModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>
@@ -223,6 +226,7 @@ const MenuItemTemplate = () => {
                             <p>You need to select items from the list before you can use this function.</p>
                         ) : modalType === 'selectedItems' ? (
                         <div>
+                            {/*User input fields for POST to drf*/}
                             {Object.keys(checkedItems).map((itemName, index) => (
                                 <div key={index} className='Selected-Items-modal-item-row'>
                                     <p>{itemName}</p>
@@ -232,14 +236,16 @@ const MenuItemTemplate = () => {
                                     value={quantityInputs[itemName] || ''}
                                     onChange={(e) => {
                                     const newValue = parseInt(e.target.value);
-                                        if (newValue >= 1) { // Ensure the value is not negative or zero
+                                        // Ensure the value is not negative or zero
+                                        if (newValue >= 1) { 
                                             setQuantityInputs((prevQuantityInputs) => ({
                                                 ...prevQuantityInputs,
                                                 [itemName]: newValue,
                                             }));
                                         }
                                     }}
-                                    min="1" // Set the minimum value to 1
+                                    // Set the minimum value to 1
+                                    min="1" 
                                     max="500"
                                     />
                                 </div>
@@ -247,6 +253,7 @@ const MenuItemTemplate = () => {
                         </div>
                     ) : null}          
                 </Modal.Body>
+                {/*User confirm buttons for POST to drf*/}
                 <Modal.Footer className='d-flex justify-content-center'>
                     {modalType === 'selectedItems' && (
                         <div>
@@ -265,6 +272,7 @@ const MenuItemTemplate = () => {
                     )}
                 </Modal.Footer>
             </Modal>
+            {/*User Logout*/}
             <Modal show={showLogoutConfirmationModal} onHide={() => setShowLogoutConfirmationModal(false)}>
                 <Modal.Header closeButton className='d-flex justify-content-center'>
                     <Modal.Title>Confirm Logout</Modal.Title>

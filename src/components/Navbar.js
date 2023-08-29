@@ -56,6 +56,7 @@ const Navbar = () => {
     };
 
     const renderErrorModalContent = () => {
+        // Error handling for sign in credentials
         if (signInAttempts < 3) {
             return "Your credentials were wrong. Please try again.";
         } else if (signInAttempts === 3) {
@@ -120,12 +121,14 @@ const Navbar = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarLinks"> 
                 <ul className="ms-auto navbar-nav">
+                    {/* Link to drf booking site */}
                     <li className="nav-item">
                         <Link to="https://fastfood-drf-dfd5756f86e9.herokuapp.com/" className="navbar-text nav-link">
                             <FaCalendar className="me-1" />
                             Booking-site
                         </Link>
                     </li>
+                    {/* Empty link for navbar layout styling */}
                     <li className="nav-item">
                         <span className="navbar-text me-2 fw-bold">|</span>
                     </li>
@@ -154,9 +157,11 @@ const Navbar = () => {
                         </Link>
                         )}
                     </li>
+                    {/* Empty link for navbar layout styling */}
                     <li className="nav-item">
                         <span className="me-2">&nbsp;</span>
                     </li>
+                    {/* Link To cRUD */}
                     <li className="nav-item">
                       <Link to="/summary" className="navbar-text nav-link">
                           <FaShoppingCart className="me-1" />
@@ -190,11 +195,12 @@ const Navbar = () => {
                 <Button variant="primary" onClick={handleSignIn}>
                     Sign In
                 </Button>
-                <Button id="MenuSummary-register" variant="primary" href="https://fastfood-drf-dfd5756f86e9.herokuapp.com/accounts/signup">
+                <Button id="MenuSummary-register" variant="primary" href="https://fastfood-drf-dfd5756f86e9.herokuapp.com/accounts/signup/">
                     Create New Account
                 </Button>
             </Modal.Footer>
         </Modal>
+        {/* Log Out Modal */}
         <Modal show={showLogoutModal} onHide={handleLogoutCloseModal}>
             <Modal.Header closeButton>
                 <Modal.Title>Confirm Logout</Modal.Title>
@@ -235,11 +241,12 @@ const Navbar = () => {
                 <Button variant="primary" onClick={handleSignIn}>
                     Sign In
                 </Button>
-                <Button id="MenuSummary-register" variant="primary" href="https://fastfood-drf-dfd5756f86e9.herokuapp.com/accounts/signup">
+                <Button id="MenuSummary-register" variant="primary" href="https://fastfood-drf-dfd5756f86e9.herokuapp.com/accounts/signup/">
                     Create New Account
                 </Button>
             </Modal.Footer>
         </Modal>
+        {/* Logged in Success Modal */}
         <Modal show={showLoggedInModal} onHide={() => setShowLoggedInModal(false)}>
             <Modal.Header closeButton>
                 <Modal.Title>Logged in Success</Modal.Title>
@@ -253,6 +260,7 @@ const Navbar = () => {
                 </Button>
             </Modal.Footer>
         </Modal>
+        {/* Handles errors Modal */}
         <Modal show={showServerErrorModal} onHide={() => setShowServerErrorModal(false)}>
             <Modal.Header className='d-flex justify-content-center'>
                 <Modal.Title>Error</Modal.Title>
