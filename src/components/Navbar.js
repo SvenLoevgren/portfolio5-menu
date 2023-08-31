@@ -120,7 +120,7 @@ const Navbar = () => {
                 <span className="navbar-toggler-icon" />
                 </button>
                 <div className="collapse navbar-collapse" id="navbarLinks"> 
-                    <ul className="ms-auto navbar-nav">
+   S                 <ul className="ms-auto navbar-nav">
                         {/* Link to drf booking site */}
                         <li className="nav-item">
                             <Link to="https://fastfood-drf-dfd5756f86e9.herokuapp.com/" className="navbar-text nav-link">
