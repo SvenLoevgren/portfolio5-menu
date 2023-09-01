@@ -173,78 +173,73 @@ ________________________________________________________________________________
 
 # REACT_APP
 
-The drf APP provides a booking system with CRUD functionality for the "*End User /customer*" and an admin panel for the *staff* to handle full administration of the site (The APP data is hosted by an Elephant sql database)... 
-This drf APP - named **"our-menu"**, will improve the customers collaboration with the restaurant and their staff, by it's simplicity and it also provides a great way to stay in tuned with the digitalization in the near and far future ahead. The site (app) is easy to maintain and open for great future improvement's with *low cost*.
+The react app handles the MoreVegans websites menu items (eg. A user wants to see the restaurants menu and get the price and the total cost to plan their visit)... 
+This react APP is named **"our-menu"**, and will improve the customers collaboration with the restaurant and their staff, by it's simplicity and it also provides a great way to stay in tuned with the digitalization in the near and far future ahead. The site (app) is easy to maintain and open for great future improvement's with *low cost*.
 
 # REACT_APP -Existing Features
 
 The __*"our-menu"*__ APP has:
 
-* A landing page - to easy locate and get in touch with the restaurant - and at the same time it represent's what the restaurant is all *about*.
-* A booking system, to book tables at the restaurant - and also full CRUD to manage their own bookings, *when loged_in*.
-* A register and log-in page, needed to access bookings.
-* A contact page . to easy get in touch with the staff and support.
-* An admin page, to handle user-access and bookings.
+* A Welcome page with a navbar where the user can log in and out, register new account and navigate to the table booking system (drf app).
+* Once logged in the user will be able to navigate to the Menu items (where the user can se all dishes, that the restaurant has).
+* Once the user has logged in and navigated to the menu items, then the user can select items and add these to their cart to get the total price.
+* When the user has added menu items to their cart, then the user can navigate to the summary page, where the total cost is displayed.
+* In the summary page, the user can update and delete items, that they have added - and get a quick feedback of the new summary.
+* The summary page can be navigated to both via the welcome page (Cart -link), and automatically after adding items to the cart via the menu item page.
+* In the Menu item page, there is also a link to menu details - where the dishes image, name, description and price is presented to the user via the UI. 
 
 ## REACT_APP *Welcome page*
 
 
-![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/2eed3f63-b368-4eca-ba1b-0cb135ce4a0e)
+![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/2eb3ed60-1425-46bf-bc48-1c3bbd62ee95)
 
-- **The navigation bar has multiple functions:**
-   1. It is mobile device responsive, with a toggle button -to expand or collape the navigation
-   2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
-   3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
+- **The welcome page is restricted to user sign in:**
+   1. If the user is not signed in, then the only link that is active is the navigation, to the booking-site.
+      - All other links will render the signin form.
+         * The sign in form will generate error messages (if not authenticated) or confirmation messages or give the oportunity to register.
+   2. If the user is signed in, then the user can navigate to their cart to see their menu, or add items to their cart by chosing the items to add in the dropdown.
+      - The items in the dropdown will navigate the user to menu items where more details is displayed and more options is granted - for a user friendly experience.
 
-## REACT_APP *Navbar*
-
-
-![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/2eed3f63-b368-4eca-ba1b-0cb135ce4a0e)
-
-- **The navigation bar has multiple functions:**
-   1. It is mobile device responsive, with a toggle button -to expand or collape the navigation
-   2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
-   3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
-
-## REACT_APP *signin-Logout-Register*
+## REACT_APP *menu*
 
 
-![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/2eed3f63-b368-4eca-ba1b-0cb135ce4a0e)
+![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/c5638809-850d-48e4-b381-5b1dc15a1750)
 
-- **The navigation bar has multiple functions:**
-   1. It is mobile device responsive, with a toggle button -to expand or collape the navigation
-   2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
-   3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
+- **The menu page, is where the user creats their menu:**
+   1. Here the user can chose to select items to add to their cart- or cancel to navigate back to the welcome page and start over.
+      - The items in the list has a vertical scroll option if there are more items, with the guided text as in the image above, in this README file, and there is also a mouse hover message to tell the user to srcoll, if there are more items in the list.
+   3. There is also and option to view details about each specific menu item, which will navigate the user to a *details page*.
+   4. If the user choses to add items to their cart, then the user will get navigated to the summary page, to see their whole menu that they have created.
+   5. Note! That all selections, except the navigation back or the link to the details page- will trigger web-dialogs, to guide the user and confirm or throw errors messsages depending on the choise they chosen in the web-dialogs.
+   6. Access to this page is if the user is authenticated, so if the user logs out - then the user will get navigated back home and if the user enters the url directly in the web-browser, then a sing-in web-dialog will get triggered for the user to sign in again.
 
-## REACT_APP *menu-Create*
-
-
-![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/2eed3f63-b368-4eca-ba1b-0cb135ce4a0e)
-
-- **The navigation bar has multiple functions:**
-   1. It is mobile device responsive, with a toggle button -to expand or collape the navigation
-   2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
-   3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
-
-## REACT_APP *menu-Details*
+## REACT_APP *Details*
 
 
-![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/2eed3f63-b368-4eca-ba1b-0cb135ce4a0e)
+![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/f1e0739a-0392-4875-9a8f-ba2da3a1e918)
 
-- **The navigation bar has multiple functions:**
-   1. It is mobile device responsive, with a toggle button -to expand or collape the navigation
-   2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
-   3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
+- **The Details page will show menu item details:**
+   1. If the user has pressed on the details page in the menu page, then the details will show as in the image above- in this README file.
+   2. The only option in this page is to close the window, which will navigate the user back to the menu page again.
 
-## REACT_APP *menu-Summary*
+## REACT_APP *Summary*
 
 
-![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/2eed3f63-b368-4eca-ba1b-0cb135ce4a0e)
+![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/16365947-e2f0-45b2-914d-33c92a14d4c5)
 
-- **The navigation bar has multiple functions:**
-   1. It is mobile device responsive, with a toggle button -to expand or collape the navigation
-   2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
-   3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
+- **The Summary is where the user can view their whole menu that they have selected:**
+   1. Here the user can chose to select items to update or delete- or press the accept button to navigate back to the welcome page and start over.
+      - The items in the list has a vertical scroll option if there are more items, with the guided text as in the image above, in this README file, and there is also a mouse hover message to tell the user to srcoll, if there are more items in the list.
+   5. Note! That all selections on this page- will trigger web-dialogs, to guide the user and confirm or throw errors messsages depending on the choise they have chosen in the web-dialogs.
+   6. Access to this page is if the user is authenticated, so if the user logs out - then the user will get navigated back home and if the user enters the url directly in the web-browser, then a sing-in web-dialog will get triggered for the user to sign in again.
+
+## REACT_APP *Page-not-found*
+
+
+![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/753e44d1-a763-4255-9997-0c4e253862af)
+
+- **The page-not-found is what it says it is:**
+   1. if an url, not in this domain is entered (trying to get rendered)- then the user will get the page not found message.
 
 _____________________________________________________________________________________________________________________________________________
 
