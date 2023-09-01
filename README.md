@@ -3,15 +3,23 @@ README Layout added! To be updated....
 # MoreVegans
 ![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/94c6b2c2-cae5-4931-bd83-4b0af93ba8f8)
 
+The __*MoreVegans*__ is a site built on a fullstack django project that has an APP for bookings AND then an integrated react APP to handle the menu for the restaurant booking system... both APP's are running on Heroku.
+The benefit, if understanding this whole set up - is that you could use this technique in other situations too...
+Example: Find a site that is based on django... add the restframework if not installed yet... Create your react app and integrate it with the existing site... Since (in my opinion), react gets the APP up and running quickly (from start to deployed code)- then you could slowly replace all the existing django site front end with only using react components (to handle the front end) and remove all the backend templates. To summarize... react could either work as a compliment in an existing site for the front end or replace all the existing sites front end, or work as only front end itself if you are creating a whole own site from scratch.
+drf is a powerful backend framework, so that should stay as it is.
+1. Let's view how this project is built up, **starting with the drf backend and APP.**
+2. Then walk through the integration with react.
+3. **Then look at how to build the react APP for the restaurants menu.**
+________________________________________________________________________
 
+# DRF Back-end
 
-The __*Portfolio 5*__ project is a fullstack developed project that has an APP, for *restarurant bookings* - running on Heroku.
-The APP provides a booking system with CRUD functionality for the "*End User /customer*" and an admin panel for the *staff* to handle full administration of the site... 
-This APP - named **"fastfood"**, will improve the customers collaboration with the restaurant and their staff, by it's simplicity and it also provides a great way to stay in tuned with the digitalization in the near and far future ahead. The site (app) is easy to maintain and open for great future improvement's with *low cost*.
+The drf APP provides a booking system with CRUD functionality for the "*End User /customer*" and an admin panel for the *staff* to handle full administration of the site (The APP data is hosted by an Elephant sql database)... 
+This drf APP - named **"fastfood-drf"**, will improve the customers collaboration with the restaurant and their staff, by it's simplicity and it also provides a great way to stay in tuned with the digitalization in the near and far future ahead. The site (app) is easy to maintain and open for great future improvement's with *low cost*.
 
 # Existing Features
 
-The __*"Fastfood"*__ APP has:
+The __*"Fastfood-drf"*__ APP has:
 
 * A landing page - to easy locate and get in touch with the restaurant - and at the same time it represent's what the restaurant is all *about*.
 * A booking system, to book tables at the restaurant - and also full CRUD to manage their own bookings, *when loged_in*.
@@ -42,7 +50,7 @@ The __*"Fastfood"*__ APP has:
 
 - **The navigation bar has multiple functions:**
    1. It is mobile device responsive, with a toggle button -to expand or collape the navigation
-   2. Once loged-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
+   2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
    3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
 
 ## The booking system
@@ -60,7 +68,7 @@ The __*"Fastfood"*__ APP has:
 
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/ad171b68-cd8b-4595-8915-8a16552fc331)
 
-- **The user will only see their own bookings (The admin panel is different... but we will walk trough the admin panel later in this read me file).**
+- **The user will only see their own bookings (The admin panel is different... but we will walk trough the admin panel later in this README file).**
    1. By clicking on the booking the user want's to edit - they will get navigated to the detailed view.
 
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/4ba6c858-082d-4a0c-89e3-3e46099467aa)
@@ -102,8 +110,7 @@ The __*"Fastfood"*__ APP has:
 
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/3908a170-955f-4e47-83c8-29ed48b9d6cd)
 
-- **The registration and log-in and log-out is kind of straight forwards... Note, that the social media sign in- is not wired up yet- so either we kepp them there as is and the user gets an error when trying to click on these links, remove them or wire them up, so that the log-in via social media works for the user.
-I have set these on the todo list in my github project.**
+- **The registration and log-in and log-out is kind of straight forwards... Note, that the social media links- is removed in the actual code and templates styled (a notification about this is added in the "Integrate-drf-react" section below in this README file (more details also find in Userstory no 9, in my advanced front end project in github))**
 
 ## The admin page
 
@@ -114,6 +121,10 @@ I have set these on the todo list in my github project.**
 
 - **The admin page is easy to manage (it is django standard templates), where the staff can view and manage all bookings made via the app.**
 - **The staff can also generate own bookings, on the behalf of users... set up user accounts and access.**
+
+_____________________________________________________________________________________________________________________________________________
+
+# Integrate-drf-react
 
 # Release
 
