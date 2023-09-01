@@ -83,11 +83,13 @@ The __*"Fastfood-drf"*__ APP has:
  3. delete (toggle to a delete confirmation page)...
  
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/62733a01-049c-4057-bae7-ec7b420c2850)
+
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/f7b51234-2078-4161-b4e8-b9231aa145e8)
 
 - **If clicking on delete, then a confirmation workflow will get triggered, and once the booking is changed, the user will get navigated back to the booking list.**
 
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/d8a9ad77-ffd8-4016-8436-24537f63e8fb)
+
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/23acac90-c5db-4f72-9c23-7cd592e1551e)
 
 - **If clicking on update, then a confirmation workflow will get triggered, and once the booking is changed, the user will get navigated back to the booking list.**
@@ -97,6 +99,7 @@ The __*"Fastfood-drf"*__ APP has:
 
 
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/e4a2d32a-05b4-47ff-8d2b-d583f28cdf74)
+
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/8552be14-ef99-4b8a-8c27-a3fb065ce5d9)
 
 - **Once navigation, via links, buttons or navbar - to the *contact* page, then there is an email form to fill in (and optional restaurant phone number information)**
@@ -117,7 +120,9 @@ The __*"Fastfood-drf"*__ APP has:
 
 
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/3b3bfdad-9ff6-45dd-a92e-02c9eacd0ace)
+
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/f776696d-6f45-4dd1-9cbe-ce3909f582a8)
+
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/26d76f47-b8db-405d-a81e-bf51ba03f88d)
 
 - **The admin page is easy to manage (it is django standard templates), where the staff can view and manage all bookings made via the app.**
@@ -127,38 +132,42 @@ ________________________________________________________________________________
 
 # Integrate-drf-react
 
-The drf APP provides a booking system with CRUD functionality for the "*End User /customer*" and an admin panel for the *staff* to handle full administration of the site (The APP data is hosted by an Elephant sql database)... 
-This drf APP - named **"fastfood-drf"**, will improve the customers collaboration with the restaurant and their staff, by it's simplicity and it also provides a great way to stay in tuned with the digitalization in the near and far future ahead. The site (app) is easy to maintain and open for great future improvement's with *low cost*.
+To set up the react app with the drf booking site I created a menu model in django, then the views and serializers... After this I created the api_urls and tested the endpoints with curl and postman, and actually some serious testing with axios also, to ensure that the crud was working... and then I added the JWT tokens (set the valid times in drf settings and used react to fetch the accept and refresh tokens via api endpoints.
+In react I am using *AuthProvider* and I am storing the tokens in local storage, which is set up in my AuthContext.js file, where I pass a prop *useauth()* which handles my users authentication in the whole react app configuration (So all components in react can use the *useauth()* prop to handle authentication...
+This was a little complex to handle and I actually got a bug reported in my project during my UAT (Testcase no 19 in my repository's advanced front end project).
+But the app's are up and running and workaround exists.. So I am happy. 
 
 # Integrate-drf-react -Existing Features
 
 The __*"Integration"*__ has:
 
-* A landing page - to easy locate and get in touch with the restaurant - and at the same time it represent's what the restaurant is all *about*.
-* A booking system, to book tables at the restaurant - and also full CRUD to manage their own bookings, *when loged_in*.
-* A register and log-in page, needed to access bookings.
-* A contact page . to easy get in touch with the staff and support.
-* An admin page, to handle user-access and bookings.
+* Full crud for menu items, so that the user can handle the their menus and store data in the back end.
+* Authentication via drf allauth library and handled in react with AuthProvider.
+* Navigation toggles for the sigtes apps to cooperate with one and another, whithin the same db.
+* sign-up in allauth for both apps, so that the users can use thesame register forms when signing up.
+* JWT tokens to handle authentication via allauth, so no matter if the user are visiting the react menu app or the drf booking app(signin in, creating a booking or menu items), the authentication has the same source.
+
 
 ## Integrate-drf-react *Navbar-toggle*
 
 
-![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/2eed3f63-b368-4eca-ba1b-0cb135ce4a0e)
+![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/e9f9e01f-f86e-4d82-9781-15b3b77d4fd0)
 
-- **The navigation bar has multiple functions:**
-   1. It is mobile device responsive, with a toggle button -to expand or collape the navigation
-   2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
-   3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
+![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/9f2edea4-0b03-4763-89fd-c8561aee35a6)
+
+- **The navigation between drf and react is straight forward:**
+   1. If on the react menu page, then press on the *booking-site* link to get to drf... Else, if on the drf booking site page then press on the *Food Menu* link in that navbar - to get to the react menu page.
 
 ## Integrate-drf-react *signup-toggle*
 
 
-![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/2eed3f63-b368-4eca-ba1b-0cb135ce4a0e)
+![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/ef4740c1-786b-4915-974f-79a6ce9b0620)
 
-- **The navigation bar has multiple functions:**
-   1. It is mobile device responsive, with a toggle button -to expand or collape the navigation
-   2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
-   3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
+![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/c08e9da5-1dde-4d4d-89c0-6e4a932b1e5c)
+
+- **The sign-up toggle is straight forwards:**
+   1. Whenever you want or need to sign in via the react app, just press on the *"create new account"* button, and you will get navigated to allauths signup template in drf (as allauth handles the registered users in my set-up)...
+   2. If you are in the drf booking site page, then just use the *register* link to get to the allauths signup template.
 
 _____________________________________________________________________________________________________________________________________________
 
