@@ -10,14 +10,15 @@ drf is a powerful backend framework, so that should stay as it is.
 1. Let's view how this project is built up, **starting with the drf backend and APP.**
 2. Then walk through the integration with react.
 3. **Then look at how to build the react APP for the restaurants menu.**
-________________________________________________________________________
+
+_____________________________________________________________________________________________________________________________________________
 
 # DRF Back-end
 
 The drf APP provides a booking system with CRUD functionality for the "*End User /customer*" and an admin panel for the *staff* to handle full administration of the site (The APP data is hosted by an Elephant sql database)... 
 This drf APP - named **"fastfood-drf"**, will improve the customers collaboration with the restaurant and their staff, by it's simplicity and it also provides a great way to stay in tuned with the digitalization in the near and far future ahead. The site (app) is easy to maintain and open for great future improvement's with *low cost*.
 
-# Existing Features
+# DRF -Existing Features
 
 The __*"Fastfood-drf"*__ APP has:
 
@@ -27,7 +28,7 @@ The __*"Fastfood-drf"*__ APP has:
 * A contact page . to easy get in touch with the staff and support.
 * An admin page, to handle user-access and bookings.
 
-## The Landing page
+## DRF *Landing page*
 
 
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/c2abcfec-4fdb-4371-b5fc-57161ae3f841)
@@ -43,7 +44,7 @@ The __*"Fastfood-drf"*__ APP has:
 - **In the contact section, there is also an added navigation button to the *contact* page.**
    1. The user can also see where the restaurant is located with a static map (which can be developed to a dynamic map, by creating an API with google maps).
 
-## The navigation bar and the footer
+## DRF *navigation bar and the footer*
 
 
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/2eed3f63-b368-4eca-ba1b-0cb135ce4a0e)
@@ -53,7 +54,7 @@ The __*"Fastfood-drf"*__ APP has:
    2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
    3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
 
-## The booking system
+## DRF *booking system*
 
 
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/259a6ad7-d593-46a1-9526-a9c085b0795b)
@@ -92,7 +93,7 @@ The __*"Fastfood-drf"*__ APP has:
 - **If clicking on update, then a confirmation workflow will get triggered, and once the booking is changed, the user will get navigated back to the booking list.**
    1. Note that all fields are validated, when updating a booking (the user will get guided to fill in the fields with correct values).
 
-## The contact-page
+## DRF *contact-page*
 
 
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/e4a2d32a-05b4-47ff-8d2b-d583f28cdf74)
@@ -105,14 +106,14 @@ The __*"Fastfood-drf"*__ APP has:
  3. A confirmation email is sent to the users email
  4. An email is sent to the restaurant
 
-## The registration and log-in /log-out
+## DRF *registration and log-in /log-out*
 
 
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/3908a170-955f-4e47-83c8-29ed48b9d6cd)
 
-- **The registration and log-in and log-out is kind of straight forwards... Note, that the social media links- is removed in the actual code and templates styled (a notification about this is added in the "Integrate-drf-react" section below in this README file (more details also find in Userstory no 9, in my advanced front end project in github))**
+- **The registration and log-in and log-out is kind of straight forwards... Note, that the social media links- is removed in the actual code and templates styled (a notification about this is added in the "Integrate-drf-react" section below in this README file (more details can also be found in Userstory no 9, in my advanced front end project in github))**
 
-## The admin page
+## DRF *admin page*
 
 
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/3b3bfdad-9ff6-45dd-a92e-02c9eacd0ace)
@@ -125,6 +126,118 @@ The __*"Fastfood-drf"*__ APP has:
 _____________________________________________________________________________________________________________________________________________
 
 # Integrate-drf-react
+
+The drf APP provides a booking system with CRUD functionality for the "*End User /customer*" and an admin panel for the *staff* to handle full administration of the site (The APP data is hosted by an Elephant sql database)... 
+This drf APP - named **"fastfood-drf"**, will improve the customers collaboration with the restaurant and their staff, by it's simplicity and it also provides a great way to stay in tuned with the digitalization in the near and far future ahead. The site (app) is easy to maintain and open for great future improvement's with *low cost*.
+
+# Integrate-drf-react -Existing Features
+
+The __*"Integration"*__ has:
+
+* A landing page - to easy locate and get in touch with the restaurant - and at the same time it represent's what the restaurant is all *about*.
+* A booking system, to book tables at the restaurant - and also full CRUD to manage their own bookings, *when loged_in*.
+* A register and log-in page, needed to access bookings.
+* A contact page . to easy get in touch with the staff and support.
+* An admin page, to handle user-access and bookings.
+
+## Integrate-drf-react *Navbar-toggle*
+
+
+![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/2eed3f63-b368-4eca-ba1b-0cb135ce4a0e)
+
+- **The navigation bar has multiple functions:**
+   1. It is mobile device responsive, with a toggle button -to expand or collape the navigation
+   2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
+   3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
+
+## Integrate-drf-react *signup-toggle*
+
+
+![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/2eed3f63-b368-4eca-ba1b-0cb135ce4a0e)
+
+- **The navigation bar has multiple functions:**
+   1. It is mobile device responsive, with a toggle button -to expand or collape the navigation
+   2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
+   3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
+
+_____________________________________________________________________________________________________________________________________________
+
+# REACT_APP
+
+The drf APP provides a booking system with CRUD functionality for the "*End User /customer*" and an admin panel for the *staff* to handle full administration of the site (The APP data is hosted by an Elephant sql database)... 
+This drf APP - named **"our-menu"**, will improve the customers collaboration with the restaurant and their staff, by it's simplicity and it also provides a great way to stay in tuned with the digitalization in the near and far future ahead. The site (app) is easy to maintain and open for great future improvement's with *low cost*.
+
+# REACT_APP -Existing Features
+
+The __*"our-menu"*__ APP has:
+
+* A landing page - to easy locate and get in touch with the restaurant - and at the same time it represent's what the restaurant is all *about*.
+* A booking system, to book tables at the restaurant - and also full CRUD to manage their own bookings, *when loged_in*.
+* A register and log-in page, needed to access bookings.
+* A contact page . to easy get in touch with the staff and support.
+* An admin page, to handle user-access and bookings.
+
+## REACT_APP *Welcome page*
+
+
+![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/2eed3f63-b368-4eca-ba1b-0cb135ce4a0e)
+
+- **The navigation bar has multiple functions:**
+   1. It is mobile device responsive, with a toggle button -to expand or collape the navigation
+   2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
+   3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
+
+## REACT_APP *Navbar*
+
+
+![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/2eed3f63-b368-4eca-ba1b-0cb135ce4a0e)
+
+- **The navigation bar has multiple functions:**
+   1. It is mobile device responsive, with a toggle button -to expand or collape the navigation
+   2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
+   3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
+
+## REACT_APP *signin-Logout-Register*
+
+
+![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/2eed3f63-b368-4eca-ba1b-0cb135ce4a0e)
+
+- **The navigation bar has multiple functions:**
+   1. It is mobile device responsive, with a toggle button -to expand or collape the navigation
+   2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
+   3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
+
+## REACT_APP *menu-Create*
+
+
+![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/2eed3f63-b368-4eca-ba1b-0cb135ce4a0e)
+
+- **The navigation bar has multiple functions:**
+   1. It is mobile device responsive, with a toggle button -to expand or collape the navigation
+   2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
+   3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
+
+## REACT_APP *menu-Details*
+
+
+![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/2eed3f63-b368-4eca-ba1b-0cb135ce4a0e)
+
+- **The navigation bar has multiple functions:**
+   1. It is mobile device responsive, with a toggle button -to expand or collape the navigation
+   2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
+   3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
+
+## REACT_APP *menu-Summary*
+
+
+![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/2eed3f63-b368-4eca-ba1b-0cb135ce4a0e)
+
+- **The navigation bar has multiple functions:**
+   1. It is mobile device responsive, with a toggle button -to expand or collape the navigation
+   2. Once signed-in, the user will only see what is needed in the navigation-bar, to manage their provided services... and vice versa if not registered or loged-out.
+   3. The footer is almost wide open for any customer needs changes - with only the water mark and social-media links present.
+
+_____________________________________________________________________________________________________________________________________________
 
 # Release
 
