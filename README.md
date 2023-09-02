@@ -289,7 +289,7 @@ ________________________________________________________________________________
 
 ![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/0c5b1e93-3b98-41f5-ae7b-ba3424ef5e6d)
 
-![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/1754344b-d9ff-410a-9e40-053f03bf8723)
+![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/56103d11-2508-411f-a4c4-2d3b254274ec)
 
 ![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/1dd1e297-f1d2-48b2-a014-d444e06358c6)
 
@@ -307,44 +307,60 @@ ________________________________________________________________________________
 
 # Deployment
 
+
+![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/027781dd-dbb6-467a-90b7-24e1909ae218)
+
 ## Steps
 
-![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/f9caad98-70b2-46bb-ab9d-2d018bf66337)
+1. Page not found checked, in both front and back-end repositories.
+2. Imports checked on all files to remove unecessary imports, in both front and back-end repositories.
+3. Console logs checked and removed on all files, in both fron and back-end repositories.
+4. Indention and comments checked and updated, in both fron and back-end repositories.
+5. Index.html checked for correct, , in both fron and back-end repositories.
+6. All eslint errors cleared in react front end (npm up to date with the newest version at the time of deployment).
+7. Package.json script and Procfile checked, before final deployment.
+8. env.py checked to hide sensetive data and Heroku VARS updated at the time of final deployment.
+9. Strictmode checked to not exist in index.js (in react front-end).
+1o. Repositories pushed to Github and deployed in Heroku.
 
-1. env.py created to hide sensetive data.
-2. GitIgnore file - checked for the env.py to not be pushed to Github.
-3. Repository pushed to Github.
-4. **Heroku *"config vars"* updated with needed values... see picture! but *note* that the "DISABLE_COLLECTSTATIC = 1", is `only` nedded IF removing the "whitenoise" middleware and going for cloudinary instead.... since This APP (at the moment) is not allowing uploads of media, then whitenoise can be used, (and mentioned *"config vars"* could be removed).**
-5. Build Packs checked in Heroku
-   1. python
-6. Link Heroku APP with Github repository
-7. Deploy In Heroku (A manually deploy to main was used)
-
-## Links
+## Links -drf
 Heroku:
-The __live__ link can be found here - https://fastfood.herokuapp.com/
+The __live__ link can be found here - https://fastfood-drf-dfd5756f86e9.herokuapp.com/ 
 
 Github:
-Link for Code - https://github.com/SvenLoevgren/fullstack-portfolio4.
+Link for Code - https://github.com/SvenLoevgren/portfolio5-drf
+
+## Links -react
+Heroku:
+The __live__ link can be found here - https://our-menu-d0e32a53de6f.herokuapp.com/
+
+Github:
+Link for Code - https://github.com/SvenLoevgren/portfolio5-menu
 
 # Credits
 
-Code Institute education in general coding with tutor assistance- including advice of where to find free content on the web to style the APP, plus many tools to use to validate the code.
-Extra credit to my mentor given by Code Institute, for making it possible to understand the logic of coding and troubleshooting this APP.
+Code Institute education in general coding with tutor assistance- including advice of where to find free content on the web to style the APP's, plus many tools to use to validate the code.
+Extra credit to my mentors given by Code Institute, for making it possible to understand the logic of coding and troubleshooting etc.
 
 ## Content
-For full list - see the requirements.txt file in github.
-Django (project)
+For complete lists - see the requirements.txt in drf repository and the dependencies in package.json in the react repository.
+Django Rest Framework
 Heroku (deployment)
-Email.JS (email 3rd party)
+Email.JS (drf- email 3rd party)
 Elephant SQL (db)
 whitenoise (webservice)
-Cloudinary (whitenoise used instead).
-
+react-router-dom
+axios
+react-icons
+react-bootstrap
+bootstrap
+jsdelivr
+fontawsome
+Google fonts
 
 ## Media
-All images (including logo and favicon) are self made.
-Google fonts and bootrap 5.3, plus fontawsome (icons) are used for styling (see links in html head in the code).
+Cloudinary (media storage- drf and react)
+Pexels.com for menu images.
 
 **Over all -  The whole project was built and released with the assistance of Code Institute and alot of google.**
 
