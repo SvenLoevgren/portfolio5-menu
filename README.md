@@ -1,5 +1,3 @@
-README Layout added! To be updated....
-
 # MoreVegans
 ![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/94c6b2c2-cae5-4931-bd83-4b0af93ba8f8)
 
@@ -245,39 +243,67 @@ ________________________________________________________________________________
 
 # Release
 
-## back_log and future improvements
+## Bugs and future improvements (agile development)
 
 
-![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/4f44de8e-2c2e-49cb-8b22-41174b3c44af)
+![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/dd79feee-7c86-470b-b4be-71fe797ba068)
 
+- **I have created a project in the react app repository, to handle all Issues for both the front and back-end repositories:**
+- **In the drf repository I have referenced to this specific project, both in the README file and in an empty projects description and that projects README file (that is created in the drf repository).. impossible to miss this reference, so let's continue to use this project for this repository - to handle both back and front-end**
 
-- **I have created two projects in github... One for this first release, and one for future features:**
+* **Projects description:**
+   1. There are 3 milestones added in this project that handles both repositories (as mentioned above).
+      - First milestone Is for the first release.
+      - Second milestone is for the UAT.
+      - Third milestone is for future improvements
+   2. Any test performed in the UAT that did not pass the tested outcome have been moved to a **status** = *Future Features*.
+   3. All future improvements has automatically also been moved to the **status** = *Future Features*.
+   4. This way, any one can start a new project with all the opened Issues and add them to the "todo, in progress and done" **statuses**.
+   5. The labels stays as they are.. bug, must have, etc.... so that you know what the Issue is all about- for any future project actions.
+   6. The Issues titles tells you where the issues came from (eg. userstory, testcase, etc.)
+   7. Now you can add user-points to each Issue and drag the Issue that comes first into a new status in the project (to do, in progress, done).
+   8. Now let's go into release notes (heads -up's).
 
-* Any *Back_log* items, will be transfered to the second project in github - with new milestones.
-   1. User-points, will be attached to the remaining open Issues when starting the next project.
-      - The reason for postponing these open Issues is because the back-log and future improvements goes hand in hand in this project (you cannot have one, without the other, and the best way to decide this is with the customer (What do they want for their restaurant customers?).
+ * **Heads -up's:**
+   1. In my _**react app**_, I have not removed the installation of "cloudinary-react", even if it is not used.
+      - The cloudinary-react package can be used to manage the images that comes from cloudinary, to make them responsive etc., so that you can manage the images locally and secure them with variables and so on.
+      - Due to the timeframe I had, I managed all images with react-bootstrap and css and relyed on cloudinaries own security.
+      - The package is still installed and can be used if someone decides to use "cloudinary-react" to manage the images locally and wants to use .env to hide the key's for this.
+   2. In my _**drf app**_, I have created a **"rest_framework" folder** in my "templates" folder, **don't remove that!**
+      - The reason why I created that folder, is because of that I bumped in to problems with the restful API.... Normally you create a react app for the front-end and use only drf for the back-end, but in this (repository's) case there is a drf back-end with templates for the drf front end. And when I added the api endpoints for the react app front end- then I got alot of db errors, where drf were looking for html templates... these errors started as soon as I added the api_urls for react (the react app were looking for json data in the api endpoints, but drf were used to deliver html data via templates)...
+      - This problem got solved, by adding the empty "rest_framework" folder in my templates root (drf got saticfied by this folder... so just keep it and the settings for this folder in settings.py (no harm done).
+   3. There are 3 bugs reported in from my UAT (testcase no 17, 18 and 19), which you can read about in my Issues in this repository's project... Handle these Issues first, when starting developing future features - as they are of high importance (see details in the Issue testcases, and you would probably want to start with no 19).
 
-   2. there is one more open issue, for bugs - that will be detailed explained in the testing scetion below.
-      - This, bug Issue will be transfered to the next project too, though it can be seen as future improvements (the site GUI works as designed by now.. for this first release).
+_____________________________________________________________________________________________________________________________________________
 
 # Testing
 
 ## Functional Testing
 
-' **No errors shown in functional testing, where most testing where focused on back-end validation and authentication (security).**
+ - **Four important testcases saved in my project's Issues.. 1 (case 20) were solved and 3 (17, 18 and 19) are opened with workaounds**.
 
 ## Validator Testing
 
-' **Some errors were found when performing validator testing, but most of them can be ignored and quick fixes for those who needs attention.**
+
+![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/c9a32cb8-17fa-4636-a9b8-3cef223e6da2)
+
+![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/0c5b1e93-3b98-41f5-ae7b-ba3424ef5e6d)
+
+![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/1754344b-d9ff-410a-9e40-053f03bf8723)
+
+![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/1dd1e297-f1d2-48b2-a014-d444e06358c6)
+
+ - **Some errors were found when performing validator testing, and I solved all of them except the "line too long" errors from "Linter"**.
 
 ### Bugs -Solved
 
- - **HTML validator texting shows two errors, regarding the ID attribute on the landing page (id used twice, so it needs to be renamed or swished to a class attribute instead... (quick fix - to be implemented asap).**
-- **Due to circular code Issues, the quick fix was to change urls. root in settings.py to point at APP urls, instead of the django project urls... this needs to be looked at further, but for now, everything is up and running.**
+ - **W3C errors, eslint and pep8 errors, and most functional testcases**.
 
 ### Bugs -Remaining
 
- - **CSS shows many errors (25ea) when testing with W3C validator, but most of the errors points at the bootstrap 5.3 attributes... the site works fine and the css styling does what it suppose to do, so for now this issue will be postponed to the next release.**
+ - **linter "line too long" errors, manual testcases no 17, 18 and 19**.
+
+_____________________________________________________________________________________________________________________________________________
 
 # Deployment
 
