@@ -57,11 +57,11 @@ The __*"Fastfood-drf"*__ APP has:
 
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/259a6ad7-d593-46a1-9526-a9c085b0795b)
 
-- **The app -only allows bookings when a user has registered and are loged-in.**
+- **The app -only allows bookings when a user has registered and are signed-in.**
 
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/3e13e3a5-663b-4e72-a052-24a68757f7ef)
 
-- **Once loged-in you can:**
+- **Once signed-in you can:**
    1. Reserv a table.
    2. View your bookings (reachable via the button or via the navigation bar).
 
@@ -107,12 +107,12 @@ The __*"Fastfood-drf"*__ APP has:
  3. A confirmation email is sent to the users email
  4. An email is sent to the restaurant
 
-## DRF *registration and log-in /log-out*
+## DRF *registration and sign-in /log-out*
 
 
 ![image](https://github.com/SvenLoevgren/fullstack-portfolio4/assets/119969411/3908a170-955f-4e47-83c8-29ed48b9d6cd)
 
-- **The registration and log-in and log-out is kind of straight forwards... Note, that the social media links- is removed in the actual code and templates styled (a notification about this is added in the "Integrate-drf-react" section below in this README file (more details can also be found in Userstory no 9, in my advanced front end project in github))**
+- **The registration and sign-in and log-out is kind of straight forwards... Note, that the social media links- is removed in the actual code and templates styled (a notification about this is added in the "Integrate-drf-react" section below in this README file (more details can also be found in Userstory no 9, in my advanced front end project in github))**
 
 ## DRF *admin page*
 
@@ -164,7 +164,7 @@ The __*"Integration"*__ has:
 ![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/c08e9da5-1dde-4d4d-89c0-6e4a932b1e5c)
 
 - **The sign-up toggle is straight forwards:**
-   1. Whenever you want or need to sign in via the react app, just press on the *"create new account"* button, and you will get navigated to allauths signup template in drf (as allauth handles the registered users in my set-up)...
+   1. Whenever you want or need to sign up via the react app, just press on the *"create new account"* button, and you will get navigated to allauths signup template in drf (as allauth handles the registered users in my set-up)...
    2. If you are in the drf booking site page, then just use the *register* link to get to the allauths signup template.
 
 _____________________________________________________________________________________________________________________________________________
@@ -178,9 +178,9 @@ This react APP is named **"our-menu"**, and will improve the customers collabora
 
 The __*"our-menu"*__ APP has:
 
-* A Welcome page with a navbar where the user can log in and out, register new account and navigate to the table booking system (drf app).
-* Once logged in the user will be able to navigate to the Menu items (where the user can se all dishes, that the restaurant has).
-* Once the user has logged in and navigated to the menu items, then the user can select items and add these to their cart to get the total price.
+* A Welcome page with a navbar where the user can sign in and out, register new account and navigate to the table booking system (drf app).
+* Once signed in the user will be able to navigate to the Menu (where the user can se all dishes, that the restaurant has).
+* Once the user has signed in and navigated to the menu, then the user can select items and add these to their cart to get the total price.
 * When the user has added menu items to their cart, then the user can navigate to the summary page, where the total cost is displayed.
 * In the summary page, the user can update and delete items, that they have added - and get a quick feedback of the new summary.
 * The summary page can be navigated to both via the welcome page (Cart -link), and automatically after adding items to the cart via the menu item page.
@@ -203,7 +203,7 @@ The __*"our-menu"*__ APP has:
 
 ![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/c5638809-850d-48e4-b381-5b1dc15a1750)
 
-- **The menu page, is where the user creats their menu:**
+- **The menu page, is where the user creates their menu:**
    1. Here the user can chose to select items to add to their cart- or cancel to navigate back to the welcome page and start over.
       - The items in the list has a vertical scroll option if there are more items, with the guided text as in the image above, in this README file, and there is also a mouse hover message to tell the user to srcoll, if there are more items in the list.
    3. There is also and option to view details about each specific menu item, which will navigate the user to a *details page*.
@@ -216,7 +216,7 @@ The __*"our-menu"*__ APP has:
 
 ![image](https://github.com/SvenLoevgren/portfolio5-menu/assets/119969411/f1e0739a-0392-4875-9a8f-ba2da3a1e918)
 
-- **The Details page will show menu item details:**
+- **The Details page will show menu details:**
    1. If the user has pressed on the details page in the menu page, then the details will show as in the image above- in this README file.
    2. The only option in this page is to close the window, which will navigate the user back to the menu page again.
 
@@ -280,7 +280,7 @@ ________________________________________________________________________________
 
 ## Functional Testing
 
- - **Four important testcases saved in my project's Issues.. 1 (case 20) were solved and 3 (17, 18 and 19) are opened with workaounds**.
+ - **Four important testcases are saved in my project's Issues.. number one (case 20) were solved and the three others (case 17, 18 and 19) are opened with workaounds**.
 
 ## Validator Testing
 
@@ -301,7 +301,7 @@ ________________________________________________________________________________
 
 ### Bugs -Remaining
 
- - **linter "line too long" errors, manual testcases no 17, 18 and 19**.
+ - **linter "line too long" errors, and the manual testcases with numbers 17, 18 and 19**.
 
 _____________________________________________________________________________________________________________________________________________
 
@@ -313,11 +313,11 @@ ________________________________________________________________________________
 ## Steps
 
 1. Page not found checked, in both front and back-end repositories.
-2. Imports checked on all files to remove unecessary imports, in both front and back-end repositories.
-3. Console logs checked and removed on all files, in both fron and back-end repositories.
-4. Indention and comments checked and updated, in both fron and back-end repositories.
-5. Index.html checked for correct, , in both fron and back-end repositories.
-6. All eslint errors cleared in react front end (npm up to date with the newest version at the time of deployment).
+2. Imports checked on all files for removement of unnecessary imports, in both front and back-end repositories.
+3. Console logs checked and removed on all files, in both front and back-end repositories.
+4. Indention and comments checked and updated, in both front and back-end repositories.
+5. Index.html checked for correct title, in both front and back-end repositories.
+6. All eslint errors cleared in react front-end (npm up to date with the newest version at the time of deployment).
 7. Package.json script and Procfile checked, before final deployment.
 8. env.py checked to hide sensetive data and Heroku VARS updated at the time of final deployment.
 9. Strictmode checked to not exist in index.js (in react front-end).
@@ -344,22 +344,22 @@ Extra credit to my mentors given by Code Institute, for making it possible to un
 
 ## Content
 For complete lists - see the requirements.txt in drf repository and the dependencies in package.json in the react repository.
-Django Rest Framework
-Heroku (deployment)
-Email.JS (drf- email 3rd party)
-Elephant SQL (db)
-whitenoise (webservice)
-react-router-dom
-axios
-react-icons
-react-bootstrap
-bootstrap
-jsdelivr
-fontawsome
-Google fonts
+Django Rest Framework,
+Heroku (deployment),
+Email.JS (drf- email 3rd party),
+Elephant SQL (db),
+whitenoise (webservice),
+react-router-dom,
+axios,
+react-icons,
+react-bootstrap,
+bootstrap,
+jsdelivr,
+fontawsome,
+Google fonts,
 
 ## Media
-Cloudinary (media storage- drf and react)
+Cloudinary (media storage- drf and react),
 Pexels.com for menu images.
 
 **Over all -  The whole project was built and released with the assistance of Code Institute and alot of google.**
